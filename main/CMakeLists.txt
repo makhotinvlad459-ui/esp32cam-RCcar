@@ -1,0 +1,25 @@
+idf_component_register(
+    SRCS 
+        "main.c" 
+        "wifi_manager.c"
+        "ble_manager.c"
+        "led_controller.c"
+        "command_handler.c"
+        "camera_server.c"
+        "camera_ov2640.c"
+        "wifi_stream.c"
+        "mode_switch.c"
+        "websocket_client.c" 
+        "server_manager.c"
+    INCLUDE_DIRS "."
+    PRIV_REQUIRES 
+        nvs_flash
+        esp_wifi
+        esp_http_server
+        esp_timer
+        esp_psram
+        esp32-camera
+        esp_websocket_client
+        cJSON
+        bt
+)

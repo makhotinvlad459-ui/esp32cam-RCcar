@@ -1,0 +1,5 @@
+dependencies:
+  espressif/esp_websocket_client: "^1.0.0"
+  espressif/esp32-camera: "^2.0.0"
+  joltwallet/littlefs: "^1.0.0"
+  espressif/cJSON: "^1.0.0"

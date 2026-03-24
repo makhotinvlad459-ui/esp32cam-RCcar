@@ -1,0 +1,2 @@
+source /home/vlad/DriveBot_/build/bootloader/gdbinit/symbols
+source /home/vlad/DriveBot_/build/bootloader/gdbinit/connect
