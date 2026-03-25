@@ -84,7 +84,7 @@ esp_err_t camera_init_with_params(const camera_params_t *params) {
     sensor_t *s = esp_camera_sensor_get();
     if (s) {
         // БЫСТРЫЕ ФИКСИРОВАННЫЕ НАСТРОЙКИ
-        s->set_brightness(s, 2);
+        s->set_brightness(s, 1);
         s->set_contrast(s, 1);
         s->set_saturation(s, 1);
         s->set_whitebal(s, 1);

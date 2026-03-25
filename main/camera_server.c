@@ -26,6 +26,13 @@ esp_err_t camera_server_init_advanced(stream_mode_t mode, const camera_params_t 
         ESP_LOGE(TAG, "❌ Ошибка инициализации камеры!");
         return ESP_FAIL;
     }
+    sensor_t *s = esp_camera_sensor_get();
+    if (s) {
+        s->set_pixformat(s, PIXFORMAT_JPEG);
+        ESP_LOGI(TAG, "Установлен формат JPEG");
+    } else {
+        ESP_LOGW(TAG, "Не удалось получить сенсор, формат не изменён");
+    }
     
     camera_start();
     camera_started = true;
@@ -38,15 +45,16 @@ esp_err_t camera_server_init(void) {
     
     camera_params_t svga_params = {
         .frame_size = FRAMESIZE_SVGA,    // 800x600
-        .jpeg_quality = 8,              
+        .jpeg_quality = 6,              
         .fps_target = 20,                
-        .xclk_freq = 15000000,           // 15 MHz
+        .xclk_freq = 20000000,           // 15 MHz
         .fb_location = CAMERA_FB_IN_PSRAM,
-        .fb_count = 1
+        .fb_count = 2
     };
     
     return camera_server_init_advanced(STREAM_MODE_UDP_MJPEG, &svga_params);
 }
+
 
 esp_err_t camera_server_get_stats(stream_stats_t *stats) {
     if (stats) {
