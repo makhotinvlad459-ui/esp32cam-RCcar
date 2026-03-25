@@ -39,7 +39,7 @@ typedef struct {
 
 #define DEFAULT_CAM_PARAMS { \
     .frame_size = FRAMESIZE_VGA, \
-    .jpeg_quality = 10, \
+    .jpeg_quality = 15, \
     .fps_target = 15, \
     .xclk_freq = 20000000, \
     .fb_location = CAMERA_FB_IN_PSRAM, \
@@ -84,8 +84,8 @@ typedef struct {
 }
 #define CAM_PARAMS_SVGA { \
     .frame_size = FRAMESIZE_SVGA, \
-    .jpeg_quality = 12, \
-    .fps_target = 15, \
+    .jpeg_quality = 8, \
+    .fps_target = 20, \
     .xclk_freq = 20000000, \
     .fb_location = CAMERA_FB_IN_PSRAM, \
     .fb_count = 1 \

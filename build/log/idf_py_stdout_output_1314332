@@ -1,0 +1,7 @@
+[1/4] cd /home/vlad/DriveBot_/build/esp-idf/esptool_py && /home/vlad/.espressif/python_env/idf5.4_py3.12_env/bin/python /home/vlad/esp/esp-idf/components/partition_table/check_sizes.py --offset 0x8000 partition --type app /home/vlad/DriveBot_/build/partition_table/partition-table.bin /home/vlad/DriveBot_/build/drivebot.bin
+drivebot.bin binary size 0xc9a50 bytes. Smallest app partition is 0x1e0000 bytes. 0x1165b0 bytes (58%) free.
+[2/4] Performing build step for 'bootloader'
+[1/1] cd /home/vlad/DriveBot_/build/bootloader/esp-idf/esptool_py && /home/vlad/.espressif/python_env/idf5.4_py3.12_env/bin/python /home/vlad/esp/esp-idf/components/partition_table/check_sizes.py --offset 0x8000 bootloader 0x0 /home/vlad/DriveBot_/build/bootloader/bootloader.bin
+Bootloader binary size 0x4c30 bytes. 0x33d0 bytes (40%) free.
+[3/4] No install step for 'bootloader'
+[4/4] Completed 'bootloader'

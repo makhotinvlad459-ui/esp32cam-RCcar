@@ -28,10 +28,6 @@ esp_err_t camera_server_init_advanced(stream_mode_t mode, const camera_params_t 
     }
     
     camera_start();
-    
-    // Просто ждем 1 секунду для стабилизации
-    vTaskDelay(pdMS_TO_TICKS(1000));
-    
     camera_started = true;
     ESP_LOGI(TAG, "✅ Камера запущена и работает");
     return ESP_OK;
@@ -42,8 +38,8 @@ esp_err_t camera_server_init(void) {
     
     camera_params_t svga_params = {
         .frame_size = FRAMESIZE_SVGA,    // 800x600
-        .jpeg_quality = 10,              
-        .fps_target = 15,                
+        .jpeg_quality = 8,              
+        .fps_target = 20,                
         .xclk_freq = 15000000,           // 15 MHz
         .fb_location = CAMERA_FB_IN_PSRAM,
         .fb_count = 1

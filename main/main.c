@@ -24,16 +24,27 @@ extern void camera_stop(void);
 
 static const char *TAG = "DRIVEBOT_MAIN";
 static httpd_handle_t http_server = NULL;
+static bool camera_started = false;
 
-// ==================== HTTP START ====================
+// ==================== HTTP START КАМЕРЫ ====================
 static esp_err_t start_handler(httpd_req_t *req) {
-    ESP_LOGI(TAG, "📷 Запрос /start");
+    ESP_LOGI(TAG, "📷 Принудительный запуск камеры");
+    if (!camera_started) {
+        camera_server_init();
+        camera_started = true;
+    }
     httpd_resp_send(req, "OK", 2);
     return ESP_OK;
 }
 
 // ==================== HTTP MJPEG ВИДЕО (ПОРТ 81) ====================
 static esp_err_t stream_handler(httpd_req_t *req) {
+    // Запускаем камеру если еще не запущена
+    if (!camera_started) {
+        camera_server_init();
+        camera_started = true;
+    }
+    
     ESP_LOGI(TAG, "📹 Клиент запросил видеопоток");
     
     httpd_resp_set_type(req, "multipart/x-mixed-replace; boundary=frame");
@@ -78,6 +89,12 @@ static esp_err_t stream_handler(httpd_req_t *req) {
 
 // ==================== HTTP CAPTURE (ФОТО) ====================
 static esp_err_t capture_handler(httpd_req_t *req) {
+    // Запускаем камеру если еще не запущена
+    if (!camera_started) {
+        camera_server_init();
+        camera_started = true;
+    }
+    
     ESP_LOGI(TAG, "📸 Запрос фото");
     
     camera_fb_t *fb = camera_capture();
@@ -129,7 +146,6 @@ static esp_err_t start_http_video_server(void) {
         ESP_LOGI(TAG, "✅ HTTP сервер запущен на порту 81");
         ESP_LOGI(TAG, "📡 Видеопоток: http://192.168.4.1:81/stream");
         ESP_LOGI(TAG, "📸 Фото: http://192.168.4.1:81/capture");
-        ESP_LOGI(TAG, "▶️ /start: http://192.168.4.1:81/start");
         return ESP_OK;
     }
     return ESP_FAIL;
@@ -212,22 +228,6 @@ static void start_udp_command_server(void) {
     xTaskCreate(udp_command_task, "udp_cmd", 4096, NULL, 5, NULL);
 }
 
-// ==================== ЗАДАЧА ЗАПУСКА КАМЕРЫ ====================
-static void camera_launcher_task(void *pvParameters) {
-    // Ждем подключения клиента WiFi
-    while (!wifi_manager_is_client_connected()) {
-        vTaskDelay(pdMS_TO_TICKS(500));
-    }
-    
-    // Дополнительная задержка для стабилизации WiFi
-    vTaskDelay(pdMS_TO_TICKS(1000));
-    
-    ESP_LOGI(TAG, "📱 Телефон подключен, запускаем камеру...");
-    camera_server_init();
-    
-    vTaskDelete(NULL);
-}
-
 // ==================== MAIN ====================
 void app_main(void)
 {
@@ -249,16 +249,17 @@ void app_main(void)
     start_udp_command_server();
     start_http_video_server();
     
-    // Запускаем задачу, которая включит камеру после подключения телефона
-    xTaskCreate(camera_launcher_task, "camera_launcher", 4096, NULL, 5, NULL);
-    
+    // КАМЕРА НЕ ЗАПУСКАЕТСЯ СРАЗУ!
+    // Она запустится при первом запросе /stream, /capture или /start
+    ESP_LOGI(TAG, "Камера будет запущена при первом подключении клиента");
+    camera_started = false;
+
     ESP_LOGI(TAG, "=== СИСТЕМА ГОТОВА ===");
     ESP_LOGI(TAG, "🎮 UDP команды: порт 8080");
     ESP_LOGI(TAG, "🎥 HTTP видео: http://192.168.4.1:81/stream");
     ESP_LOGI(TAG, "📸 HTTP фото: http://192.168.4.1:81/capture");
     ESP_LOGI(TAG, "📡 WiFi: DriveBot_CAM, IP: 192.168.4.1");
     ESP_LOGI(TAG, "🔵 BLE: DriveBot");
-    ESP_LOGI(TAG, "📷 Камера запустится автоматически при подключении телефона");
 
     while(1) {
         vTaskDelay(pdMS_TO_TICKS(10000));

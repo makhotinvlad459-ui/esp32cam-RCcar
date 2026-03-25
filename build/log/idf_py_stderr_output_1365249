@@ -1,0 +1,14 @@
+[0;33m--- esp-idf-monitor 1.9.0 on /dev/ttyACM0 115200[0m
+[0;33m--- Quit: Ctrl+] | Menu: Ctrl+T | Help: Ctrl+T followed by Ctrl+H[0m
+[0m--- 0x403796e5: [0;33mesp_restart_noos[0m[0m at [0;32m/home/vlad/esp/esp-idf/components/esp_system/port/soc/esp32s3/system_internal.c[0m[0m:[1;31m164[0m
+[0m--- 0x403796e5: [0;33mesp_restart_noos[0m[0m at [0;32m/home/vlad/esp/esp-idf/components/esp_system/port/soc/esp32s3/system_internal.c[0m[0m:[1;31m164[0m
+[0m--- 0x403796e5: [0;33mesp_restart_noos[0m[0m at [0;32m/home/vlad/esp/esp-idf/components/esp_system/port/soc/esp32s3/system_internal.c[0m[0m:[1;31m164[0m
+[0m--- 0x403796e5: [0;33mesp_restart_noos[0m[0m at [0;32m/home/vlad/esp/esp-idf/components/esp_system/port/soc/esp32s3/system_internal.c[0m[0m:[1;31m164[0m
+[0m--- 0x403796e5: [0;33mesp_restart_noos[0m[0m at [0;32m/home/vlad/esp/esp-idf/components/esp_system/port/soc/esp32s3/system_internal.c[0m[0m:[1;31m164[0m
+[0m--- 0x403796e5: [0;33mesp_restart_noos[0m[0m at [0;32m/home/vlad/esp/esp-idf/components/esp_system/port/soc/esp32s3/system_internal.c[0m[0m:[1;31m164[0m
+[0m--- 0x403796e5: [0;33mesp_restart_noos[0m[0m at [0;32m/home/vlad/esp/esp-idf/components/esp_system/port/soc/esp32s3/system_internal.c[0m[0m:[1;31m164[0m
+[0m--- 0x403796e5: [0;33mesp_restart_noos[0m[0m at [0;32m/home/vlad/esp/esp-idf/components/esp_system/port/soc/esp32s3/system_internal.c[0m[0m:[1;31m164[0m
+[0m--- 0x403796e5: [0;33mesp_restart_noos[0m[0m at [0;32m/home/vlad/esp/esp-idf/components/esp_system/port/soc/esp32s3/system_internal.c[0m[0m:[1;31m164[0m
+[0m--- 0x403796e5: [0;33mesp_restart_noos[0m[0m at [0;32m/home/vlad/esp/esp-idf/components/esp_system/port/soc/esp32s3/system_internal.c[0m[0m:[1;31m164[0m
+[0m--- 0x403796e5: [0;33mesp_restart_noos[0m[0m at [0;32m/home/vlad/esp/esp-idf/components/esp_system/port/soc/esp32s3/system_internal.c[0m[0m:[1;31m164[0m
+[0m
