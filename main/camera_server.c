@@ -43,13 +43,13 @@ esp_err_t camera_server_init_advanced(stream_mode_t mode, const camera_params_t 
 esp_err_t camera_server_init(void) {
     ESP_LOGI(TAG, "Инициализация камеры");
     
-    camera_params_t svga_params = {
-        .frame_size = FRAMESIZE_SVGA,    // 800x600
-        .jpeg_quality = 6,              
-        .fps_target = 20,                
-        .xclk_freq = 20000000,           // 15 MHz
+   camera_params_t svga_params = {
+        .frame_size = FRAMESIZE_XGA,       // 1024x768 (XGA)
+        .jpeg_quality = 10,                // качество (чем меньше, тем лучше)
+        .fps_target = 15,                 // целевой FPS
+        .xclk_freq = 20000000,            // 20 MHz
         .fb_location = CAMERA_FB_IN_PSRAM,
-        .fb_count = 2
+        .fb_count = 2                     // два буфера
     };
     
     return camera_server_init_advanced(STREAM_MODE_UDP_MJPEG, &svga_params);

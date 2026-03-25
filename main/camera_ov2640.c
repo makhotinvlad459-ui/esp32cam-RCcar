@@ -84,17 +84,18 @@ esp_err_t camera_init_with_params(const camera_params_t *params) {
     sensor_t *s = esp_camera_sensor_get();
     if (s) {
         // БЫСТРЫЕ ФИКСИРОВАННЫЕ НАСТРОЙКИ
-        s->set_brightness(s, 1);
-        s->set_contrast(s, 1);
-        s->set_saturation(s, 1);
+        s->set_brightness(s, 2);
+        s->set_contrast(s, 2);
+        s->set_saturation(s, 2);
         s->set_whitebal(s, 1);
-        s->set_awb_gain(s, 1);
+        s->set_awb_gain(s, 2);
         s->set_gain_ctrl(s, 1);
+        s->set_agc_gain(s, 255);
         s->set_exposure_ctrl(s, 1);
         
         // Отключаем медленные автонастройки
-        //s->set_aec2(s, 0);
-        //s->set_ae_level(s, 1);
+            s->set_aec2(s, 0);
+            s->set_ae_level(s, 2);
         
         s->set_hmirror(s, 0);
         s->set_vflip(s, 0);
