@@ -94,7 +94,7 @@ esp_err_t camera_init_with_params(const camera_params_t *params) {
         s->set_exposure_ctrl(s, 1);
         
         // Отключаем медленные автонастройки
-            s->set_aec2(s, 0);
+            s->set_aec2(s, 1);
             s->set_ae_level(s, 2);
         
         s->set_hmirror(s, 0);

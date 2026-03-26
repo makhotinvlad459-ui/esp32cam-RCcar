@@ -11,21 +11,27 @@ static const char *TAG = "CAM_SRV";
 static bool camera_started = false;
 static camera_params_t saved_params;
 
-extern esp_err_t camera_init(void);
+extern esp_err_t camera_init_with_params(const camera_params_t *params);  // изменено
 extern camera_fb_t* camera_capture(void);
 extern void camera_return_fb(camera_fb_t *fb);
 extern void camera_start(void);
 extern void camera_stop(void);
 
 esp_err_t camera_server_init_advanced(stream_mode_t mode, const camera_params_t *cam_params) {
-    ESP_LOGI(TAG, "🚀 Инициализация камеры...");
+    if (camera_started) {
+        ESP_LOGW(TAG, "Камера уже инициализирована");
+        return ESP_OK;
+    }
     
+    ESP_LOGI(TAG, "🚀 Инициализация камеры...");
     memcpy(&saved_params, cam_params, sizeof(camera_params_t));
     
-    if (camera_init() != ESP_OK) {
+    // Передаём параметры в функцию инициализации
+    if (camera_init_with_params(cam_params) != ESP_OK) {
         ESP_LOGE(TAG, "❌ Ошибка инициализации камеры!");
         return ESP_FAIL;
     }
+    
     sensor_t *s = esp_camera_sensor_get();
     if (s) {
         s->set_pixformat(s, PIXFORMAT_JPEG);
@@ -35,26 +41,43 @@ esp_err_t camera_server_init_advanced(stream_mode_t mode, const camera_params_t 
     }
     
     camera_start();
+    
+    // Прогрев: захватить 3 кадра для стабилизации
+    ESP_LOGI(TAG, "Прогрев камеры (3 кадра)...");
+    for (int i = 0; i < 3; i++) {
+        camera_fb_t *fb = camera_capture();
+        if (fb) {
+            ESP_LOGI(TAG, "Прогрев %d: %d байт", i+1, fb->len);
+            camera_return_fb(fb);
+        } else {
+            ESP_LOGW(TAG, "Прогрев %d: кадр не получен", i+1);
+        }
+        vTaskDelay(pdMS_TO_TICKS(100));
+    }
+    
     camera_started = true;
     ESP_LOGI(TAG, "✅ Камера запущена и работает");
     return ESP_OK;
 }
 
 esp_err_t camera_server_init(void) {
-    ESP_LOGI(TAG, "Инициализация камеры");
+    if (camera_started) {
+        ESP_LOGW(TAG, "Камера уже запущена");
+        return ESP_OK;
+    }
+    ESP_LOGI(TAG, "Инициализация камеры с параметрами XGA, качество 10, XCLK 20MHz");
     
-   camera_params_t svga_params = {
-        .frame_size = FRAMESIZE_XGA,       // 1024x768 (XGA)
-        .jpeg_quality = 10,                // качество (чем меньше, тем лучше)
-        .fps_target = 15,                 // целевой FPS
+    camera_params_t svga_params = {
+        .frame_size = FRAMESIZE_XGA,       // 1024x768
+        .jpeg_quality = 10,
+        .fps_target = 15,
         .xclk_freq = 20000000,            // 20 MHz
         .fb_location = CAMERA_FB_IN_PSRAM,
-        .fb_count = 2                     // два буфера
+        .fb_count = 1
     };
     
     return camera_server_init_advanced(STREAM_MODE_UDP_MJPEG, &svga_params);
 }
-
 
 esp_err_t camera_server_get_stats(stream_stats_t *stats) {
     if (stats) {
