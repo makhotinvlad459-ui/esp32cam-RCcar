@@ -73,7 +73,7 @@ esp_err_t camera_server_init(void) {
         .fps_target = 15,
         .xclk_freq = 20000000,            // 20 MHz
         .fb_location = CAMERA_FB_IN_PSRAM,
-        .fb_count = 1
+        .fb_count = 2
     };
     
     return camera_server_init_advanced(STREAM_MODE_UDP_MJPEG, &svga_params);

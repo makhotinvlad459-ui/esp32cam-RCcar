@@ -28,6 +28,12 @@ static bool camera_started = false;
 
 // ==================== HTTP START КАМЕРЫ ====================
 static esp_err_t start_handler(httpd_req_t *req) {
+    // CORS заголовки
+    httpd_resp_set_hdr(req, "Access-Control-Allow-Origin", "*");
+    if (req->method == HTTP_OPTIONS) {
+        httpd_resp_send(req, NULL, 0);
+        return ESP_OK;
+    }
     ESP_LOGI(TAG, "📷 Принудительный запуск камеры");
     if (!camera_started) {
         camera_server_init();
@@ -39,14 +45,19 @@ static esp_err_t start_handler(httpd_req_t *req) {
 
 // ==================== HTTP MJPEG ВИДЕО (ПОРТ 81) ====================
 static esp_err_t stream_handler(httpd_req_t *req) {
-    // Запускаем камеру если еще не запущена
+    // CORS заголовки
+    httpd_resp_set_hdr(req, "Access-Control-Allow-Origin", "*");
+    if (req->method == HTTP_OPTIONS) {
+        httpd_resp_send(req, NULL, 0);
+        return ESP_OK;
+    }
+
     if (!camera_started) {
         camera_server_init();
         camera_started = true;
     }
     
     ESP_LOGI(TAG, "📹 Клиент запросил видеопоток");
-    
     httpd_resp_set_type(req, "multipart/x-mixed-replace; boundary=frame");
     
     while (true) {
@@ -64,12 +75,10 @@ static esp_err_t stream_handler(httpd_req_t *req) {
                     camera_return_fb(fb);
                     break;
                 }
-                
                 if (httpd_resp_send_chunk(req, (const char*)fb->buf, fb->len) != ESP_OK) {
                     camera_return_fb(fb);
                     break;
                 }
-                
                 if (httpd_resp_send_chunk(req, "\r\n", 2) != ESP_OK) {
                     camera_return_fb(fb);
                     break;
@@ -82,36 +91,29 @@ static esp_err_t stream_handler(httpd_req_t *req) {
             vTaskDelay(pdMS_TO_TICKS(10));
         }
     }
-    
     httpd_resp_send_chunk(req, NULL, 0);
     return ESP_OK;
 }
 
-// ==================== HTTP CAPTURE (ФОТО) ====================
+// ==================== HTTP CAPTURE (не используется, но оставим для совместимости) ====================
 static esp_err_t capture_handler(httpd_req_t *req) {
-    // Запускаем камеру если еще не запущена
+    httpd_resp_set_hdr(req, "Access-Control-Allow-Origin", "*");
+    if (req->method == HTTP_OPTIONS) {
+        httpd_resp_send(req, NULL, 0);
+        return ESP_OK;
+    }
     if (!camera_started) {
         camera_server_init();
         camera_started = true;
     }
-    
-    ESP_LOGI(TAG, "📸 Запрос фото");
-    
+    ESP_LOGI(TAG, "📸 Запрос фото (не используется)");
     camera_fb_t *fb = camera_capture();
-    if (fb && fb->len > 100 && fb->buf[0] == 0xFF && fb->buf[1] == 0xD8) {
-        httpd_resp_set_type(req, "image/jpeg");
-        httpd_resp_send(req, (const char*)fb->buf, fb->len);
-        camera_return_fb(fb);
-        ESP_LOGI(TAG, "✅ Фото отправлено (%d байт)", fb->len);
-        return ESP_OK;
-    }
     if (fb) camera_return_fb(fb);
-    httpd_resp_send_err(req, HTTPD_500_INTERNAL_SERVER_ERROR, "Capture failed");
-    ESP_LOGE(TAG, "❌ Ошибка фото");
+    httpd_resp_send_err(req, HTTPD_500_INTERNAL_SERVER_ERROR, "Not used");
     return ESP_FAIL;
 }
 
-static esp_err_t start_http_video_server(void) {
+static esp_err_t start_http_server(void) {
     httpd_config_t config = HTTPD_DEFAULT_CONFIG();
     config.server_port = 81;
     config.lru_purge_enable = true;
@@ -119,39 +121,26 @@ static esp_err_t start_http_video_server(void) {
     config.task_priority = 10;
     
     if (httpd_start(&http_server, &config) == ESP_OK) {
-        httpd_uri_t start_uri = {
-            .uri       = "/start",
-            .method    = HTTP_GET,
-            .handler   = start_handler,
-            .user_ctx  = NULL
-        };
+        httpd_uri_t start_uri = { .uri = "/start",   .method = HTTP_GET,  .handler = start_handler };
+        httpd_uri_t stream_uri = { .uri = "/stream", .method = HTTP_GET,  .handler = stream_handler };
+        httpd_uri_t capture_uri = { .uri = "/capture", .method = HTTP_GET, .handler = capture_handler };
+        // Добавляем OPTIONS для предварительных запросов
+        httpd_uri_t start_opt = { .uri = "/start",   .method = HTTP_OPTIONS, .handler = start_handler };
+        httpd_uri_t stream_opt = { .uri = "/stream", .method = HTTP_OPTIONS, .handler = stream_handler };
+        httpd_uri_t capture_opt= { .uri = "/capture", .method = HTTP_OPTIONS, .handler = capture_handler };
         httpd_register_uri_handler(http_server, &start_uri);
-        
-        httpd_uri_t stream_uri = {
-            .uri       = "/stream",
-            .method    = HTTP_GET,
-            .handler   = stream_handler,
-            .user_ctx  = NULL
-        };
         httpd_register_uri_handler(http_server, &stream_uri);
-        
-        httpd_uri_t capture_uri = {
-            .uri       = "/capture",
-            .method    = HTTP_GET,
-            .handler   = capture_handler,
-            .user_ctx  = NULL
-        };
         httpd_register_uri_handler(http_server, &capture_uri);
-        
+        httpd_register_uri_handler(http_server, &start_opt);
+        httpd_register_uri_handler(http_server, &stream_opt);
+        httpd_register_uri_handler(http_server, &capture_opt);
         ESP_LOGI(TAG, "✅ HTTP сервер запущен на порту 81");
-        ESP_LOGI(TAG, "📡 Видеопоток: http://192.168.4.1:81/stream");
-        ESP_LOGI(TAG, "📸 Фото: http://192.168.4.1:81/capture");
         return ESP_OK;
     }
     return ESP_FAIL;
 }
 
-// ==================== UDP КОМАНДЫ (ПОРТ 8080) ====================
+// ==================== UDP КОМАНДЫ ====================
 static int udp_cmd_sock = -1;
 static bool udp_running = false;
 
@@ -177,48 +166,19 @@ static void udp_command_task(void *pvParameters) {
         vTaskDelete(NULL);
         return;
     }
-    
     ESP_LOGI(TAG, "✅ UDP командный сервер запущен на порту 8080");
     
     while (udp_running) {
-        int len = recvfrom(udp_cmd_sock, buffer, sizeof(buffer) - 1, 0, 
-                           (struct sockaddr *)&client_addr, &socklen);
+        int len = recvfrom(udp_cmd_sock, buffer, sizeof(buffer)-1, 0, (struct sockaddr *)&client_addr, &socklen);
         if (len > 0) {
             buffer[len] = '\0';
             buffer[strcspn(buffer, "\r\n")] = '\0';
             ESP_LOGI(TAG, "📱 Получена UDP команда: %s", buffer);
-            
-            if (strcmp(buffer, "FORWARD") == 0) {
-                ESP_LOGI(TAG, "🚗 FORWARD");
-            } else if (strcmp(buffer, "BACKWARD") == 0) {
-                ESP_LOGI(TAG, "🚗 BACKWARD");
-            } else if (strcmp(buffer, "LEFT") == 0) {
-                ESP_LOGI(TAG, "🚗 LEFT");
-            } else if (strcmp(buffer, "RIGHT") == 0) {
-                ESP_LOGI(TAG, "🚗 RIGHT");
-            } else if (strcmp(buffer, "STOP") == 0) {
-                ESP_LOGI(TAG, "🚗 STOP");
-            } else if (strcmp(buffer, "HORN_ON") == 0) {
-                ESP_LOGI(TAG, "🔊 HORN ON");
-            } else if (strcmp(buffer, "HORN_OFF") == 0) {
-                ESP_LOGI(TAG, "🔊 HORN OFF");
-            } else if (strcmp(buffer, "LIGHTS_ON") == 0) {
-                ESP_LOGI(TAG, "💡 LIGHTS ON");
-            } else if (strcmp(buffer, "LIGHTS_OFF") == 0) {
-                ESP_LOGI(TAG, "💡 LIGHTS OFF");
-            } else if (strcmp(buffer, "LIGHTS_BLINK") == 0) {
-                ESP_LOGI(TAG, "💡 LIGHTS BLINK");
-            } else if (strcmp(buffer, "RADIO_ON") == 0) {
-                ESP_LOGI(TAG, "📻 RADIO ON");
-            } else if (strcmp(buffer, "RADIO_OFF") == 0) {
-                ESP_LOGI(TAG, "📻 RADIO OFF");
-            }
-            
+            // обработка команд...
             ble_manager_send_command(buffer);
         }
         vTaskDelay(pdMS_TO_TICKS(10));
     }
-    
     close(udp_cmd_sock);
     vTaskDelete(NULL);
 }
@@ -241,27 +201,21 @@ void app_main(void)
     ESP_ERROR_CHECK(ret);
 
     led_controller_init();
-    
     ble_manager_init(NULL);
     wifi_manager_init_ap();
     esp_wifi_set_max_tx_power(78);
     
     start_udp_command_server();
-    start_http_video_server();
+    start_http_server();
     
-    // КАМЕРА НЕ ЗАПУСКАЕТСЯ СРАЗУ!
-    // Она запустится при первом запросе /stream, /capture или /start
     ESP_LOGI(TAG, "Камера будет запущена при первом подключении клиента");
     camera_started = false;
 
     ESP_LOGI(TAG, "=== СИСТЕМА ГОТОВА ===");
     ESP_LOGI(TAG, "🎮 UDP команды: порт 8080");
     ESP_LOGI(TAG, "🎥 HTTP видео: http://192.168.4.1:81/stream");
-    ESP_LOGI(TAG, "📸 HTTP фото: http://192.168.4.1:81/capture");
     ESP_LOGI(TAG, "📡 WiFi: DriveBot_CAM, IP: 192.168.4.1");
     ESP_LOGI(TAG, "🔵 BLE: DriveBot");
 
-    while(1) {
-        vTaskDelay(pdMS_TO_TICKS(10000));
-    }
+    while(1) vTaskDelay(pdMS_TO_TICKS(10000));
 }
