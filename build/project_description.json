@@ -1,7 +1,7 @@
 {
     "version":            "1.2",
     "project_name":       "drivebot",
-    "project_version":    "a526842-dirty",
+    "project_version":    "7f5eb7f-dirty",
     "project_path":       "/home/vlad/DriveBot_",
     "idf_path":           "/home/vlad/esp/esp-idf",
     "build_dir":          "/home/vlad/DriveBot_/build",
@@ -1270,7 +1270,7 @@
             "managed_reqs": [],
             "managed_priv_reqs": [ "espressif__cJSON", "espressif__esp32-camera", "espressif__esp_websocket_client", "joltwallet__littlefs" ],
             "file": "/home/vlad/DriveBot_/build/esp-idf/main/libmain.a",
-            "sources": [ "/home/vlad/DriveBot_/main/main.c", "/home/vlad/DriveBot_/main/wifi_manager.c", "/home/vlad/DriveBot_/main/ble_manager.c", "/home/vlad/DriveBot_/main/led_controller.c", "/home/vlad/DriveBot_/main/command_handler.c", "/home/vlad/DriveBot_/main/camera_server.c", "/home/vlad/DriveBot_/main/camera_ov2640.c", "/home/vlad/DriveBot_/main/wifi_stream.c", "/home/vlad/DriveBot_/main/mode_switch.c", "/home/vlad/DriveBot_/main/websocket_client.c", "/home/vlad/DriveBot_/main/server_manager.c" ],
+            "sources": [ "/home/vlad/DriveBot_/main/main.c", "/home/vlad/DriveBot_/main/wifi_manager.c", "/home/vlad/DriveBot_/main/ble_manager.c", "/home/vlad/DriveBot_/main/led_controller.c", "/home/vlad/DriveBot_/main/command_handler.c", "/home/vlad/DriveBot_/main/camera_server.c", "/home/vlad/DriveBot_/main/camera_ov2640.c", "/home/vlad/DriveBot_/main/wifi_stream.c", "/home/vlad/DriveBot_/main/mode_switch.c", "/home/vlad/DriveBot_/main/websocket_client.c", "/home/vlad/DriveBot_/main/server_manager.c", "/home/vlad/DriveBot_/main/audio_transport.c" ],
             "include_dirs": [ "." ]
         },
         "mbedtls": {

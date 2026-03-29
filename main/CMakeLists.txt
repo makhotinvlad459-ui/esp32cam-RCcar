@@ -11,6 +11,7 @@ idf_component_register(
         "mode_switch.c"
         "websocket_client.c" 
         "server_manager.c"
+        "audio_transport.c"
     INCLUDE_DIRS "."
     PRIV_REQUIRES 
         nvs_flash
