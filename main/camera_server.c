@@ -71,7 +71,7 @@ esp_err_t camera_server_init(void) {
         .frame_size = FRAMESIZE_SVGA,       // 1024x768
         .jpeg_quality = 10,
         .fps_target = 15,
-        .xclk_freq = 20000000,            // 20 MHz
+        .xclk_freq = 15000000,            // 20 MHz
         .fb_location = CAMERA_FB_IN_PSRAM,
         .fb_count = 1
     };

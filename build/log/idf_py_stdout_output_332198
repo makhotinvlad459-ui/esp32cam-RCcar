@@ -1,0 +1,486 @@
+ESP-ROM:esp32s3-20210327
+Build:Mar 27 2021
+rst:0x1 (POWERON),boot:0x2a (SPI_FAST_FLASH_BOOT)
+SPIWP:0xee
+mode:DIO, clock div:2
+load:0x3fce2810,len:0x1194
+load:0x403c8700,len:0x4
+load:0x403c8704,len:0xce0
+load:0x403cb700,len:0x2d5c
+entry 0x403c8910
+[0;32mI (29) boot: ESP-IDF v5.4.3-904-gacd7b505de 2nd stage bootloader[0m
+[0;32mI (29) boot: compile time Mar 31 2026 00:41:30[0m
+[0;32mI (29) boot: Multicore bootloader[0m
+[0;32mI (30) boot: chip revision: v0.2[0m
+[0;32mI (33) boot: efuse block revision: v1.3[0m
+[0;32mI (37) boot.esp32s3: Boot SPI Speed : 40MHz[0m
+[0;32mI (41) boot.esp32s3: SPI Mode       : DIO[0m
+[0;32mI (44) boot.esp32s3: SPI Flash Size : 16MB[0m
+[0;32mI (48) boot: Enabling RNG early entropy source...[0m
+[0;32mI (53) boot: Partition Table:[0m
+[0;32mI (55) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (62) boot:  0 nvs              WiFi data        01 02 00009000 00006000[0m
+[0;32mI (68) boot:  1 otadata          OTA data         01 00 0000f000 00002000[0m
+[0;32mI (75) boot:  2 phy_init         RF data          01 01 00011000 00001000[0m
+[0;32mI (81) boot:  3 factory          factory app      00 00 00020000 001e0000[0m
+[0;32mI (88) boot: End of partition table[0m
+[0;32mI (91) boot: Defaulting to factory image[0m
+[0;32mI (95) esp_image: segment 0: paddr=00020020 vaddr=3c0b0020 size=19870h (104560) map[0m
+[0;32mI (128) esp_image: segment 1: paddr=00039898 vaddr=3fca0e00 size=06780h ( 26496) load[0m
+[0;32mI (135) esp_image: segment 2: paddr=00040020 vaddr=42000020 size=a2c0ch (666636) map[0m
+[0;32mI (299) esp_image: segment 3: paddr=000e2c34 vaddr=3fca7580 size=00828h (  2088) load[0m
+[0;32mI (300) esp_image: segment 4: paddr=000e3464 vaddr=40378000 size=18d68h (101736) load[0m
+[0;32mI (332) esp_image: segment 5: paddr=000fc1d4 vaddr=50000000 size=0001ch (    28) load[0m
+[0;32mI (342) boot: Loaded app from partition at offset 0x20000[0m
+[0;32mI (342) boot: Disabling RNG early entropy source...[0m
+[0;32mI (353) octal_psram: vendor id    : 0x0d (AP)[0m
+[0;32mI (353) octal_psram: dev id       : 0x02 (generation 3)[0m
+[0;32mI (353) octal_psram: density      : 0x03 (64 Mbit)[0m
+[0;32mI (355) octal_psram: good-die     : 0x01 (Pass)[0m
+[0;32mI (359) octal_psram: Latency      : 0x01 (Fixed)[0m
+[0;32mI (364) octal_psram: VCC          : 0x01 (3V)[0m
+[0;32mI (368) octal_psram: SRF          : 0x01 (Fast Refresh)[0m
+[0;32mI (373) octal_psram: BurstType    : 0x01 (Hybrid Wrap)[0m
+[0;32mI (377) octal_psram: BurstLen     : 0x01 (32 Byte)[0m
+[0;32mI (382) octal_psram: Readlatency  : 0x02 (10 cycles@Fixed)[0m
+[0;32mI (387) octal_psram: DriveStrength: 0x00 (1/1)[0m
+[0;32mI (392) MSPI Timing: PSRAM timing tuning index: 5[0m
+[0;32mI (396) esp_psram: Found 8MB PSRAM device[0m
+[0;32mI (399) esp_psram: Speed: 80MHz[0m
+[0;32mI (403) cpu_start: Multicore app[0m
+[0;32mI (696) esp_psram: SPI SRAM memory test OK[0m
+[0;32mI (704) cpu_start: GPIO 44 and 43 are used as console UART I/O pins[0m
+[0;32mI (705) cpu_start: Pro cpu start user code[0m
+[0;32mI (705) cpu_start: cpu freq: 240000000 Hz[0m
+[0;32mI (706) app_init: Application information:[0m
+[0;32mI (710) app_init: Project name:     drivebot[0m
+[0;32mI (714) app_init: App version:      36d1bfa-dirty[0m
+[0;32mI (718) app_init: Compile time:     Mar 31 2026 00:41:09[0m
+[0;32mI (724) app_init: ELF file SHA256:  e19e0a0d8...[0m
+[0;32mI (728) app_init: ESP-IDF:          v5.4.3-904-gacd7b505de[0m
+[0;32mI (733) efuse_init: Min chip rev:     v0.0[0m
+[0;32mI (737) efuse_init: Max chip rev:     v0.99 [0m
+[0;32mI (741) efuse_init: Chip rev:         v0.2[0m
+[0;32mI (745) heap_init: Initializing. RAM available for dynamic allocation:[0m
+[0;32mI (751) heap_init: At 3FCAC5E0 len 0003D130 (244 KiB): RAM[0m
+[0;32mI (756) heap_init: At 3FCE9710 len 00005724 (21 KiB): RAM[0m
+[0;32mI (761) heap_init: At 600FE000 len 00001FE8 (7 KiB): RTCRAM[0m
+[0;32mI (767) esp_psram: Adding pool of 8192K of PSRAM memory to heap allocator[0m
+[0;32mI (774) spi_flash: detected chip: boya[0m
+[0;32mI (777) spi_flash: flash io: dio[0m
+[0;32mI (780) sleep_gpio: Configure to isolate all GPIO pins in sleep state[0m
+[0;32mI (786) sleep_gpio: Enable automatic switching of GPIO sleep configuration[0m
+[0;32mI (793) coexist: coex firmware version: 7260f71[0m
+[0;32mI (797) coexist: coexist rom version e7ae62f[0m
+[0;32mI (801) main_task: Started on CPU0[0m
+[0;32mI (821) esp_psram: Reserving pool of 128K of internal memory for DMA/internal allocations[0m
+[0;32mI (821) main_task: Calling app_main()[0m
+
+
+=== 🚀 DRIVEBOT S3: STABLE MODE ===
+
+[0;32mI (831) gpio: GPIO[2]| InputEn: 0| OutputEn: 0| OpenDrain: 0| Pullup: 1| Pulldown: 0| Intr:0 [0m
+[0;32mI (831) gpio: GPIO[1]| InputEn: 0| OutputEn: 0| OpenDrain: 0| Pullup: 1| Pulldown: 0| Intr:0 [0m
+[0;32mI (841) gpio: GPIO[4]| InputEn: 0| OutputEn: 0| OpenDrain: 0| Pullup: 1| Pulldown: 0| Intr:0 [0m
+[0;32mI (851) gpio: GPIO[5]| InputEn: 0| OutputEn: 0| OpenDrain: 0| Pullup: 1| Pulldown: 0| Intr:0 [0m
+[0;32mI (861) gpio: GPIO[16]| InputEn: 0| OutputEn: 0| OpenDrain: 0| Pullup: 1| Pulldown: 0| Intr:0 [0m
+[0;32mI (871) gpio: GPIO[17]| InputEn: 0| OutputEn: 0| OpenDrain: 0| Pullup: 1| Pulldown: 0| Intr:0 [0m
+[0;32mI (871) gpio: GPIO[18]| InputEn: 0| OutputEn: 0| OpenDrain: 0| Pullup: 1| Pulldown: 0| Intr:0 [0m
+[0;32mI (881) BLE_INIT: BT controller compile version [1bb2f50][0m
+[0;32mI (891) BLE_INIT: Using main XTAL as clock source[0m
+[0;32mI (891) BLE_INIT: Feature Config, ADV:1, BLE_50:1, DTM:1, SCAN:1, CCA:0, SMP:1, CONNECT:1[0m
+[0;32mI (901) BLE_INIT: Bluetooth MAC: ac:a7:04:26:07:32[0m
+[0;32mI (911) phy_init: phy_version 711,97bcf0a2,Aug 25 2025,19:04:10[0m
+[0;32mI (951) BLE_MGR: BLE Host Task Started[0m
+[0;32mI (951) NimBLE: GAP procedure initiated: stop advertising.[0m
+
+[0;32mI (951) NimBLE: GAP procedure initiated: advertise; [0m
+[0;32mI (951) NimBLE: disc_mode=2[0m
+[0;32mI (951) NimBLE:  adv_channel_map=0 own_addr_type=0 adv_filter_policy=0 adv_itvl_min=800 adv_itvl_max=1600[0m
+[0;32mI (961) NimBLE: [0m
+
+[0;32mI (961) BLE_MGR: ✅ Advertising started! Name: DriveBot_S3[0m
+[0;32mI (971) BLE_MGR: BLE Manager initialized successfully[0m
+[0;32mI (1271) WIFI_MGR: 🚀 Запуск WiFi точки доступа: DriveBot_CAM (без пароля)[0m
+[0;32mI (1271) pp: pp rom version: e7ae62f[0m
+[0;32mI (1271) net80211: net80211 rom version: e7ae62f[0m
+[0;32mI (1281) wifi:wifi driver task: 3fce653c, prio:23, stack:3584, core=0[0m
+[0;32mI (1281) wifi:wifi firmware version: 562b41f[0m
+[0;32mI (1281) wifi:wifi certification version: v7.0[0m
+[0;32mI (1291) wifi:config NVS flash: enabled[0m
+[0;32mI (1291) wifi:config nano formatting: disabled[0m
+[0;32mI (1291) wifi:Init data frame dynamic rx buffer num: 64[0m
+[0;32mI (1301) wifi:Init static rx mgmt buffer num: 5[0m
+[0;32mI (1301) wifi:Init management short buffer num: 32[0m
+[0;32mI (1311) wifi:Init static tx buffer num: 32[0m
+[0;32mI (1311) wifi:Init tx cache buffer num: 32[0m
+[0;32mI (1311) wifi:Init static tx FG buffer num: 2[0m
+[0;32mI (1321) wifi:Init static rx buffer size: 1600[0m
+[0;32mI (1321) wifi:Init static rx buffer num: 16[0m
+[0;32mI (1331) wifi:Init dynamic rx buffer num: 64[0m
+[0;32mI (1331) wifi_init: rx ba win: 16[0m
+[0;32mI (1331) wifi_init: accept mbox: 6[0m
+[0;32mI (1341) wifi_init: tcpip mbox: 32[0m
+[0;32mI (1341) wifi_init: udp mbox: 6[0m
+[0;32mI (1341) wifi_init: tcp mbox: 6[0m
+[0;32mI (1351) wifi_init: tcp tx win: 32768[0m
+[0;32mI (1351) wifi_init: tcp rx win: 32768[0m
+[0;32mI (1351) wifi_init: tcp mss: 1440[0m
+[0;32mI (1361) wifi_init: WiFi/LWIP prefer SPIRAM[0m
+[0;32mI (1361) wifi_init: WiFi IRAM OP enabled[0m
+[0;32mI (1361) wifi_init: WiFi RX IRAM OP enabled[0m
+[0;32mI (1371) wifi:mode : softAP (ac:a7:04:26:07:31)[0m
+[0;32mI (1371) wifi:Total power save buffer number: 16[0m
+[0;32mI (1381) wifi:Init max length of beacon: 752/752[0m
+[0;32mI (1381) wifi:Init max length of beacon: 752/752[0m
+[0;32mI (1391) WIFI_MGR: ✅ WiFi точка доступа запущена: DriveBot_CAM[0m
+[0;32mI (1391) esp_netif_lwip: DHCP server started on interface WIFI_AP_DEF with IP: 192.168.4.1[0m
+[0;32mI (1401) WIFI_MGR: 📡 IP адрес ESP32: 192.168.4.1[0m
+[0;32mI (1401) WIFI_MGR: 📡 Видеопоток: http://192.168.4.1:81/stream[0m
+[0;32mI (1411) WIFI_MGR: 📡 Максимум клиентов: 1 (только телефон)[0m
+[0;32mI (1421) DRIVEBOT_MAIN: === СИСТЕМА ГОТОВА (Камера спит до запроса) ===[0m
+[0;32mI (1431) main_task: Returned from app_main()[0m
+[0;32mI (8871) wifi:new:<1,0>, old:<1,1>, ap:<1,1>, sta:<255,255>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (8871) wifi:station: 32:44:eb:48:e5:38 join, AID=1, bgn, 20[0m
+[0;32mI (8871) wifi:Set ps type: 0, coexist: 1[0m
+
+[0;32mI (8871) wifi:Coexist!!! Wi-Fi station would only keep waked when available[0m
+
+[0;32mI (8881) WIFI_MGR: 📱 Телефон подключен по WiFi[0m
+[0;32mI (8891) WIFI_MGR: 📡 Видеопоток: http://192.168.4.1:81/stream[0m
+[0;32mI (9001) wifi:<ba-add>idx:2 (ifx:1, 32:44:eb:48:e5:38), tid:0, ssn:0, winSize:64[0m
+[0;32mI (9051) esp_netif_lwip: DHCP server assigned IP to a client, IP is: 192.168.4.2[0m
+[0;32mI (23831) DRIVEBOT_MAIN: Flutter linked via /start[0m
+[0;32mI (26071) DRIVEBOT_MAIN: 📷 Инициализация железа камеры...[0m
+[0;32mI (26071) CAM_SRV: 🚀 Настройка камеры напрямую через пины...[0m
+[0;32mI (26081) s3 ll_cam: DMA Channel=0[0m
+[0;32mI (26081) cam_hal: cam init ok[0m
+[0;32mI (26081) sccb-ng: pin_sda 4 pin_scl 5[0m
+[0;32mI (26091) sccb-ng: sccb_i2c_port=1[0m
+[0;32mI (26101) camera: Camera PID=0x26 VER=0x42 MIDL=0x7f MIDH=0xa2[0m
+[0;32mI (26101) camera: Detected OV2640 camera[0m
+[0;32mI (26101) camera: Detected camera at address=0x30[0m
+[0;32mI (26171) cam_hal: PSRAM DMA mode enabled[0m
+[0;32mI (26171) cam_hal: buffer_size: 96000, half_buffer_size: 1024, node_buffer_size: 1024, node_cnt: 93, total_cnt: 94[0m
+[0;32mI (26171) cam_hal: Allocating 97040 Byte frame buffer in PSRAM[0m
+[0;32mI (26181) cam_hal: Frame[0]: Offset: 16, Addr: 0x3C0E1EA0[0m
+[0;32mI (26181) cam_hal: cam config ok[0m
+[0;32mI (26181) ov2640: Set PLL: clk_2x: 0, clk_div: 0, pclk_auto: 0, pclk_div: 8[0m
+[0;32mI (26251) CAM_SRV: ✅ Камера готова[0m
+[0;32mI (26751) DRIVEBOT_MAIN: 📷 Очистка очереди кадров и прогрев сенсора...[0m
+[0;32mI (27771) DRIVEBOT_MAIN: 📹 Видеопоток запущен (SVGA)[0m
+ ��ESP-ROM:esp32s3-20210327
+Build:Mar 27 2021
+rst:0xc (RTC_SW_CPU_RST),boot:0x2a (SPI_FAST_FLASH_BOOT)
+Saved PC:0x4206d0f8
+SPIWP:0xee
+mode:DIO, clock div:2
+load:0x3fce2810,len:0x1194
+load:0x403c8700,len:0x4
+load:0x403c8704,len:0xce0
+load:0x403cb700,len:0x2d5c
+entry 0x403c8910
+[0;32mI (31) boot: ESP-IDF v5.4.3-904-gacd7b505de 2nd stage bootloader[0m
+[0;32mI (31) boot: compile time Mar 31 2026 00:41:30[0m
+[0;32mI (31) boot: Multicore bootloader[0m
+[0;32mI (33) boot: chip revision: v0.2[0m
+[0;32mI (36) boot: efuse block revision: v1.3[0m
+[0;32mI (39) boot.esp32s3: Boot SPI Speed : 40MHz[0m
+[0;32mI (43) boot.esp32s3: SPI Mode       : DIO[0m
+[0;32mI (47) boot.esp32s3: SPI Flash Size : 16MB[0m
+[0;32mI (51) boot: Enabling RNG early entropy source...[0m
+[0;32mI (55) boot: Partition Table:[0m
+[0;32mI (58) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (64) boot:  0 nvs              WiFi data        01 02 00009000 00006000[0m
+[0;32mI (71) boot:  1 otadata          OTA data         01 00 0000f000 00002000[0m
+[0;32mI (77) boot:  2 phy_init         RF data          01 01 00011000 00001000[0m
+[0;32mI (84) boot:  3 factory          factory app      00 00 00020000 001e0000[0m
+[0;32mI (90) boot: End of partition table[0m
+[0;32mI (94) boot: Defaulting to factory image[0m
+[0;32mI (97) esp_image: segment 0: paddr=00020020 vaddr=3c0b0020 size=19870h (104560) map[0m
+[0;32mI (130) esp_image: segment 1: paddr=00039898 vaddr=3fca0e00 size=06780h ( 26496) load[0m
+[0;32mI (138) esp_image: segment 2: paddr=00040020 vaddr=42000020 size=a2c0ch (666636) map[0m
+[0;32mI (302) esp_image: segment 3: paddr=000e2c34 vaddr=3fca7580 size=00828h (  2088) load[0m
+[0;32mI (303) esp_image: segment 4: paddr=000e3464 vaddr=40378000 size=18d68h (101736) load[0m
+[0;32mI (335) esp_image: segment 5: paddr=000fc1d4 vaddr=50000000 size=0001ch (    28) load[0m
+[0;32mI (346) boot: Loaded app from partition at offset 0x20000[0m
+[0;32mI (346) boot: Disabling RNG early entropy source...[0m
+[0;32mI (356) octal_psram: vendor id    : 0x0d (AP)[0m
+[0;32mI (356) octal_psram: dev id       : 0x02 (generation 3)[0m
+[0;32mI (356) octal_psram: density      : 0x03 (64 Mbit)[0m
+[0;32mI (358) octal_psram: good-die     : 0x01 (Pass)[0m
+[0;32mI (362) octal_psram: Latency      : 0x01 (Fixed)[0m
+[0;32mI (367) octal_psram: VCC          : 0x01 (3V)[0m
+[0;32mI (371) octal_psram: SRF          : 0x01 (Fast Refresh)[0m
+[0;32mI (376) octal_psram: BurstType    : 0x01 (Hybrid Wrap)[0m
+[0;32mI (381) octal_psram: BurstLen     : 0x01 (32 Byte)[0m
+[0;32mI (385) octal_psram: Readlatency  : 0x02 (10 cycles@Fixed)[0m
+[0;32mI (390) octal_psram: DriveStrength: 0x00 (1/1)[0m
+[0;32mI (395) MSPI Timing: PSRAM timing tuning index: 5[0m
+[0;32mI (399) esp_psram: Found 8MB PSRAM device[0m
+[0;32mI (403) esp_psram: Speed: 80MHz[0m
+[0;32mI (406) cpu_start: Multicore app[0m
+[0;32mI (699) esp_psram: SPI SRAM memory test OK[0m
+[0;32mI (707) cpu_start: GPIO 44 and 43 are used as console UART I/O pins[0m
+[0;32mI (708) cpu_start: Pro cpu start user code[0m
+[0;32mI (708) cpu_start: cpu freq: 240000000 Hz[0m
+[0;32mI (710) app_init: Application information:[0m
+[0;32mI (713) app_init: Project name:     drivebot[0m
+[0;32mI (717) app_init: App version:      36d1bfa-dirty[0m
+[0;32mI (722) app_init: Compile time:     Mar 31 2026 00:41:09[0m
+[0;32mI (727) app_init: ELF file SHA256:  e19e0a0d8...[0m
+[0;32mI (731) app_init: ESP-IDF:          v5.4.3-904-gacd7b505de[0m
+[0;32mI (736) efuse_init: Min chip rev:     v0.0[0m
+[0;32mI (740) efuse_init: Max chip rev:     v0.99 [0m
+[0;32mI (744) efuse_init: Chip rev:         v0.2[0m
+[0;32mI (748) heap_init: Initializing. RAM available for dynamic allocation:[0m
+[0;32mI (754) heap_init: At 3FCAC5E0 len 0003D130 (244 KiB): RAM[0m
+[0;32mI (759) heap_init: At 3FCE9710 len 00005724 (21 KiB): RAM[0m
+[0;32mI (765) heap_init: At 600FE000 len 00001FE8 (7 KiB): RTCRAM[0m
+[0;32mI (770) esp_psram: Adding pool of 8192K of PSRAM memory to heap allocator[0m
+[0;32mI (778) spi_flash: detected chip: boya[0m
+[0;32mI (780) spi_flash: flash io: dio[0m
+[0;32mI (783) sleep_gpio: Configure to isolate all GPIO pins in sleep state[0m
+[0;32mI (789) sleep_gpio: Enable automatic switching of GPIO sleep configuration[0m
+[0;32mI (796) coexist: coex firmware version: 7260f71[0m
+[0;32mI (800) coexist: coexist rom version e7ae62f[0m
+[0;32mI (804) main_task: Started on CPU0[0m
+[0;32mI (824) esp_psram: Reserving pool of 128K of internal memory for DMA/internal allocations[0m
+[0;32mI (824) main_task: Calling app_main()[0m
+
+
+=== 🚀 DRIVEBOT S3: STABLE MODE ===
+
+[0;32mI (834) gpio: GPIO[2]| InputEn: 0| OutputEn: 0| OpenDrain: 0| Pullup: 1| Pulldown: 0| Intr:0 [0m
+[0;32mI (834) gpio: GPIO[1]| InputEn: 0| OutputEn: 0| OpenDrain: 0| Pullup: 1| Pulldown: 0| Intr:0 [0m
+[0;32mI (844) gpio: GPIO[4]| InputEn: 0| OutputEn: 0| OpenDrain: 0| Pullup: 1| Pulldown: 0| Intr:0 [0m
+[0;32mI (854) gpio: GPIO[5]| InputEn: 0| OutputEn: 0| OpenDrain: 0| Pullup: 1| Pulldown: 0| Intr:0 [0m
+[0;32mI (864) gpio: GPIO[16]| InputEn: 0| OutputEn: 0| OpenDrain: 0| Pullup: 1| Pulldown: 0| Intr:0 [0m
+[0;32mI (874) gpio: GPIO[17]| InputEn: 0| OutputEn: 0| OpenDrain: 0| Pullup: 1| Pulldown: 0| Intr:0 [0m
+[0;32mI (874) gpio: GPIO[18]| InputEn: 0| OutputEn: 0| OpenDrain: 0| Pullup: 1| Pulldown: 0| Intr:0 [0m
+[0;32mI (884) BLE_INIT: BT controller compile version [1bb2f50][0m
+[0;32mI (894) BLE_INIT: Using main XTAL as clock source[0m
+[0;32mI (894) BLE_INIT: Feature Config, ADV:1, BLE_50:1, DTM:1, SCAN:1, CCA:0, SMP:1, CONNECT:1[0m
+[0;32mI (904) BLE_INIT: Bluetooth MAC: ac:a7:04:26:07:32[0m
+[0;32mI (914) phy_init: phy_version 711,97bcf0a2,Aug 25 2025,19:04:10[0m
+[0;32mI (944) BLE_MGR: BLE Host Task Started[0m
+[0;32mI (954) NimBLE: GAP procedure initiated: stop advertising.[0m
+
+[0;32mI (954) NimBLE: GAP procedure initiated: advertise; [0m
+[0;32mI (954) NimBLE: disc_mode=2[0m
+[0;32mI (954) NimBLE:  adv_channel_map=0 own_addr_type=0 adv_filter_policy=0 adv_itvl_min=800 adv_itvl_max=1600[0m
+[0;32mI (964) NimBLE: [0m
+
+[0;32mI (964) BLE_MGR: ✅ Advertising started! Name: DriveBot_S3[0m
+[0;32mI (974) BLE_MGR: BLE Manager initialized successfully[0m
+[0;32mI (1274) WIFI_MGR: 🚀 Запуск WiFi точки доступа: DriveBot_CAM (без пароля)[0m
+[0;32mI (1274) pp: pp rom version: e7ae62f[0m
+[0;32mI (1274) net80211: net80211 rom version: e7ae62f[0m
+[0;32mI (1284) wifi:wifi driver task: 3fce653c, prio:23, stack:3584, core=0[0m
+[0;32mI (1284) wifi:wifi firmware version: 562b41f[0m
+[0;32mI (1284) wifi:wifi certification version: v7.0[0m
+[0;32mI (1294) wifi:config NVS flash: enabled[0m
+[0;32mI (1294) wifi:config nano formatting: disabled[0m
+[0;32mI (1294) wifi:Init data frame dynamic rx buffer num: 64[0m
+[0;32mI (1304) wifi:Init static rx mgmt buffer num: 5[0m
+[0;32mI (1304) wifi:Init management short buffer num: 32[0m
+[0;32mI (1314) wifi:Init static tx buffer num: 32[0m
+[0;32mI (1314) wifi:Init tx cache buffer num: 32[0m
+[0;32mI (1314) wifi:Init static tx FG buffer num: 2[0m
+[0;32mI (1324) wifi:Init static rx buffer size: 1600[0m
+[0;32mI (1324) wifi:Init static rx buffer num: 16[0m
+[0;32mI (1334) wifi:Init dynamic rx buffer num: 64[0m
+[0;32mI (1334) wifi_init: rx ba win: 16[0m
+[0;32mI (1334) wifi_init: accept mbox: 6[0m
+[0;32mI (1344) wifi_init: tcpip mbox: 32[0m
+[0;32mI (1344) wifi_init: udp mbox: 6[0m
+[0;32mI (1344) wifi_init: tcp mbox: 6[0m
+[0;32mI (1354) wifi_init: tcp tx win: 32768[0m
+[0;32mI (1354) wifi_init: tcp rx win: 32768[0m
+[0;32mI (1354) wifi_init: tcp mss: 1440[0m
+[0;32mI (1364) wifi_init: WiFi/LWIP prefer SPIRAM[0m
+[0;32mI (1364) wifi_init: WiFi IRAM OP enabled[0m
+[0;32mI (1364) wifi_init: WiFi RX IRAM OP enabled[0m
+[0;32mI (1374) wifi:mode : softAP (ac:a7:04:26:07:31)[0m
+[0;32mI (1374) wifi:Total power save buffer number: 16[0m
+[0;32mI (1384) wifi:Init max length of beacon: 752/752[0m
+[0;32mI (1384) wifi:Init max length of beacon: 752/752[0m
+[0;32mI (1394) esp_netif_lwip: DHCP server started on interface WIFI_AP_DEF with IP: 192.168.4.1[0m
+[0;32mI (1394) WIFI_MGR: ✅ WiFi точка доступа запущена: DriveBot_CAM[0m
+[0;32mI (1404) WIFI_MGR: 📡 IP адрес ESP32: 192.168.4.1[0m
+[0;32mI (1404) WIFI_MGR: 📡 Видеопоток: http://192.168.4.1:81/stream[0m
+[0;32mI (1414) WIFI_MGR: 📡 Максимум клиентов: 1 (только телефон)[0m
+[0;32mI (1424) DRIVEBOT_MAIN: === СИСТЕМА ГОТОВА (Камера спит до запроса) ===[0m
+[0;32mI (1434) main_task: Returned from app_main()[0m
+[0;32mI (3624) wifi:new:<1,0>, old:<1,1>, ap:<1,1>, sta:<255,255>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (3624) wifi:station: 32:44:eb:48:e5:38 join, AID=1, bgn, 20[0m
+[0;32mI (3624) wifi:Set ps type: 0, coexist: 1[0m
+
+[0;32mI (3624) wifi:Coexist!!! Wi-Fi station would only keep waked when available[0m
+
+[0;32mI (3634) WIFI_MGR: 📱 Телефон подключен по WiFi[0m
+[0;32mI (3644) WIFI_MGR: 📡 Видеопоток: http://192.168.4.1:81/stream[0m
+[0;32mI (3754) wifi:<ba-add>idx:2 (ifx:1, 32:44:eb:48:e5:38), tid:0, ssn:0, winSize:64[0m
+[0;32mI (3794) esp_netif_lwip: DHCP server assigned IP to a client, IP is: 192.168.4.2[0m
+[0;32mI (6994) DRIVEBOT_MAIN: 📷 Инициализация железа камеры...[0m
+[0;32mI (6994) CAM_SRV: 🚀 Настройка камеры напрямую через пины...[0m
+[0;32mI (7004) s3 ll_cam: DMA Channel=0[0m
+[0;32mI (7004) cam_hal: cam init ok[0m
+[0;32mI (7004) sccb-ng: pin_sda 4 pin_scl 5[0m
+[0;32mI (7004) sccb-ng: sccb_i2c_port=1[0m
+[0;32mI (7024) camera: Camera PID=0x26 VER=0x42 MIDL=0x7f MIDH=0xa2[0m
+[0;32mI (7024) camera: Detected OV2640 camera[0m
+[0;32mI (7024) camera: Detected camera at address=0x30[0m
+[0;32mI (7094) cam_hal: PSRAM DMA mode enabled[0m
+[0;32mI (7094) cam_hal: buffer_size: 96000, half_buffer_size: 1024, node_buffer_size: 1024, node_cnt: 93, total_cnt: 94[0m
+[0;32mI (7094) cam_hal: Allocating 97040 Byte frame buffer in PSRAM[0m
+[0;32mI (7104) cam_hal: Frame[0]: Offset: 16, Addr: 0x3C0E17A0[0m
+[0;32mI (7104) cam_hal: cam config ok[0m
+[0;32mI (7104) ov2640: Set PLL: clk_2x: 0, clk_div: 0, pclk_auto: 0, pclk_div: 8[0m
+[0;32mI (7174) CAM_SRV: ✅ Камера готова[0m
+[0;32mI (7674) DRIVEBOT_MAIN: 📷 Очистка очереди кадров и прогрев сенсора...[0m
+[0;32mI (8694) DRIVEBOT_MAIN: 📹 Видеопоток запущен (SVGA)[0m
+cam_hal: NO-EOI - JPEG end marker missing
+ESP-ROM:esp32s3-20210327
+Build:Mar 27 2021
+rst:0xc (RTC_SW_CPU_RST),boot:0x2a (SPI_FAST_FLASH_BOOT)
+Saved PC:0x403796e5
+SPIWP:0xee
+mode:DIO, clock div:2
+load:0x3fce2810,len:0x1194
+load:0x403c8700,len:0x4
+load:0x403c8704,len:0xce0
+load:0x403cb700,len:0x2d5c
+entry 0x403c8910
+[0;32mI (31) boot: ESP-IDF v5.4.3-904-gacd7b505de 2nd stage bootloader[0m
+[0;32mI (31) boot: compile time Mar 31 2026 00:41:30[0m
+[0;32mI (31) boot: Multicore bootloader[0m
+[0;32mI (33) boot: chip revision: v0.2[0m
+[0;32mI (36) boot: efuse block revision: v1.3[0m
+[0;32mI (39) boot.esp32s3: Boot SPI Speed : 40MHz[0m
+[0;32mI (43) boot.esp32s3: SPI Mode       : DIO[0m
+[0;32mI (47) boot.esp32s3: SPI Flash Size : 16MB[0m
+[0;32mI (51) boot: Enabling RNG early entropy source...[0m
+[0;32mI (55) boot: Partition Table:[0m
+[0;32mI (58) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (64) boot:  0 nvs              WiFi data        01 02 00009000 00006000[0m
+[0;32mI (71) boot:  1 otadata          OTA data         01 00 0000f000 00002000[0m
+[0;32mI (77) boot:  2 phy_init         RF data          01 01 00011000 00001000[0m
+[0;32mI (84) boot:  3 factory          factory app      00 00 00020000 001e0000[0m
+[0;32mI (90) boot: End of partition table[0m
+[0;32mI (94) boot: Defaulting to factory image[0m
+[0;32mI (97) esp_image: segment 0: paddr=00020020 vaddr=3c0b0020 size=19870h (104560) map[0m
+[0;32mI (130) esp_image: segment 1: paddr=00039898 vaddr=3fca0e00 size=06780h ( 26496) load[0m
+[0;32mI (138) esp_image: segment 2: paddr=00040020 vaddr=42000020 size=a2c0ch (666636) map[0m
+[0;32mI (302) esp_image: segment 3: paddr=000e2c34 vaddr=3fca7580 size=00828h (  2088) load[0m
+[0;32mI (303) esp_image: segment 4: paddr=000e3464 vaddr=40378000 size=18d68h (101736) load[0m
+[0;32mI (334) esp_image: segment 5: paddr=000fc1d4 vaddr=50000000 size=0001ch (    28) load[0m
+[0;32mI (345) boot: Loaded app from partition at offset 0x20000[0m
+[0;32mI (345) boot: Disabling RNG early entropy source...[0m
+[0;32mI (355) octal_psram: vendor id    : 0x0d (AP)[0m
+[0;32mI (355) octal_psram: dev id       : 0x02 (generation 3)[0m
+[0;32mI (355) octal_psram: density      : 0x03 (64 Mbit)[0m
+[0;32mI (357) octal_psram: good-die     : 0x01 (Pass)[0m
+[0;32mI (362) octal_psram: Latency      : 0x01 (Fixed)[0m
+[0;32mI (366) octal_psram: VCC          : 0x01 (3V)[0m
+[0;32mI (370) octal_psram: SRF          : 0x01 (Fast Refresh)[0m
+[0;32mI (375) octal_psram: BurstType    : 0x01 (Hybrid Wrap)[0m
+[0;32mI (380) octal_psram: BurstLen     : 0x01 (32 Byte)[0m
+[0;32mI (384) octal_psram: Readlatency  : 0x02 (10 cycles@Fixed)[0m
+[0;32mI (390) octal_psram: DriveStrength: 0x00 (1/1)[0m
+[0;32mI (394) MSPI Timing: PSRAM timing tuning index: 11[0m
+[0;32mI (398) esp_psram: Found 8MB PSRAM device[0m
+[0;32mI (402) esp_psram: Speed: 80MHz[0m
+[0;32mI (405) cpu_start: Multicore app[0m
+[0;32mI (698) esp_psram: SPI SRAM memory test OK[0m
+[0;32mI (707) cpu_start: GPIO 44 and 43 are used as console UART I/O pins[0m
+[0;32mI (707) cpu_start: Pro cpu start user code[0m
+[0;32mI (707) cpu_start: cpu freq: 240000000 Hz[0m
+[0;32mI (709) app_init: Application information:[0m
+[0;32mI (713) app_init: Project name:     drivebot[0m
+[0;32mI (717) app_init: App version:      36d1bfa-dirty[0m
+[0;32mI (721) app_init: Compile time:     Mar 31 2026 00:41:09[0m
+[0;32mI (726) app_init: ELF file SHA256:  e19e0a0d8...[0m
+[0;32mI (730) app_init: ESP-IDF:          v5.4.3-904-gacd7b505de[0m
+[0;32mI (736) efuse_init: Min chip rev:     v0.0[0m
+[0;32mI (739) efuse_init: Max chip rev:     v0.99 [0m
+[0;32mI (743) efuse_init: Chip rev:         v0.2[0m
+[0;32mI (747) heap_init: Initializing. RAM available for dynamic allocation:[0m
+[0;32mI (754) heap_init: At 3FCAC5E0 len 0003D130 (244 KiB): RAM[0m
+[0;32mI (759) heap_init: At 3FCE9710 len 00005724 (21 KiB): RAM[0m
+[0;32mI (764) heap_init: At 600FE000 len 00001FE8 (7 KiB): RTCRAM[0m
+[0;32mI (769) esp_psram: Adding pool of 8192K of PSRAM memory to heap allocator[0m
+[0;32mI (777) spi_flash: detected chip: boya[0m
+[0;32mI (779) spi_flash: flash io: dio[0m
+[0;32mI (782) sleep_gpio: Configure to isolate all GPIO pins in sleep state[0m
+[0;32mI (789) sleep_gpio: Enable automatic switching of GPIO sleep configuration[0m
+[0;32mI (795) coexist: coex firmware version: 7260f71[0m
+[0;32mI (799) coexist: coexist rom version e7ae62f[0m
+[0;32mI (804) main_task: Started on CPU0[0m
+[0;32mI (824) esp_psram: Reserving pool of 128K of internal memory for DMA/internal allocations[0m
+[0;32mI (824) main_task: Calling app_main()[0m
+
+
+=== 🚀 DRIVEBOT S3: STABLE MODE ===
+
+[0;32mI (834) gpio: GPIO[2]| InputEn: 0| OutputEn: 0| OpenDrain: 0| Pullup: 1| Pulldown: 0| Intr:0 [0m
+[0;32mI (834) gpio: GPIO[1]| InputEn: 0| OutputEn: 0| OpenDrain: 0| Pullup: 1| Pulldown: 0| Intr:0 [0m
+[0;32mI (844) gpio: GPIO[4]| InputEn: 0| OutputEn: 0| OpenDrain: 0| Pullup: 1| Pulldown: 0| Intr:0 [0m
+[0;32mI (854) gpio: GPIO[5]| InputEn: 0| OutputEn: 0| OpenDrain: 0| Pullup: 1| Pulldown: 0| Intr:0 [0m
+[0;32mI (864) gpio: GPIO[16]| InputEn: 0| OutputEn: 0| OpenDrain: 0| Pullup: 1| Pulldown: 0| Intr:0 [0m
+[0;32mI (874) gpio: GPIO[17]| InputEn: 0| OutputEn: 0| OpenDrain: 0| Pullup: 1| Pulldown: 0| Intr:0 [0m
+[0;32mI (874) gpio: GPIO[18]| InputEn: 0| OutputEn: 0| OpenDrain: 0| Pullup: 1| Pulldown: 0| Intr:0 [0m
+[0;32mI (884) BLE_INIT: BT controller compile version [1bb2f50][0m
+[0;32mI (894) BLE_INIT: Using main XTAL as clock source[0m
+[0;32mI (894) BLE_INIT: Feature Config, ADV:1, BLE_50:1, DTM:1, SCAN:1, CCA:0, SMP:1, CONNECT:1[0m
+[0;32mI (904) BLE_INIT: Bluetooth MAC: ac:a7:04:26:07:32[0m
+[0;32mI (914) phy_init: phy_version 711,97bcf0a2,Aug 25 2025,19:04:10[0m
+[0;32mI (944) BLE_MGR: BLE Host Task Started[0m
+[0;32mI (954) NimBLE: GAP procedure initiated: stop advertising.[0m
+
+[0;32mI (954) NimBLE: GAP procedure initiated: advertise; [0m
+[0;32mI (954) NimBLE: disc_mode=2[0m
+[0;32mI (954) NimBLE:  adv_channel_map=0 own_addr_type=0 adv_filter_policy=0 adv_itvl_min=800 adv_itvl_max=1600[0m
+[0;32mI (964) NimBLE: [0m
+
+[0;32mI (964) BLE_MGR: ✅ Advertising started! Name: DriveBot_S3[0m
+[0;32mI (974) BLE_MGR: BLE Manager initialized successfully[0m
+[0;32mI (1274) WIFI_MGR: 🚀 Запуск WiFi точки доступа: DriveBot_CAM (без пароля)[0m
+[0;32mI (1274) pp: pp rom version: e7ae62f[0m
+[0;32mI (1274) net80211: net80211 rom version: e7ae62f[0m
+[0;32mI (1284) wifi:wifi driver task: 3fce653c, prio:23, stack:3584, core=0[0m
+[0;32mI (1284) wifi:wifi firmware version: 562b41f[0m
+[0;32mI (1284) wifi:wifi certification version: v7.0[0m
+[0;32mI (1294) wifi:config NVS flash: enabled[0m
+[0;32mI (1294) wifi:config nano formatting: disabled[0m
+[0;32mI (1294) wifi:Init data frame dynamic rx buffer num: 64[0m
+[0;32mI (1304) wifi:Init static rx mgmt buffer num: 5[0m
+[0;32mI (1304) wifi:Init management short buffer num: 32[0m
+[0;32mI (1314) wifi:Init static tx buffer num: 32[0m
+[0;32mI (1314) wifi:Init tx cache buffer num: 32[0m
+[0;32mI (1314) wifi:Init static tx FG buffer num: 2[0m
+[0;32mI (1324) wifi:Init static rx buffer size: 1600[0m
+[0;32mI (1324) wifi:Init static rx buffer num: 16[0m
+[0;32mI (1334) wifi:Init dynamic rx buffer num: 64[0m
+[0;32mI (1334) wifi_init: rx ba win: 16[0m
+[0;32mI (1334) wifi_init: accept mbox: 6[0m
+[0;32mI (1344) wifi_init: tcpip mbox: 32[0m
+[0;32mI (1344) wifi_init: udp mbox: 6[0m
+[0;32mI (1344) wifi_init: tcp mbox: 6[0m
+[0;32mI (1354) wifi_init: tcp tx win: 32768[0m
+[0;32mI (1354) wifi_init: tcp rx win: 32768[0m
+[0;32mI (1354) wifi_init: tcp mss: 1440[0m
+[0;32mI (1364) wifi_init: WiFi/LWIP prefer SPIRAM[0m
+[0;32mI (1364) wifi_init: WiFi IRAM OP enabled[0m
+[0;32mI (1364) wifi_init: WiFi RX IRAM OP enabled[0m
+[0;32mI (1374) wifi:mode : softAP (ac:a7:04:26:07:31)[0m
+[0;32mI (1374) wifi:Total power save buffer number: 16[0m
+[0;32mI (1384) wifi:Init max length of beacon: 752/752[0m
+[0;32mI (1384) wifi:Init max length of beacon: 752/752[0m
+[0;32mI (1394) WIFI_MGR: ✅ WiFi точка доступа запущена: DriveBot_CAM[0m
+[0;32mI (1394) esp_netif_lwip: DHCP server started on interface WIFI_AP_DEF with IP: 192.168.4.1[0m
+[0;32mI (1404) WIFI_MGR: 📡 IP адрес ESP32: 192.168.4.1[0m
+[0;32mI (1404) WIFI_MGR: 📡 Видеопоток: http://192.168.4.1:81/stream[0m
+[0;32mI (1414) WIFI_MGR: 📡 Максимум клиентов: 1 (только телефон)[0m
+[0;32mI (1424) DRIVEBOT_MAIN: === СИСТЕМА ГОТОВА (Камера спит до запроса) ===[0m
+[0;32mI (1434) main_task: Returned from app_main()[0m

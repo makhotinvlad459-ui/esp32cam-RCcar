@@ -10,8 +10,22 @@
 #include "lwip/inet.h"
 
 #include "audio_transport.h"
+#include "driver/i2s_std.h"
+#include "driver/gpio.h"
 
 static const char *TAG = "AUDIO_TRANSPORT";
+
+// === ПИНЫ ===
+#define I2S_MIC_SCK   GPIO_NUM_41
+#define I2S_MIC_WS    GPIO_NUM_42
+#define I2S_MIC_DIN   GPIO_NUM_2
+
+#define I2S_SPK_SCK   GPIO_NUM_1
+#define I2S_SPK_WS    GPIO_NUM_48
+#define I2S_SPK_DOUT  GPIO_NUM_47
+
+#define SAMPLE_RATE     16000
+#define UDP_BUFFER_SIZE 1024
 
 #define ESP_AUDIO_RX_PORT 8082
 #define ESP_AUDIO_TX_PORT 8083
@@ -28,219 +42,173 @@ static bool running = false;
 static bool recording_enabled = false;
 static bool initialized = false;
 
-bool audio_is_initialized(void) {
-    return initialized;
-}
-
-static TaskHandle_t rx_task_handle = NULL;
-static TaskHandle_t tx_task_handle = NULL;
+static i2s_chan_handle_t tx_chan = NULL;
+static i2s_chan_handle_t rx_chan = NULL;
 
 static int rx_sock = -1;
 static int tx_sock = -1;
 
-static esp_err_t audio_udp_only_init(void) {
-    if (initialized) {
-        return ESP_OK;
+static struct sockaddr_in client_dest_addr;
+static bool client_addr_resolved = false;
+
+bool audio_is_initialized(void) {
+    return initialized;
+}
+
+// === ИНИЦИАЛИЗАЦИЯ ЖЕЛЕЗА ===
+static esp_err_t audio_i2s_init(void) {
+    if (initialized) return ESP_OK;
+
+    ESP_LOGI(TAG, "🎙 Инициализация I2S каналов...");
+
+    i2s_chan_config_t chan_cfg = I2S_CHANNEL_DEFAULT_CONFIG(I2S_NUM_0, I2S_ROLE_MASTER);
+    
+    // Пытаемся создать новые каналы
+    esp_err_t err = i2s_new_channel(&chan_cfg, &tx_chan, &rx_chan);
+    if (err != ESP_OK) {
+        ESP_LOGE(TAG, "Ошибка создания каналов: %s", esp_err_to_name(err));
+        return err;
     }
 
-    ESP_LOGI(TAG, "📡 UDP Audio сервер (I2S отключено)");
-    ESP_LOGI(TAG, "📥 Прием аудио: порт %d (Flutter->ESP)", ESP_AUDIO_RX_PORT);
-    ESP_LOGI(TAG, "📤 Отправка аудио: порт %d (ESP->Flutter)", ESP_AUDIO_TX_PORT);
+    i2s_std_config_t std_cfg = {
+        .clk_cfg = I2S_STD_CLK_DEFAULT_CONFIG(SAMPLE_RATE),
+        .slot_cfg = I2S_STD_MSB_SLOT_DEFAULT_CONFIG(I2S_DATA_BIT_WIDTH_16BIT, I2S_SLOT_MODE_MONO),
+        .gpio_cfg = {
+            .mclk = I2S_GPIO_UNUSED,
+            .bclk = I2S_SPK_SCK,
+            .ws   = I2S_SPK_WS,
+            .dout = I2S_SPK_DOUT,
+            .din  = I2S_MIC_DIN,
+        },
+    };
+
+    // Конфиг для TX (динамик)
+    std_cfg.gpio_cfg.bclk = I2S_SPK_SCK;
+    std_cfg.gpio_cfg.ws = I2S_SPK_WS;
+    i2s_channel_init_std_mode(tx_chan, &std_cfg);
+
+    // Конфиг для RX (микрофон)
+    std_cfg.gpio_cfg.bclk = I2S_MIC_SCK;
+    std_cfg.gpio_cfg.ws = I2S_MIC_WS;
+    i2s_channel_init_std_mode(rx_chan, &std_cfg);
+
+    i2s_channel_enable(tx_chan);
+    i2s_channel_enable(rx_chan);
 
     initialized = true;
     return ESP_OK;
 }
 
+// === ЗАДАЧИ ===
 static void audio_rx_task(void *pvParameters) {
-    uint8_t buffer[1024];
-
+    uint8_t *buffer = malloc(UDP_BUFFER_SIZE);
+    if (!buffer) { vTaskDelete(NULL); return; }
+    
     rx_sock = socket(AF_INET, SOCK_DGRAM, IPPROTO_IP);
-    if (rx_sock < 0) {
-        ESP_LOGE(TAG, "RX socket create failed: %d", errno);
-        rx_task_handle = NULL;
-        vTaskDelete(NULL);
-        return;
-    }
+    struct sockaddr_in bind_addr = {
+        .sin_family = AF_INET,
+        .sin_port = htons(ESP_AUDIO_RX_PORT),
+        .sin_addr.s_addr = htonl(INADDR_ANY),
+    };
 
-    struct sockaddr_in rx_bind_addr;
-    memset(&rx_bind_addr, 0, sizeof(rx_bind_addr));
-    rx_bind_addr.sin_family = AF_INET;
-    rx_bind_addr.sin_port = htons(ESP_AUDIO_RX_PORT);
-    rx_bind_addr.sin_addr.s_addr = htonl(INADDR_ANY);
-
-    if (bind(rx_sock, (struct sockaddr *)&rx_bind_addr, sizeof(rx_bind_addr)) < 0) {
-        ESP_LOGE(TAG, "RX bind failed: %d", errno);
-        close(rx_sock);
-        rx_sock = -1;
-        rx_task_handle = NULL;
-        vTaskDelete(NULL);
-        return;
-    }
-
-    ESP_LOGI(TAG, "🎤 RX task started");
+    bind(rx_sock, (struct sockaddr *)&bind_addr, sizeof(bind_addr));
+    ESP_LOGI(TAG, "🔊 RX Task Ready");
 
     while (running) {
-        if (recording_enabled) {
-            struct sockaddr_in source_addr;
-            socklen_t socklen = sizeof(source_addr);
+        struct sockaddr_in source_addr;
+        socklen_t socklen = sizeof(source_addr);
+        int len = recvfrom(rx_sock, buffer, UDP_BUFFER_SIZE, 0, (struct sockaddr *)&source_addr, &socklen);
 
-            int len = recvfrom(rx_sock, buffer, sizeof(buffer), MSG_DONTWAIT,
-                               (struct sockaddr *)&source_addr, &socklen);
-
-            if (len > 0) {
-                ESP_LOGI(TAG, "📡 Audio from Flutter: %d bytes from %s:%d",
-                         len, inet_ntoa(source_addr.sin_addr), ntohs(source_addr.sin_port));
-            } else {
-                vTaskDelay(pdMS_TO_TICKS(10));
+        if (len > 0) {
+            if (!client_addr_resolved) {
+                client_dest_addr = source_addr;
+                client_dest_addr.sin_port = htons(ESP_AUDIO_TX_PORT);
+                client_addr_resolved = true;
+                ESP_LOGI(TAG, "📱 Адрес телефона определен: %s", inet_ntoa(source_addr.sin_addr));
             }
-        } else {
-            vTaskDelay(pdMS_TO_TICKS(20));
+            size_t bytes_written = 0;
+            i2s_channel_write(tx_chan, buffer, len, &bytes_written, portMAX_DELAY);
         }
     }
 
-    if (rx_sock >= 0) {
-        close(rx_sock);
-        rx_sock = -1;
-    }
-
-    rx_task_handle = NULL;
-    ESP_LOGI(TAG, "RX task exited");
+    if (rx_sock >= 0) close(rx_sock);
+    free(buffer);
+    ESP_LOGI(TAG, "RX Task Deleted");
     vTaskDelete(NULL);
 }
 
 static void audio_tx_task(void *pvParameters) {
-    uint8_t buffer[1024];
-
+    uint8_t *buffer = malloc(UDP_BUFFER_SIZE);
+    if (!buffer) { vTaskDelete(NULL); return; }
+    
     tx_sock = socket(AF_INET, SOCK_DGRAM, IPPROTO_IP);
-    if (tx_sock < 0) {
-        ESP_LOGE(TAG, "TX socket create failed: %d", errno);
-        tx_task_handle = NULL;
-        vTaskDelete(NULL);
-        return;
-    }
-
-    struct sockaddr_in tx_bind_addr;
-    memset(&tx_bind_addr, 0, sizeof(tx_bind_addr));
-    tx_bind_addr.sin_family = AF_INET;
-    tx_bind_addr.sin_port = htons(ESP_AUDIO_TX_PORT);
-    tx_bind_addr.sin_addr.s_addr = htonl(INADDR_ANY);
-
-    if (bind(tx_sock, (struct sockaddr *)&tx_bind_addr, sizeof(tx_bind_addr)) < 0) {
-        ESP_LOGE(TAG, "TX bind failed: %d", errno);
-        close(tx_sock);
-        tx_sock = -1;
-        tx_task_handle = NULL;
-        vTaskDelete(NULL);
-        return;
-    }
-
-    ESP_LOGI(TAG, "🔊 TX task started");
+    ESP_LOGI(TAG, "🎤 TX Task Ready");
 
     while (running) {
-        struct sockaddr_in from_addr;
-        socklen_t from_len = sizeof(from_addr);
-
-        int len = recvfrom(tx_sock, buffer, sizeof(buffer), MSG_DONTWAIT,
-                           (struct sockaddr *)&from_addr, &from_len);
-
-        if (len > 0) {
-            ESP_LOGI(TAG, "📡 Audio from Flutter: %d bytes from %s:%d",
-                     len, inet_ntoa(from_addr.sin_addr), ntohs(from_addr.sin_port));
+        if (recording_enabled && client_addr_resolved) {
+            size_t bytes_read = 0;
+            esp_err_t ret = i2s_channel_read(rx_chan, buffer, UDP_BUFFER_SIZE, &bytes_read, pdMS_TO_TICKS(100));
+            if (ret == ESP_OK && bytes_read > 0) {
+                sendto(tx_sock, buffer, bytes_read, 0, (struct sockaddr *)&client_dest_addr, sizeof(client_dest_addr));
+            }
         } else {
-            vTaskDelay(pdMS_TO_TICKS(10));
+            vTaskDelay(pdMS_TO_TICKS(20)); // Чуть быстрее опрос для отзывчивости
         }
     }
 
-    if (tx_sock >= 0) {
-        close(tx_sock);
-        tx_sock = -1;
-    }
-
-    tx_task_handle = NULL;
-    ESP_LOGI(TAG, "TX task exited");
+    if (tx_sock >= 0) close(tx_sock);
+    free(buffer);
+    ESP_LOGI(TAG, "TX Task Deleted");
     vTaskDelete(NULL);
 }
 
+// === API ===
 esp_err_t audio_start(void) {
-    if (audio_state == AUDIO_RUNNING || audio_state == AUDIO_STARTING) {
-        return ESP_OK;
-    }
+    if (audio_state == AUDIO_RUNNING || audio_state == AUDIO_STARTING) return ESP_OK;
 
     audio_state = AUDIO_STARTING;
+    if (audio_i2s_init() != ESP_OK) {
+        audio_state = AUDIO_IDLE;
+        return ESP_FAIL;
+    }
+
     running = true;
-    recording_enabled = false;
-
-    esp_err_t err = audio_udp_only_init();
-    if (err != ESP_OK) {
-        running = false;
-        audio_state = AUDIO_IDLE;
-        return err;
-    }
-
-    if (xTaskCreate(audio_rx_task, "audio_rx", 4096, NULL, 5, &rx_task_handle) != pdPASS) {
-        ESP_LOGE(TAG, "Failed to create audio_rx task");
-        running = false;
-        audio_state = AUDIO_IDLE;
-        return ESP_FAIL;
-    }
-
-    if (xTaskCreate(audio_tx_task, "audio_tx", 4096, NULL, 5, &tx_task_handle) != pdPASS) {
-        ESP_LOGE(TAG, "Failed to create audio_tx task");
-        running = false;
-        audio_state = AUDIO_IDLE;
-        return ESP_FAIL;
-    }
+    client_addr_resolved = false;
+    
+    xTaskCreate(audio_rx_task, "audio_rx", 4096, NULL, 5, NULL);
+    xTaskCreate(audio_tx_task, "audio_tx", 4096, NULL, 5, NULL);
 
     audio_state = AUDIO_RUNNING;
-    ESP_LOGI(TAG, "✅ Audio UDP started");
     return ESP_OK;
 }
 
 void audio_stop(void) {
-    if (audio_state == AUDIO_IDLE || audio_state == AUDIO_STOPPING) {
-        return;
-    }
-
+    if (audio_state == AUDIO_IDLE || audio_state == AUDIO_STOPPING) return;
+    
     audio_state = AUDIO_STOPPING;
-    recording_enabled = false;
     running = false;
+    recording_enabled = false;
 
-    ESP_LOGI(TAG, "Stopping audio...");
+    // Ждем, пока задачи завершатся сами
+    vTaskDelay(pdMS_TO_TICKS(200));
 
-    vTaskDelay(pdMS_TO_TICKS(100));
-
-    if (rx_sock >= 0) {
-        shutdown(rx_sock, SHUT_RDWR);
-        close(rx_sock);
-        rx_sock = -1;
+    if (tx_chan) {
+        i2s_channel_disable(tx_chan);
+        i2s_del_channel(tx_chan); // ОСВОБОЖДАЕМ РЕСУРСЫ
+        tx_chan = NULL;
+    }
+    if (rx_chan) {
+        i2s_channel_disable(rx_chan);
+        i2s_del_channel(rx_chan); // ОСВОБОЖДАЕМ РЕСУРСЫ
+        rx_chan = NULL;
     }
 
-    if (tx_sock >= 0) {
-        shutdown(tx_sock, SHUT_RDWR);
-        close(tx_sock);
-        tx_sock = -1;
-    }
-
-    vTaskDelay(pdMS_TO_TICKS(50));
-
-    rx_task_handle = NULL;
-    tx_task_handle = NULL;
+    rx_sock = -1;
+    tx_sock = -1;
     initialized = false;
     audio_state = AUDIO_IDLE;
-
-    ESP_LOGI(TAG, "Audio stopped");
+    ESP_LOGI(TAG, "🛑 Audio Cleaned Up");
 }
 
-void audio_start_recording(void) {
-    if (audio_state != AUDIO_RUNNING) {
-        return;
-    }
-
-    recording_enabled = true;
-    ESP_LOGI(TAG, "🎤 Recording enabled");
-}
-
-void audio_stop_recording(void) {
-    recording_enabled = false;
-    ESP_LOGI(TAG, "🔇 Recording disabled");
-}
+void audio_start_recording(void) { recording_enabled = true; }
+void audio_stop_recording(void) { recording_enabled = false; }

@@ -157,81 +157,80 @@ static void udp_command_task(void *pvParameters) {
     char buffer[128];
 
     udp_cmd_sock = socket(AF_INET, SOCK_DGRAM, IPPROTO_IP);
-    if (udp_cmd_sock < 0) {
-        ESP_LOGE(TAG, "❌ Не удалось создать UDP сокет");
-        vTaskDelete(NULL);
-        return;
-    }
-
     server_addr.sin_family = AF_INET;
     server_addr.sin_port = htons(8080);
     server_addr.sin_addr.s_addr = INADDR_ANY;
+    bind(udp_cmd_sock, (struct sockaddr *)&server_addr, sizeof(server_addr));
 
-    if (bind(udp_cmd_sock, (struct sockaddr *)&server_addr, sizeof(server_addr)) < 0) {
-        ESP_LOGE(TAG, "❌ Ошибка привязки UDP сокета");
-        close(udp_cmd_sock);
-        udp_cmd_sock = -1;
-        vTaskDelete(NULL);
-        return;
-    }
-
-    ESP_LOGI(TAG, "✅ UDP командный сервер запущен на порту 8080");
+    ESP_LOGI(TAG, "✅ UDP Сервер готов к командам");
 
     while (udp_running) {
-        int len = recvfrom(udp_cmd_sock, buffer, sizeof(buffer) - 1, 0,
-                           (struct sockaddr *)&client_addr, &socklen);
-
+        int len = recvfrom(udp_cmd_sock, buffer, sizeof(buffer) - 1, 0, (struct sockaddr *)&client_addr, &socklen);
         if (len > 0) {
             buffer[len] = '\0';
             buffer[strcspn(buffer, "\r\n")] = '\0';
-            ESP_LOGI(TAG, "📱 Получена UDP команда: %s", buffer);
+            ESP_LOGI(TAG, "📱 Команда: %s", buffer);
 
-            if (strcmp(buffer, "AUDIO_INIT") == 0) {
-                sendto(udp_cmd_sock, "OK", 2, 0, (struct sockaddr *)&client_addr, socklen);
-            }
-            else if (strcmp(buffer, "RADIO_ON") == 0) {
-                esp_err_t err = audio_start();
-                if (err == ESP_OK) {
-                    audio_start_recording();
-                    sendto(udp_cmd_sock, "OK", 2, 0, (struct sockaddr *)&client_addr, socklen);
-                } else {
-                    sendto(udp_cmd_sock, "FAIL", 4, 0, (struct sockaddr *)&client_addr, socklen);
-                }
-            }
-            else if (strcmp(buffer, "RADIO_OFF") == 0) {
-                audio_stop_recording();
+            // --- РАЦИЯ ---
+            if (strcmp(buffer, "RADIO_ON") == 0) {
+                audio_start();
+            } else if (strcmp(buffer, "RADIO_OFF") == 0) {
                 audio_stop();
-                sendto(udp_cmd_sock, "OK", 2, 0, (struct sockaddr *)&client_addr, socklen);
+            } else if (strcmp(buffer, "PTT_START") == 0) {
+                audio_start_recording();
+            } else if (strcmp(buffer, "PTT_STOP") == 0) {
+                audio_stop_recording();
             }
-            else if (strcmp(buffer, "RECORD_START") == 0) {
-                if (audio_is_initialized()) {
-                    audio_start_recording();
-                    sendto(udp_cmd_sock, "OK", 2, 0, (struct sockaddr *)&client_addr, socklen);
-                } else {
-                    sendto(udp_cmd_sock, "FAIL", 4, 0, (struct sockaddr *)&client_addr, socklen);
-                }
+            
+            // --- СИГНАЛ И СВЕТ (Добавлено!) ---
+            else if (strcmp(buffer, "HORN_ON") == 0) {
+                ESP_LOGI(TAG, "🎺 СИГНАЛ ВКЛ");
+                // gpio_set_level(твой_пин_пищалки, 1);
+            } else if (strcmp(buffer, "HORN_OFF") == 0) {
+                ESP_LOGI(TAG, "🎺 СИГНАЛ ВЫКЛ");
+                // gpio_set_level(твой_пин_пищалки, 0);
+            } else if (strcmp(buffer, "LIGHTS_BLINK") == 0) {
+                ESP_LOGI(TAG, "🚨 МИГАНИЕ ФАРАМИ");
+                // Тут можно дернуть функцию мигания
             }
-            else if (strcmp(buffer, "RECORD_STOP") == 0) {
-                if (audio_is_initialized()) {
-                    audio_stop_recording();
-                    sendto(udp_cmd_sock, "OK", 2, 0, (struct sockaddr *)&client_addr, socklen);
-                } else {
-                    sendto(udp_cmd_sock, "FAIL", 4, 0, (struct sockaddr *)&client_addr, socklen);
-                }
+            else if (strcmp(buffer, "LIGHTS_ON") == 0) {
+             ESP_LOGI(TAG, "💡 ФАРЫ ВКЛ");
             }
+            else if (strcmp(buffer, "LIGHTS_OFF") == 0) {
+            ESP_LOGI(TAG, "🌑 ФАРЫ ВЫКЛ");  
+            }
+
+            // --- ДВИЖЕНИЕ ---
+            else if (strcmp(buffer, "FORWARD") == 0) { ESP_LOGI(TAG, "🚀 ВПЕРЕД"); }
+            else if (strcmp(buffer, "BACKWARD") == 0) { ESP_LOGI(TAG, "⬇️ НАЗАД"); }
+            else if (strcmp(buffer, "LEFT") == 0) { ESP_LOGI(TAG, "⬅️ ВЛЕВО"); }
+            else if (strcmp(buffer, "RIGHT") == 0) { ESP_LOGI(TAG, "➡️ ВПРАВО"); }
+            else if (strcmp(buffer, "STOP") == 0) { ESP_LOGI(TAG, "🛑 СТОП"); }
+
+            // --- ДВИЖЕНИЕ ПО ДИАГОНАЛИ ---
+            else if (strcmp(buffer, "FORWARD_LEFT") == 0) {
+             ESP_LOGI(TAG, "🚀↖️ ВПЕРЕД-ВЛЕВО");
+    // Тут логика: Мотор 1 (левый) чуть медленнее, Мотор 2 (правый) на полную
+    }
+        else if (strcmp(buffer, "FORWARD_RIGHT") == 0) {
+        ESP_LOGI(TAG, "🚀↗️ ВПЕРЕД-ВПРАВО");
+    }
+        else if (strcmp(buffer, "BACKWARD_LEFT") == 0) {
+        ESP_LOGI(TAG, "⬇️↙️ НАЗАД-ВЛЕВО");
+    }
+        else if (strcmp(buffer, "BACKWARD_RIGHT") == 0) {
+        ESP_LOGI(TAG, "⬇️↘️ НАЗАД-ВПРАВО");
+}
+
+            // Если команда не подошла, только тогда в BLE
             else {
                 ble_manager_send_command(buffer);
             }
         }
-
         vTaskDelay(pdMS_TO_TICKS(10));
     }
-
-    close(udp_cmd_sock);
-    udp_cmd_sock = -1;
     vTaskDelete(NULL);
 }
-
 static void start_udp_command_server(void) {
     udp_running = true;
     xTaskCreate(udp_command_task, "udp_cmd", 4096, NULL, 5, NULL);
