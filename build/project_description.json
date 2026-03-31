@@ -1,7 +1,7 @@
 {
     "version":            "1.2",
     "project_name":       "drivebot",
-    "project_version":    "36d1bfa-dirty",
+    "project_version":    "6e4930e-dirty",
     "project_path":       "/home/vlad/DriveBot_",
     "idf_path":           "/home/vlad/esp/esp-idf",
     "build_dir":          "/home/vlad/DriveBot_/build",
