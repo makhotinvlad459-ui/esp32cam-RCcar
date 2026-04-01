@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdbool.h>
+#include <errno.h>
 
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
@@ -14,14 +15,21 @@
 #include "led_controller.h"
 #include "wifi_manager.h"
 #include "ble_manager.h"
-#include "camera_server.h"
+#include "camera_server.h" 
 #include "camera_config.h"
-#include "audio_transport.h"
+#include "audio_transport.h" 
+#include "driver/i2s_std.h"
 
+// --- Внешние ресурсы и функции (согласованные типы) ---
+extern i2s_chan_handle_t tx_chan;
 extern camera_fb_t* camera_capture(void);
 extern void camera_return_fb(camera_fb_t *fb);
-extern void camera_start(void);
-extern void camera_stop(void);
+
+// Явные объявления для линковщика (чтобы не было implicit declaration)
+extern esp_err_t audio_i2s_init(void);
+extern void audio_enable_tx(bool enable);
+extern void audio_start_recording(void);
+extern void audio_stop_recording(void);
 
 static const char *TAG = "DRIVEBOT_MAIN";
 static httpd_handle_t http_server = NULL;
@@ -37,7 +45,7 @@ static esp_err_t start_handler(httpd_req_t *req) {
 
     ESP_LOGI(TAG, "📷 Принудительный запуск камеры");
     if (!camera_started) {
-        camera_server_init();
+        camera_server_init(); 
         camera_started = true;
     }
     httpd_resp_send(req, "OK", 2);
@@ -66,20 +74,11 @@ static esp_err_t stream_handler(httpd_req_t *req) {
             if (fb->buf[0] == 0xFF && fb->buf[1] == 0xD8) {
                 char header[64];
                 int header_len = snprintf(header, sizeof(header),
-                    "--frame\r\n"
-                    "Content-Type: image/jpeg\r\n"
-                    "Content-Length: %zu\r\n\r\n",
-                    fb->len);
+                    "--frame\r\nContent-Type: image/jpeg\r\nContent-Length: %zu\r\n\r\n", fb->len);
 
-                if (httpd_resp_send_chunk(req, header, header_len) != ESP_OK) {
-                    camera_return_fb(fb);
-                    break;
-                }
-                if (httpd_resp_send_chunk(req, (const char*)fb->buf, fb->len) != ESP_OK) {
-                    camera_return_fb(fb);
-                    break;
-                }
-                if (httpd_resp_send_chunk(req, "\r\n", 2) != ESP_OK) {
+                if (httpd_resp_send_chunk(req, header, header_len) != ESP_OK ||
+                    httpd_resp_send_chunk(req, (const char*)fb->buf, fb->len) != ESP_OK ||
+                    httpd_resp_send_chunk(req, "\r\n", 2) != ESP_OK) {
                     camera_return_fb(fb);
                     break;
                 }
@@ -91,29 +90,7 @@ static esp_err_t stream_handler(httpd_req_t *req) {
             vTaskDelay(pdMS_TO_TICKS(10));
         }
     }
-
-    httpd_resp_send_chunk(req, NULL, 0);
-    return ESP_OK;
-}
-
-// ==================== HTTP CAPTURE (не используется) ====================
-static esp_err_t capture_handler(httpd_req_t *req) {
-    httpd_resp_set_hdr(req, "Access-Control-Allow-Origin", "*");
-    if (req->method == HTTP_OPTIONS) {
-        httpd_resp_send(req, NULL, 0);
-        return ESP_OK;
-    }
-
-    if (!camera_started) {
-        camera_server_init();
-        camera_started = true;
-    }
-
-    ESP_LOGI(TAG, "📸 Запрос фото (не используется)");
-    camera_fb_t *fb = camera_capture();
-    if (fb) camera_return_fb(fb);
-    httpd_resp_send_err(req, HTTPD_500_INTERNAL_SERVER_ERROR, "Not used");
-    return ESP_FAIL;
+    return httpd_resp_send_chunk(req, NULL, 0);
 }
 
 static esp_err_t start_http_server(void) {
@@ -121,33 +98,18 @@ static esp_err_t start_http_server(void) {
     config.server_port = 81;
     config.lru_purge_enable = true;
     config.stack_size = 16384;
-    config.task_priority = 10;
 
     if (httpd_start(&http_server, &config) == ESP_OK) {
-        httpd_uri_t start_uri   = { .uri = "/start",   .method = HTTP_GET,     .handler = start_handler };
-        httpd_uri_t stream_uri  = { .uri = "/stream",  .method = HTTP_GET,     .handler = stream_handler };
-        httpd_uri_t capture_uri = { .uri = "/capture", .method = HTTP_GET,     .handler = capture_handler };
-
-        httpd_uri_t start_opt   = { .uri = "/start",   .method = HTTP_OPTIONS, .handler = start_handler };
-        httpd_uri_t stream_opt  = { .uri = "/stream",  .method = HTTP_OPTIONS, .handler = stream_handler };
-        httpd_uri_t capture_opt = { .uri = "/capture", .method = HTTP_OPTIONS, .handler = capture_handler };
-
+        httpd_uri_t start_uri = { .uri = "/start", .method = HTTP_GET, .handler = start_handler };
+        httpd_uri_t stream_uri = { .uri = "/stream", .method = HTTP_GET, .handler = stream_handler };
         httpd_register_uri_handler(http_server, &start_uri);
         httpd_register_uri_handler(http_server, &stream_uri);
-        httpd_register_uri_handler(http_server, &capture_uri);
-        httpd_register_uri_handler(http_server, &start_opt);
-        httpd_register_uri_handler(http_server, &stream_opt);
-        httpd_register_uri_handler(http_server, &capture_opt);
-
-        ESP_LOGI(TAG, "✅ HTTP сервер запущен на порту 81");
         return ESP_OK;
     }
-
-    ESP_LOGE(TAG, "❌ Не удалось запустить HTTP сервер");
     return ESP_FAIL;
 }
 
-// ==================== UDP КОМАНДЫ ====================
+// ==================== UDP КОМАНДЫ (ПОЛНЫЙ СПИСОК) ====================
 static int udp_cmd_sock = -1;
 static bool udp_running = false;
 
@@ -162,7 +124,7 @@ static void udp_command_task(void *pvParameters) {
     server_addr.sin_addr.s_addr = INADDR_ANY;
     bind(udp_cmd_sock, (struct sockaddr *)&server_addr, sizeof(server_addr));
 
-    ESP_LOGI(TAG, "✅ UDP Сервер готов к командам");
+    ESP_LOGI(TAG, "✅ UDP Сервер готов (порт 8080)");
 
     while (udp_running) {
         int len = recvfrom(udp_cmd_sock, buffer, sizeof(buffer) - 1, 0, (struct sockaddr *)&client_addr, &socklen);
@@ -171,75 +133,56 @@ static void udp_command_task(void *pvParameters) {
             buffer[strcspn(buffer, "\r\n")] = '\0';
             ESP_LOGI(TAG, "📱 Команда: %s", buffer);
 
-            // --- РАЦИЯ ---
-            if (strcmp(buffer, "RADIO_ON") == 0) {
-                audio_start();
-            } else if (strcmp(buffer, "RADIO_OFF") == 0) {
-                audio_stop();
-            } else if (strcmp(buffer, "PTT_START") == 0) {
-                audio_start_recording();
-            } else if (strcmp(buffer, "PTT_STOP") == 0) {
-                audio_stop_recording();
-            }
+            // 1. АУДИО / РАЦИЯ
+            if (strcmp(buffer, "RADIO_ON") == 0)       { audio_start(); } 
+            else if (strcmp(buffer, "RADIO_OFF") == 0)  { audio_stop(); } 
+            else if (strcmp(buffer, "PTT_START") == 0)  { audio_start_recording(); } 
+            else if (strcmp(buffer, "PTT_STOP") == 0)   { audio_stop_recording(); }
             
-            // --- СИГНАЛ И СВЕТ (Добавлено!) ---
+            // 2. СИГНАЛ
             else if (strcmp(buffer, "HORN_ON") == 0) {
-                ESP_LOGI(TAG, "🎺 СИГНАЛ ВКЛ");
-                // gpio_set_level(твой_пин_пищалки, 1);
-            } else if (strcmp(buffer, "HORN_OFF") == 0) {
-                ESP_LOGI(TAG, "🎺 СИГНАЛ ВЫКЛ");
-                // gpio_set_level(твой_пин_пищалки, 0);
-            } else if (strcmp(buffer, "LIGHTS_BLINK") == 0) {
-                ESP_LOGI(TAG, "🚨 МИГАНИЕ ФАРАМИ");
-                // Тут можно дернуть функцию мигания
-            }
-            else if (strcmp(buffer, "LIGHTS_ON") == 0) {
-             ESP_LOGI(TAG, "💡 ФАРЫ ВКЛ");
-            }
-            else if (strcmp(buffer, "LIGHTS_OFF") == 0) {
-            ESP_LOGI(TAG, "🌑 ФАРЫ ВЫКЛ");  
-            }
+                if (tx_chan) { 
+                    audio_enable_tx(true);
+                    int16_t t_buf[512];
+                    for (int i = 0; i < 512; i++) t_buf[i] = (i % 20 < 10) ? 10000 : -10000;
+                    size_t w;
+                    for(int j = 0; j < 25; j++) i2s_channel_write(tx_chan, t_buf, sizeof(t_buf), &w, portMAX_DELAY);
+                }
+            } 
 
-            // --- ДВИЖЕНИЕ ---
-            else if (strcmp(buffer, "FORWARD") == 0) { ESP_LOGI(TAG, "🚀 ВПЕРЕД"); }
-            else if (strcmp(buffer, "BACKWARD") == 0) { ESP_LOGI(TAG, "⬇️ НАЗАД"); }
-            else if (strcmp(buffer, "LEFT") == 0) { ESP_LOGI(TAG, "⬅️ ВЛЕВО"); }
-            else if (strcmp(buffer, "RIGHT") == 0) { ESP_LOGI(TAG, "➡️ ВПРАВО"); }
-            else if (strcmp(buffer, "STOP") == 0) { ESP_LOGI(TAG, "🛑 СТОП"); }
+            // 3. СВЕТ
+            else if (strcmp(buffer, "LIGHTS_ON") == 0)    { ESP_LOGI(TAG, "💡 ФАРЫ ВКЛ"); } 
+            else if (strcmp(buffer, "LIGHTS_OFF") == 0)   { ESP_LOGI(TAG, "🌑 ФАРЫ ВЫКЛ"); } 
+            else if (strcmp(buffer, "LIGHTS_BLINK") == 0) { ESP_LOGI(TAG, "🚨 МИГАНИЕ"); }
 
-            // --- ДВИЖЕНИЕ ПО ДИАГОНАЛИ ---
-            else if (strcmp(buffer, "FORWARD_LEFT") == 0) {
-             ESP_LOGI(TAG, "🚀↖️ ВПЕРЕД-ВЛЕВО");
-    // Тут логика: Мотор 1 (левый) чуть медленнее, Мотор 2 (правый) на полную
-    }
-        else if (strcmp(buffer, "FORWARD_RIGHT") == 0) {
-        ESP_LOGI(TAG, "🚀↗️ ВПЕРЕД-ВПРАВО");
-    }
-        else if (strcmp(buffer, "BACKWARD_LEFT") == 0) {
-        ESP_LOGI(TAG, "⬇️↙️ НАЗАД-ВЛЕВО");
-    }
-        else if (strcmp(buffer, "BACKWARD_RIGHT") == 0) {
-        ESP_LOGI(TAG, "⬇️↘️ НАЗАД-ВПРАВО");
-}
+            // 4. ДВИЖЕНИЕ
+            else if (strcmp(buffer, "FORWARD") == 0)      { ESP_LOGI(TAG, "🚀 ВПЕРЕД"); }
+            else if (strcmp(buffer, "BACKWARD") == 0)     { ESP_LOGI(TAG, "⬇️ НАЗАД"); }
+            else if (strcmp(buffer, "STOP") == 0)         { ESP_LOGI(TAG, "🛑 СТОП"); }
+            else if (strcmp(buffer, "LEFT") == 0)         { ESP_LOGI(TAG, "⬅️ ВЛЕВО"); }
+            else if (strcmp(buffer, "RIGHT") == 0)        { ESP_LOGI(TAG, "➡️ ВПРАВО"); }
 
-            // Если команда не подошла, только тогда в BLE
-            else {
-                ble_manager_send_command(buffer);
-            }
+            // 5. ДИАГОНАЛИ
+            else if (strcmp(buffer, "FORWARD_LEFT") == 0)  { ESP_LOGI(TAG, "🚀↖️ ВПЕРЕД-ВЛЕВО"); }
+            else if (strcmp(buffer, "FORWARD_RIGHT") == 0) { ESP_LOGI(TAG, "🚀↗️ ВПЕРЕД-ВПРАВО"); }
+            else if (strcmp(buffer, "BACKWARD_LEFT") == 0) { ESP_LOGI(TAG, "⬇️↙️ НАЗАД-ВЛЕВО"); }
+            else if (strcmp(buffer, "BACKWARD_RIGHT") == 0){ ESP_LOGI(TAG, "⬇️↘️ НАЗАД-ВПРАВО"); }
+
+            else { ble_manager_send_command(buffer); }
         }
         vTaskDelay(pdMS_TO_TICKS(10));
     }
     vTaskDelete(NULL);
 }
+
 static void start_udp_command_server(void) {
     udp_running = true;
     xTaskCreate(udp_command_task, "udp_cmd", 4096, NULL, 5, NULL);
 }
 
-// ==================== MAIN ====================
-void app_main(void)
-{
-    printf("\n\n=== 🛠 DRIVEBOT WITH CAMERA ===\n\n");
+// ==================== MAIN ENTRY ====================
+void app_main(void) {
+    printf("\n\n=== 🛠 DRIVEBOT STARTING ===\n\n");
 
     esp_err_t ret = nvs_flash_init();
     if (ret == ESP_ERR_NVS_NO_FREE_PAGES || ret == ESP_ERR_NVS_NEW_VERSION_FOUND) {
@@ -248,6 +191,7 @@ void app_main(void)
     }
     ESP_ERROR_CHECK(ret);
 
+    audio_i2s_init(); 
     led_controller_init();
     ble_manager_init(NULL);
     wifi_manager_init_ap();
@@ -256,14 +200,7 @@ void app_main(void)
     start_udp_command_server();
     start_http_server();
 
-    ESP_LOGI(TAG, "Камера будет запущена при первом подключении клиента");
     camera_started = false;
-
     ESP_LOGI(TAG, "=== СИСТЕМА ГОТОВА ===");
-    ESP_LOGI(TAG, "🎮 UDP команды: порт 8080");
-    ESP_LOGI(TAG, "🎥 HTTP видео: http://192.168.4.1:81/stream");
-    ESP_LOGI(TAG, "📡 WiFi: DriveBot_CAM, IP: 192.168.4.1");
-    ESP_LOGI(TAG, "🔵 BLE: DriveBot");
-
     while (1) vTaskDelay(pdMS_TO_TICKS(10000));
 }

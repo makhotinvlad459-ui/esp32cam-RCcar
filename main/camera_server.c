@@ -65,13 +65,13 @@ esp_err_t camera_server_init(void) {
         ESP_LOGW(TAG, "Камера уже запущена");
         return ESP_OK;
     }
-    ESP_LOGI(TAG, "Инициализация камеры с параметрами SVGA, качество 10, XCLK 20MHz");
+    ESP_LOGI(TAG, "Инициализация камеры с параметрами SVGA, качество 10, XCLK 15MHz");
     
     camera_params_t svga_params = {
-        .frame_size = FRAMESIZE_SVGA,       // 1024x768
+        .frame_size = FRAMESIZE_SVGA,       // 800x600
         .jpeg_quality = 10,
         .fps_target = 15,
-        .xclk_freq = 15000000,            // 20 MHz
+        .xclk_freq = 15000000,            // 15 MHz
         .fb_location = CAMERA_FB_IN_PSRAM,
         .fb_count = 1
     };
