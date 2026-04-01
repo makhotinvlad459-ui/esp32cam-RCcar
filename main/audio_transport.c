@@ -16,10 +16,10 @@
 static const char *TAG = "AUDIO_TRANSPORT";
 
 // === ПИНЫ ДЛЯ FREENOVE S3 ===
-#define I2S_COMMON_SCK  GPIO_NUM_1   
-#define I2S_COMMON_WS   GPIO_NUM_2   
-#define I2S_MIC_DIN     GPIO_NUM_41  
-#define I2S_SPK_DOUT    GPIO_NUM_42  
+#define I2S_COMMON_SCK    47
+#define I2S_COMMON_WS     21
+#define I2S_SPK_DOUT     14  // Сюда DIN усилителя
+#define I2S_MIC_DIN      38  // Сюда SD микрофона
 
 #define SAMPLE_RATE     16000
 #define UDP_BUFFER_SIZE 1024

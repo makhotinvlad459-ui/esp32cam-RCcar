@@ -133,22 +133,56 @@ static void udp_command_task(void *pvParameters) {
             buffer[strcspn(buffer, "\r\n")] = '\0';
             ESP_LOGI(TAG, "📱 Команда: %s", buffer);
 
-            // 1. АУДИО / РАЦИЯ
-            if (strcmp(buffer, "RADIO_ON") == 0)       { audio_start(); } 
-            else if (strcmp(buffer, "RADIO_OFF") == 0)  { audio_stop(); } 
-            else if (strcmp(buffer, "PTT_START") == 0)  { audio_start_recording(); } 
-            else if (strcmp(buffer, "PTT_STOP") == 0)   { audio_stop_recording(); }
-            
-            // 2. СИГНАЛ
-            else if (strcmp(buffer, "HORN_ON") == 0) {
-                if (tx_chan) { 
-                    audio_enable_tx(true);
-                    int16_t t_buf[512];
-                    for (int i = 0; i < 512; i++) t_buf[i] = (i % 20 < 10) ? 10000 : -10000;
-                    size_t w;
-                    for(int j = 0; j < 25; j++) i2s_channel_write(tx_chan, t_buf, sizeof(t_buf), &w, portMAX_DELAY);
-                }
+           // 1. АУДИО / РАЦИЯ
+            if (strcmp(buffer, "RADIO_ON") == 0) { 
+                ESP_LOGI(TAG, "📻 Включение РАЦИИ... tx_chan: %p", tx_chan);
+                audio_start(); 
             } 
+            else if (strcmp(buffer, "RADIO_OFF") == 0) { 
+                ESP_LOGI(TAG, "📴 Выключение РАЦИИ");
+                audio_stop(); 
+            } 
+            else if (strcmp(buffer, "PTT_START") == 0) { 
+                ESP_LOGI(TAG, "🎤 Запись пошла (PTT)");
+                audio_start_recording(); 
+            } 
+            else if (strcmp(buffer, "PTT_STOP") == 0) { 
+                ESP_LOGI(TAG, "🔇 Запись стоп (PTT)");
+                audio_stop_recording(); 
+            }
+            
+            // 2. СИГНАЛ (HORN) — ГЛУБОКАЯ ПРОВЕРКА
+            else if (strcmp(buffer, "HORN_ON") == 0) {
+    ESP_LOGI(TAG, "🎺 СИГНАЛ: Запуск...");
+    if (tx_chan != NULL) { 
+        // Включаем канал только если он выключен
+        i2s_chan_info_t chan_info;
+        i2s_channel_get_info(tx_chan, &chan_info);
+        if (chan_info.state != I2S_CHAN_STATE_RUNNING) {
+            i2s_channel_enable(tx_chan);
+        }
+
+        // Выделяем память в быстрой внутренней RAM (для DMA)
+        int16_t *t_buf = heap_caps_malloc(2048, MALLOC_CAP_INTERNAL | MALLOC_CAP_DMA);
+        if (t_buf) {
+            // Генерируем "гудок" (меандр)
+            for (int i = 0; i < 1024; i += 2) {
+                int16_t sample = (i % 30 < 15) ? 20000 : -20000;
+                t_buf[i] = sample;     // Left
+                t_buf[i+1] = sample;   // Right
+            }
+            
+            size_t w = 0;
+            // Цикл для длительности звука (например, 0.5 секунды)
+            for(int j = 0; j < 150; j++) {
+                i2s_channel_write(tx_chan, t_buf, 2048, &w, pdMS_TO_TICKS(100));
+            }
+            
+            heap_caps_free(t_buf);
+            ESP_LOGI(TAG, "✅ Звук отправлен на GPIO 14");
+        }
+    }
+}
 
             // 3. СВЕТ
             else if (strcmp(buffer, "LIGHTS_ON") == 0)    { ESP_LOGI(TAG, "💡 ФАРЫ ВКЛ"); } 
