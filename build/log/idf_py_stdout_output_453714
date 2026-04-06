@@ -1,0 +1,936 @@
+ESP-ROM:esp32s3-20210327
+Build:Mar 27 2021
+rst:0x1 (POWERON),boot:0x8 (SPI_FAST_FLASH_BOOT)
+SPIWP:0xee
+mode:DIO, clock div:1
+load:0x3fce2810,len:0x1194
+load:0x403c8700,len:0x4
+load:0x403c8704,len:0xce0
+load:0x403cb700,len:0x2d5c
+entry 0x403c8910
+[0;32mI (27) boot: ESP-IDF v5.4.3-904-gacd7b505de 2nd stage bootloader[0m
+[0;32mI (27) boot: compile time Apr  1 2026 19:35:07[0m
+[0;32mI (27) boot: Multicore bootloader[0m
+[0;32mI (28) boot: chip revision: v0.2[0m
+[0;32mI (31) boot: efuse block revision: v1.3[0m
+[0;32mI (35) boot.esp32s3: Boot SPI Speed : 80MHz[0m
+[0;32mI (39) boot.esp32s3: SPI Mode       : DIO[0m
+[0;32mI (42) boot.esp32s3: SPI Flash Size : 16MB[0m
+[0;32mI (46) boot: Enabling RNG early entropy source...[0m
+[0;32mI (51) boot: Partition Table:[0m
+[0;32mI (53) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (60) boot:  0 nvs              WiFi data        01 02 00009000 00006000[0m
+[0;32mI (66) boot:  1 otadata          OTA data         01 00 0000f000 00002000[0m
+[0;32mI (73) boot:  2 phy_init         RF data          01 01 00011000 00001000[0m
+[0;32mI (79) boot:  3 factory          factory app      00 00 00020000 001e0000[0m
+[0;32mI (86) boot: End of partition table[0m
+[0;32mI (89) boot: Defaulting to factory image[0m
+[0;32mI (93) esp_image: segment 0: paddr=00020020 vaddr=3c0a0020 size=17134h ( 94516) map[0m
+[0;32mI (117) esp_image: segment 1: paddr=0003715c vaddr=3fca2400 size=0531ch ( 21276) load[0m
+[0;32mI (121) esp_image: segment 2: paddr=0003c480 vaddr=40378000 size=03b98h ( 15256) load[0m
+[0;32mI (125) esp_image: segment 3: paddr=00040020 vaddr=42000020 size=97044h (618564) map[0m
+[0;32mI (237) esp_image: segment 4: paddr=000d706c vaddr=4037bb98 size=16820h ( 92192) load[0m
+[0;32mI (257) esp_image: segment 5: paddr=000ed894 vaddr=50000000 size=0001ch (    28) load[0m
+[0;32mI (268) boot: Loaded app from partition at offset 0x20000[0m
+[0;32mI (268) boot: Disabling RNG early entropy source...[0m
+[0;32mI (278) octal_psram: vendor id    : 0x0d (AP)[0m
+[0;32mI (278) octal_psram: dev id       : 0x02 (generation 3)[0m
+[0;32mI (278) octal_psram: density      : 0x03 (64 Mbit)[0m
+[0;32mI (280) octal_psram: good-die     : 0x01 (Pass)[0m
+[0;32mI (285) octal_psram: Latency      : 0x01 (Fixed)[0m
+[0;32mI (289) octal_psram: VCC          : 0x01 (3V)[0m
+[0;32mI (293) octal_psram: SRF          : 0x01 (Fast Refresh)[0m
+[0;32mI (298) octal_psram: BurstType    : 0x01 (Hybrid Wrap)[0m
+[0;32mI (303) octal_psram: BurstLen     : 0x01 (32 Byte)[0m
+[0;32mI (307) octal_psram: Readlatency  : 0x02 (10 cycles@Fixed)[0m
+[0;32mI (313) octal_psram: DriveStrength: 0x00 (1/1)[0m
+[0;32mI (317) MSPI Timing: PSRAM timing tuning index: 5[0m
+[0;32mI (321) esp_psram: Found 8MB PSRAM device[0m
+[0;32mI (325) esp_psram: Speed: 80MHz[0m
+[0;32mI (328) cpu_start: Multicore app[0m
+[0;32mI (621) esp_psram: SPI SRAM memory test OK[0m
+[0;32mI (629) cpu_start: GPIO 44 and 43 are used as console UART I/O pins[0m
+[0;32mI (630) cpu_start: Pro cpu start user code[0m
+[0;32mI (630) cpu_start: cpu freq: 240000000 Hz[0m
+[0;32mI (631) app_init: Application information:[0m
+[0;32mI (635) app_init: Project name:     drivebot[0m
+[0;32mI (639) app_init: App version:      a6f997c-dirty[0m
+[0;32mI (644) app_init: Compile time:     Apr  5 2026 20:24:42[0m
+[0;32mI (649) app_init: ELF file SHA256:  2ce98db33...[0m
+[0;32mI (653) app_init: ESP-IDF:          v5.4.3-904-gacd7b505de[0m
+[0;32mI (658) efuse_init: Min chip rev:     v0.0[0m
+[0;32mI (662) efuse_init: Max chip rev:     v0.99 [0m
+[0;32mI (666) efuse_init: Chip rev:         v0.2[0m
+[0;32mI (670) heap_init: Initializing. RAM available for dynamic allocation:[0m
+[0;32mI (676) heap_init: At 3FCAB6D0 len 0003E040 (248 KiB): RAM[0m
+[0;32mI (681) heap_init: At 3FCE9710 len 00005724 (21 KiB): RAM[0m
+[0;32mI (686) heap_init: At 600FE000 len 00001FE8 (7 KiB): RTCRAM[0m
+[0;32mI (692) esp_psram: Adding pool of 8192K of PSRAM memory to heap allocator[0m
+[0;32mI (699) spi_flash: detected chip: boya[0m
+[0;32mI (702) spi_flash: flash io: dio[0m
+[0;32mI (705) sleep_gpio: Configure to isolate all GPIO pins in sleep state[0m
+[0;32mI (711) sleep_gpio: Enable automatic switching of GPIO sleep configuration[0m
+[0;32mI (718) esp_core_dump_uart: Init core dump to UART[0m
+[0;32mI (722) coexist: coex firmware version: 7260f71[0m
+[0;32mI (726) coexist: coexist rom version e7ae62f[0m
+[0;32mI (731) main_task: Started on CPU0[0m
+[0;32mI (751) esp_psram: Reserving pool of 256K of internal memory for DMA/internal allocations[0m
+[0;32mI (751) main_task: Calling app_main()[0m
+
+
+=== 🛠 DRIVEBOT STARTING ===
+
+[0;32mI (761) AUDIO_TRANSPORT: ✅ TX I2S канал инициализирован (DOUT=3) на I2S_NUM_1[0m
+[0;32mI (761) gpio: GPIO[2]| InputEn: 0| OutputEn: 0| OpenDrain: 0| Pullup: 1| Pulldown: 0| Intr:0 [0m
+[0;32mI (771) gpio: GPIO[1]| InputEn: 0| OutputEn: 0| OpenDrain: 0| Pullup: 1| Pulldown: 0| Intr:0 [0m
+[0;32mI (781) gpio: GPIO[4]| InputEn: 0| OutputEn: 0| OpenDrain: 0| Pullup: 1| Pulldown: 0| Intr:0 [0m
+[0;32mI (791) gpio: GPIO[5]| InputEn: 0| OutputEn: 0| OpenDrain: 0| Pullup: 1| Pulldown: 0| Intr:0 [0m
+[0;32mI (801) gpio: GPIO[16]| InputEn: 0| OutputEn: 0| OpenDrain: 0| Pullup: 1| Pulldown: 0| Intr:0 [0m
+[0;32mI (801) gpio: GPIO[17]| InputEn: 0| OutputEn: 0| OpenDrain: 0| Pullup: 1| Pulldown: 0| Intr:0 [0m
+[0;32mI (811) gpio: GPIO[18]| InputEn: 0| OutputEn: 0| OpenDrain: 0| Pullup: 1| Pulldown: 0| Intr:0 [0m
+[0;32mI (821) BLE_MGR: Initializing NimBLE BLE stack[0m
+[0;32mI (821) BLE_INIT: BT controller compile version [1bb2f50][0m
+[0;32mI (831) BLE_INIT: Using main XTAL as clock source[0m
+[0;32mI (831) BLE_INIT: Feature Config, ADV:1, BLE_50:1, DTM:1, SCAN:1, CCA:0, SMP:1, CONNECT:1[0m
+[0;32mI (841) BLE_INIT: Bluetooth MAC: ac:a7:04:26:07:32[0m
+[0;32mI (851) phy_init: phy_version 711,97bcf0a2,Aug 25 2025,19:04:10[0m
+[0;32mI (881) BLE_MGR: BLE Host Task Started[0m
+[0;32mI (881) BLE_MGR: Service registered: 0x1800[0m
+[0;32mI (881) BLE_MGR: Characteristic registered: 0x2a00[0m
+[0;32mI (881) BLE_MGR: Characteristic registered: 0x2a01[0m
+[0;32mI (891) BLE_MGR: Service registered: 0x1801[0m
+[0;32mI (891) BLE_MGR: Characteristic registered: 0x2a05[0m
+[0;32mI (901) BLE_MGR: Characteristic registered: 0x2b3a[0m
+[0;32mI (901) BLE_MGR: Characteristic registered: 0x2b29[0m
+[0;32mI (911) BLE_MGR: Service registered: 0xffe0[0m
+[0;32mI (911) BLE_MGR: Characteristic registered: 0xffe1[0m
+[0;32mI (921) NimBLE: GAP procedure initiated: stop advertising.[0m
+
+[0;32mI (921) BLE_MGR: 🔄 Starting advertising...[0m
+[0;32mI (921) NimBLE: GAP procedure initiated: advertise; [0m
+[0;32mI (931) NimBLE: disc_mode=2[0m
+[0;32mI (931) NimBLE:  adv_channel_map=0 own_addr_type=0 adv_filter_policy=0 adv_itvl_min=800 adv_itvl_max=1600[0m
+[0;32mI (941) NimBLE: [0m
+
+[0;32mI (941) BLE_MGR: ✅ Advertising started[0m
+[0;32mI (951) BLE_MGR: BLE initialized successfully[0m
+[0;32mI (951) WIFI_MGR: 🚀 Запуск WiFi точки доступа: DriveBot_CAM (без пароля)[0m
+[0;32mI (961) pp: pp rom version: e7ae62f[0m
+[0;32mI (961) net80211: net80211 rom version: e7ae62f[0m
+[0;32mI (981) wifi:wifi driver task: 3fcc078c, prio:23, stack:3584, core=0[0m
+[0;32mI (981) wifi:wifi firmware version: 562b41f[0m
+[0;32mI (981) wifi:wifi certification version: v7.0[0m
+[0;32mI (981) wifi:config NVS flash: enabled[0m
+[0;32mI (981) wifi:config nano formatting: disabled[0m
+[0;32mI (991) wifi:Init data frame dynamic rx buffer num: 64[0m
+[0;32mI (991) wifi:Init static rx mgmt buffer num: 5[0m
+[0;32mI (1001) wifi:Init management short buffer num: 32[0m
+[0;32mI (1001) wifi:Init static tx buffer num: 32[0m
+[0;32mI (1011) wifi:Init static tx FG buffer num: 2[0m
+[0;32mI (1011) wifi:Init static rx buffer size: 1600[0m
+[0;32mI (1011) wifi:Init static rx buffer num: 16[0m
+[0;32mI (1021) wifi:Init dynamic rx buffer num: 64[0m
+[0;32mI (1021) wifi_init: rx ba win: 16[0m
+[0;32mI (1031) wifi_init: accept mbox: 6[0m
+[0;32mI (1031) wifi_init: tcpip mbox: 32[0m
+[0;32mI (1031) wifi_init: udp mbox: 6[0m
+[0;32mI (1031) wifi_init: tcp mbox: 6[0m
+[0;32mI (1041) wifi_init: tcp tx win: 32768[0m
+[0;32mI (1041) wifi_init: tcp rx win: 32768[0m
+[0;32mI (1041) wifi_init: tcp mss: 1440[0m
+[0;32mI (1051) wifi_init: WiFi IRAM OP enabled[0m
+[0;32mI (1051) wifi_init: WiFi RX IRAM OP enabled[0m
+[0;32mI (1061) wifi:mode : softAP (ac:a7:04:26:07:31)[0m
+[0;32mI (1061) wifi:Total power save buffer number: 16[0m
+[0;32mI (1061) wifi:Init max length of beacon: 752/752[0m
+[0;32mI (1071) wifi:Init max length of beacon: 752/752[0m
+[0;32mI (1071) WIFI_MGR: ✅ WiFi точка доступа запущена: DriveBot_CAM[0m
+[0;32mI (1071) esp_netif_lwip: DHCP server started on interface WIFI_AP_DEF with IP: 192.168.4.1[0m
+[0;32mI (1091) WIFI_MGR: 📡 IP адрес ESP32: 192.168.4.1[0m
+[0;32mI (1091) WIFI_MGR: 📡 Видеопоток: http://192.168.4.1:81/stream[0m
+[0;32mI (1101) WIFI_MGR: 📡 Максимум клиентов: 1 (только телефон)[0m
+[0;32mI (1111) DRIVEBOT_MAIN: ✅ UDP Сервер готов (порт 8080)[0m
+[0;32mI (1111) DRIVEBOT_MAIN: === СИСТЕМА ГОТОВА ===[0m
+[0;32mI (19671) wifi:new:<1,0>, old:<1,1>, ap:<1,1>, sta:<255,255>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (19671) wifi:station: 32:44:eb:48:e5:38 join, AID=1, bgn, 20[0m
+[0;32mI (19671) wifi:Set ps type: 0, coexist: 1[0m
+
+[0;32mI (19671) wifi:Coexist!!! Wi-Fi station would only keep waked when available[0m
+
+[0;32mI (19681) WIFI_MGR: 📱 Телефон подключен по WiFi[0m
+[0;32mI (19691) WIFI_MGR: 📡 Видеопоток: http://192.168.4.1:81/stream[0m
+[0;32mI (19881) wifi:<ba-add>idx:2 (ifx:1, 32:44:eb:48:e5:38), tid:0, ssn:0, winSize:64[0m
+[0;32mI (20091) esp_netif_lwip: DHCP server assigned IP to a client, IP is: 192.168.4.2[0m
+[0;32mI (31631) DRIVEBOT_MAIN: 📷 Принудительный запуск камеры[0m
+[0;33mW (32101) httpd_uri: httpd_uri: URI '/stream' not found[0m
+[0;33mW (32111) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (33151) httpd_uri: httpd_uri: URI '/stream?t=1775417321456' not found[0m
+[0;33mW (33151) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (34221) httpd_uri: httpd_uri: URI '/stream?t=1775417322500' not found[0m
+[0;33mW (34221) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;32mI (34921) DRIVEBOT_MAIN: 📱 Команда: HORN_ON[0m
+[0;32mI (34931) AUDIO_TRANSPORT: Включаю динамик для гудка[0m
+[0;32mI (34931) AUDIO_TRANSPORT: 🔊 Динамик активирован[0m
+[0;32mI (35031) AUDIO_TRANSPORT: 🔊 Запись I2S: результат=0, записано байт=2048[0m
+[0;33mW (35271) httpd_uri: httpd_uri: URI '/stream?t=1775417323573' not found[0m
+[0;33mW (35271) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;32mI (35531) AUDIO_TRANSPORT: 🔇 Динамик деактивирован[0m
+[0;32mI (35531) AUDIO_TRANSPORT: Динамик выключен[0m
+[0;33mW (36311) httpd_uri: httpd_uri: URI '/stream?t=1775417324619' not found[0m
+[0;33mW (36311) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (37391) httpd_uri: httpd_uri: URI '/stream?t=1775417325670' not found[0m
+[0;33mW (37391) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (38451) httpd_uri: httpd_uri: URI '/stream?t=1775417326745' not found[0m
+[0;33mW (38451) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (39521) httpd_uri: httpd_uri: URI '/stream?t=1775417327803' not found[0m
+[0;33mW (39521) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (40591) httpd_uri: httpd_uri: URI '/stream?t=1775417328883' not found[0m
+[0;33mW (40591) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (41651) httpd_uri: httpd_uri: URI '/stream?t=1775417329956' not found[0m
+[0;33mW (41651) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;32mI (41871) DRIVEBOT_MAIN: 📱 Команда: HORN_OFF[0m
+[0;33mW (41871) BLE_MGR: BLE не подключен, команда не отправлена: HORN_OFF[0m
+[0;33mW (42701) httpd_uri: httpd_uri: URI '/stream?t=1775417331010' not found[0m
+[0;33mW (42701) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;32mI (43481) DRIVEBOT_MAIN: 📱 Команда: HORN_ON[0m
+[0;32mI (43481) AUDIO_TRANSPORT: Включаю динамик для гудка[0m
+[0;32mI (43481) AUDIO_TRANSPORT: 🔊 Динамик активирован[0m
+[0;32mI (43581) AUDIO_TRANSPORT: 🔊 Запись I2S: результат=0, записано байт=2048[0m
+[0;33mW (43751) httpd_uri: httpd_uri: URI '/stream?t=1775417332068' not found[0m
+[0;33mW (43751) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;32mI (44081) AUDIO_TRANSPORT: 🔇 Динамик деактивирован[0m
+[0;32mI (44081) AUDIO_TRANSPORT: Динамик выключен[0m
+[0;33mW (44811) httpd_uri: httpd_uri: URI '/stream?t=1775417333110' not found[0m
+[0;33mW (44811) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (45881) httpd_uri: httpd_uri: URI '/stream?t=1775417334174' not found[0m
+[0;33mW (45881) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (46971) httpd_uri: httpd_uri: URI '/stream?t=1775417335239' not found[0m
+[0;33mW (46971) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;32mI (47021) DRIVEBOT_MAIN: 📱 Команда: HORN_OFF[0m
+[0;33mW (47021) BLE_MGR: BLE не подключен, команда не отправлена: HORN_OFF[0m
+[0;33mW (48031) httpd_uri: httpd_uri: URI '/stream?t=1775417336329' not found[0m
+[0;33mW (48031) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;32mI (48641) DRIVEBOT_MAIN: 📱 Команда: HORN_ON[0m
+[0;32mI (48641) AUDIO_TRANSPORT: Включаю динамик для гудка[0m
+[0;32mI (48641) AUDIO_TRANSPORT: 🔊 Динамик активирован[0m
+[0;32mI (48751) AUDIO_TRANSPORT: 🔊 Запись I2S: результат=0, записано байт=2048[0m
+[0;33mW (49081) httpd_uri: httpd_uri: URI '/stream?t=1775417337387' not found[0m
+[0;33mW (49081) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;32mI (49251) AUDIO_TRANSPORT: 🔇 Динамик деактивирован[0m
+[0;32mI (49251) AUDIO_TRANSPORT: Динамик выключен[0m
+[0;33mW (50141) httpd_uri: httpd_uri: URI '/stream?t=1775417338439' not found[0m
+[0;33mW (50141) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (51191) httpd_uri: httpd_uri: URI '/stream?t=1775417339499' not found[0m
+[0;33mW (51191) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (52261) httpd_uri: httpd_uri: URI '/stream?t=1775417340550' not found[0m
+[0;33mW (52261) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;32mI (52801) DRIVEBOT_MAIN: 📱 Команда: HORN_OFF[0m
+[0;33mW (52801) BLE_MGR: BLE не подключен, команда не отправлена: HORN_OFF[0m
+[0;33mW (53321) httpd_uri: httpd_uri: URI '/stream?t=1775417341617' not found[0m
+[0;33mW (53321) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (54361) httpd_uri: httpd_uri: URI '/stream?t=1775417342673' not found[0m
+[0;33mW (54361) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+�       ���r�mz%�]W_I�R�_E�W��4N��[�{���~�^��W��}�h�޻�����W��c�s��{�g���z������Z����gb�cZ�cZ�sbb���gboSbf��bbsSF����k��{0| OpenDrain: 0| Pullup: 1| Pulldown: 0| Intr:0 
+[0;32mI (781) gpio: GPIO[4]| InputEn: 0| OutputEn: 0| OpenDrain: 0| Pullup: 1| Pulldown: 0| Intr:0 [0m
+[0;32mI (791) gpio: GPIO[5]| InputEn: 0| OutputEn: 0| OpenDrain: 0| Pullup: 1| Pulldown: 0| Intr:0 [0m
+[0;32mI (801) gpio: GPIO[16]| InputEn: 0| OutputEn: 0| OpenDrain: 0| Pullup: 1| Pulldown: 0| Intr:0 [0m
+[0;32mI (801) gpio: GPIO[17]| InputEn: 0| OutputEn: 0| OpenDrain: 0| Pullup: 1| Pulldown: 0| Intr:0 [0m
+[0;32mI (811) gpio: GPIO[18]| InputEn: 0| OutputEn: 0| OpenDrain: 0| Pullup: 1| Pulldown: 0| Intr:0 [0m
+[0;32mI (821) BLE_MGR: Initializing NimBLE BLE stack[0m
+[0;32mI (821) BLE_INIT: BT controller compile version [1bb2f50][0m
+[0;32mI (831) BLE_INIT: Using main XTAL as clock source[0m
+[0;32mI (831) BLE_INIT: Feature Config, ADV:1, BLE_50:1, DTM:1, SCAN:1, CCA:0, SMP:1, CONNECT:1[0m
+[0;32mI (841) BLE_INIT: Bluetooth MAC: ac:a7:04:26:07:32[0m
+[0;32mI (851) phy_init: phy_version 711,97bcf0a2,Aug 25 2025,19:04:10[0m
+[0;32mI (881) BLE_MGR: BLE Host Task Started[0m
+[0;32mI (881) BLE_MGR: Service registered: 0x1800[0m
+[0;32mI (881) BLE_MGR: Characteristic registered: 0x2a00[0m
+[0;32mI (881) BLE_MGR: Characteristic registered: 0x2a01[0m
+[0;32mI (891) BLE_MGR: Service registered: 0x1801[0m
+[0;32mI (891) BLE_MGR: Characteristic registered: 0x2a05[0m
+[0;32mI (901) BLE_MGR: Characteristic registered: 0x2b3a[0m
+[0;32mI (901) BLE_MGR: Characteristic registered: 0x2b29[0m
+[0;32mI (911) BLE_MGR: Service registered: 0xffe0[0m
+[0;32mI (911) BLE_MGR: Characteristic registered: 0xffe1[0m
+[0;32mI (921) NimBLE: GAP procedure initiated: stop advertising.[0m
+
+[0;32mI (921) BLE_MGR: 🔄 Starting advertising...[0m
+[0;32mI (921) NimBLE: GAP procedure initiated: advertise; [0m
+[0;32mI (931) NimBLE: disc_mode=2[0m
+[0;32mI (931) NimBLE:  adv_channel_map=0 own_addr_type=0 adv_filter_policy=0 adv_itvl_min=800 adv_itvl_max=1600[0m
+[0;32mI (941) NimBLE: [0m
+
+[0;32mI (941) BLE_MGR: ✅ Advertising started[0m
+[0;32mI (951) BLE_MGR: BLE initialized successfully[0m
+[0;32mI (951) WIFI_MGR: 🚀 Запуск WiFi точки доступа: DriveBot_CAM (без пароля)[0m
+[0;32mI (961) pp: pp rom version: e7ae62f[0m
+[0;32mI (961) net80211: net80211 rom version: e7ae62f[0m
+[0;32mI (981) wifi:wifi driver task: 3fcc078c, prio:23, stack:3584, core=0[0m
+[0;32mI (981) wifi:wifi firmware version: 562b41f[0m
+[0;32mI (981) wifi:wifi certification version: v7.0[0m
+[0;32mI (981) wifi:config NVS flash: enabled[0m
+[0;32mI (981) wifi:config nano formatting: disabled[0m
+[0;32mI (991) wifi:Init data frame dynamic rx buffer num: 64[0m
+[0;32mI (991) wifi:Init static rx mgmt buffer num: 5[0m
+[0;32mI (1001) wifi:Init management short buffer num: 32[0m
+[0;32mI (1001) wifi:Init static tx buffer num: 32[0m
+[0;32mI (1011) wifi:Init static tx FG buffer num: 2[0m
+[0;32mI (1011) wifi:Init static rx buffer size: 1600[0m
+[0;32mI (1011) wifi:Init static rx buffer num: 16[0m
+[0;32mI (1021) wifi:Init dynamic rx buffer num: 64[0m
+[0;32mI (1021) wifi_init: rx ba win: 16[0m
+[0;32mI (1021) wifi_init: accept mbox: 6[0m
+[0;32mI (1031) wifi_init: tcpip mbox: 32[0m
+[0;32mI (1031) wifi_init: udp mbox: 6[0m
+[0;32mI (1031) wifi_init: tcp mbox: 6[0m
+[0;32mI (1041) wifi_init: tcp tx win: 32768[0m
+[0;32mI (1041) wifi_init: tcp rx win: 32768[0m
+[0;32mI (1041) wifi_init: tcp mss: 1440[0m
+[0;32mI (1051) wifi_init: WiFi IRAM OP enabled[0m
+[0;32mI (1051) wifi_init: WiFi RX IRAM OP enabled[0m
+[0;32mI (1061) wifi:mode : softAP (ac:a7:04:26:07:31)[0m
+[0;32mI (1061) wifi:Total power save buffer number: 16[0m
+[0;32mI (1061) wifi:Init max length of beacon: 752/752[0m
+[0;32mI (1071) wifi:Init max length of beacon: 752/752[0m
+[0;32mI (1071) WIFI_MGR: ✅ WiFi точка доступа запущена: DriveBot_CAM[0m
+[0;32mI (1071) esp_netif_lwip: DHCP server started on interface WIFI_AP_DEF with IP: 192.168.4.1[0m
+[0;32mI (1091) WIFI_MGR: 📡 IP адрес ESP32: 192.168.4.1[0m
+[0;32mI (1091) WIFI_MGR: 📡 Видеопоток: http://192.168.4.1:81/stream[0m
+[0;32mI (1101) WIFI_MGR: 📡 Максимум клиентов: 1 (только телефон)[0m
+[0;32mI (1111) DRIVEBOT_MAIN: ✅ UDP Сервер готов (порт 8080)[0m
+[0;32mI (1111) DRIVEBOT_MAIN: === СИСТЕМА ГОТОВА ===[0m
+[0;32mI (621) esp_psram: SPI SRAM memory test OK[0m
+[0;32mI (629) cpu_start: GPIO 44 and 43 are used as console UART I/O pins[0m
+[0;32mI (630) cpu_start: Pro cpu start user code[0m
+[0;32mI (630) cpu_start: cpu freq: 240000000 Hz[0m
+[0;32mI (631) app_init: Application information:[0m
+[0;32mI (635) app_init: Project name:     drivebot[0m
+[0;32mI (639) app_init: App version:      a6f997c-dirty[0m
+[0;32mI (644) app_init: Compile time:     Apr  5 2026 20:24:42[0m
+[0;32mI (649) app_init: ELF file SHA256:  2ce98db33...[0m
+[0;32mI (653) app_init: ESP-IDF:          v5.4.3-904-gacd7b505de[0m
+[0;32mI (658) efuse_init: Min chip rev:     v0.0[0m
+[0;32mI (662) efuse_init: Max chip rev:     v0.99 [0m
+[0;32mI (666) efuse_init: Chip rev:         v0.2[0m
+[0;32mI (670) heap_init: Initializing. RAM available for dynamic allocation:[0m
+[0;32mI (676) heap_init: At 3FCAB6D0 len 0003E040 (248 KiB): RAM[0m
+[0;32mI (681) heap_init: At 3FCE9710 len 00005724 (21 KiB): RAM[0m
+[0;32mI (686) heap_init: At 600FE000 len 00001FE8 (7 KiB): RTCRAM[0m
+[0;32mI (692) esp_psram: Adding pool of 8192K of PSRAM memory to heap allocator[0m
+[0;32mI (699) spi_flash: detected chip: boya[0m
+[0;32mI (702) spi_flash: flash io: dio[0m
+[0;32mI (705) sleep_gpio: Configure to isolate all GPIO pins in sleep state[0m
+[0;32mI (711) sleep_gpio: Enable automatic switching of GPIO sleep configuration[0m
+[0;32mI (718) esp_core_dump_uart: Init core dump to UART[0m
+[0;32mI (722) coexist: coex firmware version: 7260f71[0m
+[0;32mI (726) coexist: coexist rom version e7ae62f[0m
+[0;32mI (731) main_task: Started on CPU0[0m
+[0;32mI (751) esp_psram: Reserving pool of 256K of internal memory for DMA/internal allocations[0m
+[0;32mI (751) main_task: Calling app_main()[0m
+
+
+=== 🛠 DRIVEBOT STARTING ===
+
+[0;32mI (761) AUDIO_TRANSPORT: ✅ TX I2S канал инициализирован (DOUT=3) на I2S_NUM_1[0m
+[0;32mI (761) gpio: GPIO[2]| InputEn: 0| OutputEn: 0| OpenDrain: 0| Pullup: 1| Pulldown: 0| Intr:0 [0m
+[0;32mI (771) gpio: GPIO[1]| InputEn: 0| OutputEn: 0| OpenDrain: 0| Pullup: 1| Pulldown: 0| Intr:0 [0m
+[0;32mI (781) gpio: GPIO[4]| InputEn: 0| OutputEn: 0| OpenDrain: 0| Pullup: 1| Pulldown: 0| Intr:0 [0m
+[0;32mI (791) gpio: GPIO[5]| InputEn: 0| OutputEn: 0| OpenDrain: 0| Pullup: 1| Pulldown: 0| Intr:0 [0m
+[0;32mI (801) gpio: GPIO[16]| InputEn: 0| OutputEn: 0| OpenDrain: 0| Pullup: 1| Pulldown: 0| Intr:0 [0m
+[0;32mI (801) gpio: GPIO[17]| InputEn: 0| OutputEn: 0| OpenDrain: 0| Pullup: 1| Pulldown: 0| Intr:0 [0m
+[0;32mI (811) gpio: GPIO[18]| InputEn: 0| OutputEn: 0| OpenDrain: 0| Pullup: 1| Pulldown: 0| Intr:0 [0m
+[0;32mI (821) BLE_MGR: Initializing NimBLE BLE stack[0m
+[0;32mI (821) BLE_INIT: BT controller compile version [1bb2f50][0m
+[0;32mI (831) BLE_INIT: Using main XTAL as clock source[0m
+[0;32mI (831) BLE_INIT: Feature Config, ADV:1, BLE_50:1, DTM:1, SCAN:1, CCA:0, SMP:1, CONNECT:1[0m
+[0;32mI (841) BLE_INIT: Bluetooth MAC: ac:a7:04:26:07:32[0m
+[0;32mI (851) phy_init: phy_version 711,97bcf0a2,Aug 25 2025,19:04:10[0m
+[0;32mI (881) BLE_MGR: BLE Host Task Started[0m
+[0;32mI (881) BLE_MGR: Service registered: 0x1800[0m
+[0;32mI (881) BLE_MGR: Characteristic registered: 0x2a00[0m
+[0;32mI (881) BLE_MGR: Characteristic registered: 0x2a01[0m
+[0;32mI (891) BLE_MGR: Service registered: 0x1801[0m
+[0;32mI (891) BLE_MGR: Characteristic registered: 0x2a05[0m
+[0;32mI (901) BLE_MGR: Characteristic registered: 0x2b3a[0m
+[0;32mI (901) BLE_MGR: Characteristic registered: 0x2b29[0m
+[0;32mI (911) BLE_MGR: Service registered: 0xffe0[0m
+[0;32mI (911) BLE_MGR: Characteristic registered: 0xffe1[0m
+[0;32mI (921) NimBLE: GAP procedure initiated: stop advertising.[0m
+
+[0;32mI (921) BLE_MGR: 🔄 Starting advertising...[0m
+[0;32mI (931) NimBLE: GAP procedure initiated: advertise; [0m
+[0;32mI (931) NimBLE: disc_mode=2[0m
+[0;32mI (931) NimBLE:  adv_channel_map=0 own_addr_type=0 adv_filter_policy=0 adv_itvl_min=800 adv_itvl_max=1600[0m
+[0;32mI (941) NimBLE: [0m
+
+[0;32mI (941) BLE_MGR: ✅ Advertising started[0m
+[0;32mI (951) BLE_MGR: BLE initialized successfully[0m
+[0;32mI (951) WIFI_MGR: 🚀 Запуск WiFi точки доступа: DriveBot_CAM (без пароля)[0m
+[0;32mI (961) pp: pp rom version: e7ae62f[0m
+[0;32mI (961) net80211: net80211 rom version: e7ae62f[0m
+[0;32mI (981) wifi:wifi driver task: 3fcc078c, prio:23, stack:3584, core=0[0m
+[0;32mI (981) wifi:wifi firmware version: 562b41f[0m
+[0;32mI (981) wifi:wifi certification version: v7.0[0m
+[0;32mI (981) wifi:config NVS flash: enabled[0m
+[0;32mI (981) wifi:config nano formatting: disabled[0m
+[0;32mI (991) wifi:Init data frame dynamic rx buffer num: 64[0m
+[0;32mI (991) wifi:Init static rx mgmt buffer num: 5[0m
+[0;32mI (1001) wifi:Init management short buffer num: 32[0m
+[0;32mI (1001) wifi:Init static tx buffer num: 32[0m
+[0;32mI (1011) wifi:Init static tx FG buffer num: 2[0m
+[0;32mI (1011) wifi:Init static rx buffer size: 1600[0m
+[0;32mI (1011) wifi:Init static rx buffer num: 16[0m
+[0;32mI (1021) wifi:Init dynamic rx buffer num: 64[0m
+[0;32mI (1021) wifi_init: rx ba win: 16[0m
+[0;32mI (1031) wifi_init: accept mbox: 6[0m
+[0;32mI (1031) wifi_init: tcpip mbox: 32[0m
+[0;32mI (1031) wifi_init: udp mbox: 6[0m
+[0;32mI (1031) wifi_init: tcp mbox: 6[0m
+[0;32mI (1041) wifi_init: tcp tx win: 32768[0m
+[0;32mI (1041) wifi_init: tcp rx win: 32768[0m
+[0;32mI (1041) wifi_init: tcp mss: 1440[0m
+[0;32mI (1051) wifi_init: WiFi IRAM OP enabled[0m
+[0;32mI (1051) wifi_init: WiFi RX IRAM OP enabled[0m
+[0;32mI (1061) wifi:mode : softAP (ac:a7:04:26:07:31)[0m
+[0;32mI (1061) wifi:Total power save buffer number: 16[0m
+[0;32mI (1061) wifi:Init max length of beacon: 752/752[0m
+[0;32mI (1071) wifi:Init max length of beacon: 752/752[0m
+[0;32mI (1071) WIFI_MGR: ✅ WiFi точка доступа запущена: DriveBot_CAM[0m
+[0;32mI (1071) esp_netif_lwip: DHCP server started on interface WIFI_AP_DEF with IP: 192.168.4.1[0m
+[0;32mI (1091) WIFI_MGR: 📡 IP адрес ESP32: 192.168.4.1[0m
+[0;32mI (1091) WIFI_MGR: 📡 Видеопоток: http://192.168.4.1:81/stream[0m
+[0;32mI (1101) WIFI_MGR: 📡 Максимум клиентов: 1 (только телефон)[0m
+[0;32mI (1111) DRIVEBOT_MAIN: ✅ UDP Сервер готов (порт 8080)[0m
+[0;32mI (1121) DRIVEBOT_MAIN: === СИСТЕМА ГОТОВА ===[0m
+ESP-ROM:esp32s3-20210327
+Build:Mar 27 2021
+rst:0x1 (POWERON),boot:0x8 (SPI_FAST_FLASH_BOOT)
+SPIWP:0xee
+mode:DIO, clock div:1
+load:0x3fce2810,len:0x1194
+load:0x403c8700,len:0x4
+load:0x403c8704,len:0xce0
+load:0x403cb700,len:0x2d5c
+entry 0x403c8910
+[0;32mI (27) boot: ESP-IDF v5.4.3-904-gacd7b505de 2nd stage bootloader[0m
+[0;32mI (27) boot: compile time Apr  1 2026 19:35:07[0m
+[0;32mI (27) boot: Multicore bootloader[0m
+[0;32mI (28) boot: chip revision: v0.2[0m
+[0;32mI (31) boot: efuse block revision: v1.3[0m
+[0;32mI (35) boot.esp32s3: Boot SPI Speed : 80MHz[0m
+[0;32mI (39) boot.esp32s3: SPI Mode       : DIO[0m
+[0;32mI (42) boot.esp32s3: SPI Flash Size : 16MB[0m
+[0;32mI (46) boot: Enabling RNG early entropy source...[0m
+[0;32mI (51) boot: Partition Table:[0m
+[0;32mI (53) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (60) boot:  0 nvs              WiFi data        01 02 00009000 00006000[0m
+[0;32mI (66) boot:  1 otadata          OTA data         01 00 0000f000 00002000[0m
+[0;32mI (73) boot:  2 phy_init         RF data          01 01 00011000 00001000[0m
+[0;32mI (79) boot:  3 factory          factory app      00 00 00020000 001e0000[0m
+[0;32mI (86) boot: End of partition table[0m
+[0;32mI (89) boot: Defaulting to factory image[0m
+[0;32mI (93) esp_image: segment 0: paddr=00020020 vaddr=3c0a0020 size=17134h ( 94516) map[0m
+[0;32mI (117) � ����"�0����r�mz���w��r��E��w��4n��{�{���4~�~��W����h�޻��6����������������mz���w:i�r��e��w���n��{�{������~��W����h�޻��6��� � ��������r�m����w:i�r��e��w��4n����{������~��W������޻�������u���s-�3���{��{�2j�q���n�s����mmn���x����" ���:�&��?  �m(e����� ��� ����� � ��� �(� � � �(� ��� ��� ���� � �� �����0�����������r�������������������������������������������������������������������������������������������������������������������������I (621) esp_psram: SPI SRAM memory test OK[0m
+[0;32mI (629) cpu_start: GPIO 44 and 43 are used as console UART I/O pins[0m
+[0;32mI (630) cpu_start: Pro cpu start user code[0m
+[0;32mI (630) cpu_start: cpu freq: 240000000 Hz[0m
+[0;32mI (631) app_init: Application information:[0m
+[0;32mI (635) app_init: Project name:     drivebot[0m
+[0;32mI (639) app_init: App version:      a6f997c-dirty[0m
+[0;32mI (644) app_init: Compile time:     Apr  5 2026 20:24:42[0m
+[0;32mI (649) app_init: ELF file SHA256:  2ce98db33...[0m
+[0;32mI (653) app_init: ESP-IDF:          v5.4.3-904-gacd7b505de[0m
+[0;32mI (658) efuse_init: Min chip rev:     v0.0[0m
+[0;32mI (662) efuse_init: Max chip rev:     v0.99 [0m
+[0;32mI (666) efuse_init: Chip rev:         v0.2[0m
+[0;32mI (670) heap_init: Initializing. RAM available for dynamic allocation:[0m
+[0;32mI (676) heap_init: At 3FCAB6D0 len 0003E040 (248 KiB): RAM[0m
+[0;32mI (681) heap_init: At 3FCE9710 len 00005724 (21 KiB): RAM[0m
+[0;32mI (686) heap_init: At 600FE000 len 00001FE8 (7 KiB): RTCRAM[0m
+[0;32mI (692) esp_psram: Adding pool of 8192K of PSRAM memory to heap allocator[0m
+[0;32mI (699) spi_flash: detected chip: boya[0m
+[0;32mI (702) spi_flash: flash io: dio[0m
+[0;32mI (705) sleep_gpio: Configure to isolate all GPIO pins in sleep state[0m
+[0;32mI (711) sleep_gpio: Enable automatic switching of GPIO sleep configuration[0m
+[0;32mI (718) esp_core_dump_uart: Init core dump to UART[0m
+[0;32mI (722) coexist: coex firmware version: 7260f71[0m
+[0;32mI (726) coexist: coexist rom version e7ae62f[0m
+[0;32mI (731) main_task: Started on CPU0[0m
+[0;32mI (751) esp_psram: Reserving pool of 256K of internal memory for DMA/internal allocations[0m
+[0;32mI (751) main_task: Calling app_main()[0m
+
+
+=== 🛠 DRIVEBOT STARTING ===
+
+[0;32mI (761) AUDIO_TRANSPORT: ✅ TX I2S канал инициализирован (DOUT=3) на I2S_NUM_1[0m
+[0;32mI (761) gpio: GPIO[2]| InputEn: 0| OutputEn: 0| OpenDrain: 0| Pullup: 1| Pulldown: 0| Intr:0 [0m
+[0;32mI (771) gpio: GPIO[1]| InputEn: 0| OutputEn: 0| OpenDrain: 0| Pullup: 1| Pulldown: 0| Intr:0 [0m
+[0;32mI (781) gpio: GPIO[4]| InputEn: 0| OutputEn: 0| OpenDrain: 0| Pullup: 1| Pulldown: 0| Intr:0 [0m
+[0;32mI (791) gpio: GPIO[5]| InputEn: 0| OutputEn: 0| OpenDrain: 0| Pullup: 1| Pulldown: 0| Intr:0 [0m
+[0;32mI (801) gpio: GPIO[16]| InputEn: 0| OutputEn: 0| OpenDrain: 0| Pullup: 1| Pulldown: 0| Intr:0 [0m
+[0;32mI (801) gpio: GPIO[17]| InputEn: 0| OutputEn: 0| OpenDrain: 0| Pullup: 1| Pulldown: 0| Intr:0 [0m
+[0;32mI (811) gpio: GPIO[18]| InputEn: 0| OutputEn: 0| OpenDrain: 0| Pullup: 1| Pulldown: 0| Intr:0 [0m
+[0;32mI (821) BLE_MGR: Initializing NimBLE BLE stack[0m
+[0;32mI (821) BLE_INIT: BT controller compile version [1bb2f50][0m
+[0;32mI (831) BLE_INIT: Using main XTAL as clock source[0m
+[0;32mI (831) BLE_INIT: Feature Config, ADV:1, BLE_50:1, DTM:1, SCAN:1, CCA:0, SMP:1, CONNECT:1[0m
+[0;32mI (841) BLE_INIT: Bluetooth MAC: ac:a7:04:26:07:32[0m
+[0;32mI (851) phy_init: phy_version 711,97bcf0a2,Aug 25 2025,19:04:10[0m
+[0;32mI (881) BLE_MGR: BLE Host Task Started[0m
+[0;32mI (881) BLE_MGR: Service registered: 0x1800[0m
+[0;32mI (881) BLE_MGR: Characteristic registered: 0x2a00[0m
+[0;32mI (891) BLE_MGR: Characteristic registered: 0x2a01[0m
+[0;32mI (891) BLE_MGR: Service registered: 0x1801[0m
+[0;32mI (891) BLE_MGR: Characteristic registered: 0x2a05[0m
+[0;32mI (901) BLE_MGR: Characteristic registered: 0x2b3a[0m
+[0;32mI (901) BLE_MGR: Characteristic registered: 0x2b29[0m
+[0;32mI (911) BLE_MGR: Service registered: 0xffe0[0m
+[0;32mI (911) BLE_MGR: Characteristic registered: 0xffe1[0m
+[0;32mI (921) NimBLE: GAP procedure initiated: stop advertising.[0m
+
+[0;32mI (921) BLE_MGR: 🔄 Starting advertising...[0m
+[0;32mI (931) NimBLE: GAP procedure initiated: advertise; [0m
+[0;32mI (931) NimBLE: disc_mode=2[0m
+[0;32mI (931) NimBLE:  adv_channel_map=0 own_addr_type=0 adv_filter_policy=0 adv_itvl_min=800 adv_itvl_max=1600[0m
+[0;32mI (941) NimBLE: [0m
+
+[0;32mI (941) BLE_MGR: ✅ Advertising started[0m
+[0;32mI (951) BLE_MGR: BLE initialized successfully[0m
+[0;32mI (951) WIFI_MGR: 🚀 Запуск WiFi точки доступа: DriveBot_CAM (без пароля)[0m
+[0;32mI (961) pp: pp rom version: e7ae62f[0m
+[0;32mI (961) net80211: net80211 rom version: e7ae62f[0m
+[0;32mI (981) wifi:wifi driver task: 3fcc078c, prio:23, stack:3584, core=0[0m
+[0;32mI (981) wifi:wifi firmware version: 562b41f[0m
+[0;32mI (981) wifi:wifi certification version: v7.0[0m
+[0;32mI (981) wifi:config NVS flash: enabled[0m
+[0;32mI (981) wifi:config nano formatting: disabled[0m
+[0;32mI (991) wifi:Init data frame dynamic rx buffer num: 64[0m
+[0;32mI (991) wifi:Init static rx mgmt buffer num: 5[0m
+[0;32mI (1001) wifi:Init management short buffer num: 32[0m
+[0;32mI (1001) wifi:Init static tx buffer num: 32[0m
+[0;32mI (1011) wifi:Init static tx FG buffer num: 2[0m
+[0;32mI (1011) wifi:Init static rx buffer size: 1600[0m
+[0;32mI (1011) wifi:Init static rx buffer num: 16[0m
+[0;32mI (1021) wifi:Init dynamic rx buffer num: 64[0m
+[0;32mI (1021) wifi_init: rx ba win: 16[0m
+[0;32mI (1031) wifi_init: accept mbox: 6[0m
+[0;32mI (1031) wifi_init: tcpip mbox: 32[0m
+[0;32mI (1031) wifi_init: udp mbox: 6[0m
+[0;32mI (1031) wifi_init: tcp mbox: 6[0m
+[0;32mI (1041) wifi_init: tcp tx win: 32768[0m
+[0;32mI (1041) wifi_init: tcp rx win: 32768[0m
+[0;32mI (1041) wifi_init: tcp mss: 1440[0m
+[0;32mI (1051) wifi_init: WiFi IRAM OP enabled[0m
+[0;32mI (1051) wifi_init: WiFi RX IRAM OP enabled[0m
+[0;32mI (1061) wifi:mode : softAP (ac:a7:04:26:07:31)[0m
+[0;32mI (1061) wifi:Total power save buffer number: 16[0m
+[0;32mI (1061) wifi:Init max length of beacon: 752/752[0m
+[0;32mI (1071) wifi:Init max length of beacon: 752/752[0m
+[0;32mI (1071) WIFI_MGR: ✅ WiFi точка доступа запущена: DriveBot_CAM[0m
+[0;32mI (1071) esp_netif_lwip: DHCP server started on interface WIFI_AP_DEF with IP: 192.168.4.1[0m
+[0;32mI (1091) WIFI_MGR: 📡 IP адрес ESP32: 192.168.4.1[0m
+[0;32mI (1091) WIFI_MGR: 📡 Видеопоток: http://192.168.4.1:81/stream[0m
+[0;32mI (1101) WIFI_MGR: 📡 Максимум клиентов: 1 (только телефон)[0m
+[0;32mI (1111) DRIVEBOT_MAIN: ✅ UDP Сервер готов (порт 8080)[0m
+[0;32mI (1121) DRIVEBOT_MAIN: === СИСТЕМА ГОТОВА ===[0m
+[0;32mI (8321) wifi:new:<1,0>, old:<1,1>, ap:<1,1>, sta:<255,255>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (8321) wifi:station: 32:44:eb:48:e5:38 join, AID=1, bgn, 20[0m
+[0;32mI (8321) wifi:Set ps type: 0, coexist: 1[0m
+
+[0;32mI (8331) wifi:Coexist!!! Wi-Fi station would only keep waked when available[0m
+
+[0;32mI (8331) WIFI_MGR: 📱 Телефон подключен по WiFi[0m
+[0;32mI (8341) WIFI_MGR: 📡 Видеопоток: http://192.168.4.1:81/stream[0m
+[0;32mI (8431) wifi:<ba-add>idx:2 (ifx:1, 32:44:eb:48:e5:38), tid:0, ssn:0, winSize:64[0m
+[0;32mI (8461) esp_netif_lwip: DHCP server assigned IP to a client, IP is: 192.168.4.2[0m
+[0;32mI (621) esp_psram: SPI SRAM memory test OK[0m
+[0;32mI (629) cpu_start: GPIO 44 and 43 are used as console UART I/O pins[0m
+[0;32mI (630) cpu_start: Pro cpu start user code[0m
+[0;32mI (630) cpu_start: cpu freq: 240000000 Hz[0m
+[0;32mI (631) app_init: Application information:[0m
+[0;32mI (635) app_init: Project name:     drivebot[0m
+[0;32mI (639) app_init: App version:      a6f997c-dirty[0m
+[0;32mI (644) app_init: Compile time:     Apr  5 2026 20:24:42[0m
+[0;32mI (649) app_init: ELF file SHA256:  2ce98db33...[0m
+[0;32mI (653) app_init: ESP-IDF:          v5.4.3-904-gacd7b505de[0m
+[0;32mI (658) efuse_init: Min chip rev:     v0.0[0m
+[0;32mI (662) efuse_init: Max chip rev:     v0.99 [0m
+[0;32mI (666) efuse_init: Chip rev:         v0.2[0m
+[0;32mI (670) heap_init: Initializing. RAM available for dynamic allocation:[0m
+[0;32mI (676) heap_init: At 3FCAB6D0 len 0003E040 (248 KiB): RAM[0m
+[0;32mI (681) heap_init: At 3FCE9710 len 00005724 (21 KiB): RAM[0m
+[0;32mI (686) heap_init: At 600FE000 len 00001FE8 (7 KiB): RTCRAM[0m
+[0;32mI (692) esp_psram: Adding pool of 8192K of PSRAM memory to heap allocator[0m
+[0;32mI (699) spi_flash: detected chip: boya[0m
+[0;32mI (702) spi_flash: flash io: dio[0m
+[0;32mI (705) sleep_gpio: Configure to isolate all GPIO pins in sleep state[0m
+[0;32mI (711) sleep_gpio: Enable automatic switching of GPIO sleep configuration[0m
+[0;32mI (718) esp_core_dump_uart: Init core dump to UART[0m
+[0;32mI (722) coexist: coex firmware version: 7260f71[0m
+[0;32mI (726) coexist: coexist rom version e7ae62f[0m
+[0;32mI (731) main_task: Started on CPU0[0m
+[0;32mI (751) esp_psram: Reserving pool of 256K of internal memory for DMA/internal allocations[0m
+[0;32mI (751) main_task: Calling app_main()[0m
+
+
+=== 🛠 DRIVEBOT STARTING ===
+
+[0;32mI (761) AUDIO_TRANSPORT: ✅ TX I2S канал инициализирован (DOUT=3) на I2S_NUM_1[0m
+[0;32mI (761) gpio: GPIO[2]| InputEn: 0| OutputEn: 0| OpenDrain: 0| Pullup: 1| Pulldown: 0| Intr:0 [0m
+[0;32mI (771) gpio: GPIO[1]| InputEn: 0| OutputEn: 0| OpenDrain: 0| Pullup: 1| Pulldown: 0| Intr:0 [0m
+[0;32mI (781) gpio: GPIO[4]| InputEn: 0| OutputEn: 0| OpenDrain: 0| Pullup: 1| Pulldown: 0| Intr:0 [0m
+[0;32mI (791) gpio: GPIO[5]| InputEn: 0| OutputEn: 0| OpenDrain: 0| Pullup: 1| Pulldown: 0| Intr:0 [0m
+[0;32mI (801) gpio: GPIO[16]| InputEn: 0| OutputEn: 0| OpenDrain: 0| Pullup: 1| Pulldown: 0| Intr:0 [0m
+[0;32mI (801) gpio: GPIO[17]| InputEn: 0| OutputEn: 0| OpenDrain: 0| Pullup: 1| Pulldown: 0| Intr:0 [0m
+[0;32mI (811) gpio: GPIO[18]| InputEn: 0| OutputEn: 0| OpenDrain: 0| Pullup: 1| Pulldown: 0| Intr:0 [0m
+[0;32mI (821) BLE_MGR: Initializing NimBLE BLE stack[0m
+[0;32mI (821) BLE_INIT: BT controller compile version [1bb2f50][0m
+[0;32mI (831) BLE_INIT: Using main XTAL as clock source[0m
+[0;32mI (831) BLE_INIT: Feature Config, ADV:1, BLE_50:1, DTM:1, SCAN:1, CCA:0, SMP:1, CONNECT:1[0m
+[0;32mI (841) BLE_INIT: Bluetooth MAC: ac:a7:04:26:07:32[0m
+[0;32mI (851) phy_init: phy_version 711,97bcf0a2,Aug 25 2025,19:04:10[0m
+[0;32mI (881) phy_init: Saving new calibration data due to checksum failure or outdated calibration data, mode(0)[0m
+[0;32mI (931) BLE_MGR: BLE Host Task Started[0m
+[0;32mI (931) BLE_MGR: Service registered: 0x1800[0m
+[0;32mI (931) BLE_MGR: Characteristic registered: 0x2a00[0m
+[0;32mI (931) BLE_MGR: Characteristic registered: 0x2a01[0m
+[0;32mI (931) BLE_MGR: Service registered: 0x1801[0m
+[0;32mI (941) BLE_MGR: Characteristic registered: 0x2a05[0m
+[0;32mI (941) BLE_MGR: Characteristic registered: 0x2b3a[0m
+[0;32mI (951) BLE_MGR: Characteristic registered: 0x2b29[0m
+[0;32mI (951) BLE_MGR: Service registered: 0xffe0[0m
+[0;32mI (951) BLE_MGR: Characteristic registered: 0xffe1[0m
+[0;32mI (961) NimBLE: GAP procedure initiated: stop advertising.[0m
+
+[0;32mI (961) BLE_MGR: 🔄 Starting advertising...[0m
+[0;32mI (971) NimBLE: GAP procedure initiated: advertise; [0m
+[0;32mI (971) NimBLE: disc_mode=2[0m
+[0;32mI (971) NimBLE:  adv_channel_map=0 own_addr_type=0 adv_filter_policy=0 adv_itvl_min=800 adv_itvl_max=1600[0m
+[0;32mI (981) NimBLE: [0m
+
+[0;32mI (991) BLE_MGR: ✅ Advertising started[0m
+[0;32mI (991) BLE_MGR: BLE initialized successfully[0m
+[0;32mI (991) WIFI_MGR: 🚀 Запуск WiFi точки доступа: DriveBot_CAM (без пароля)[0m
+[0;32mI (1001) pp: pp rom version: e7ae62f[0m
+[0;32mI (1011) net80211: net80211 rom version: e7ae62f[0m
+[0;32mI (1021) wifi:wifi driver task: 3fcc0710, prio:23, stack:3584, core=0[0m
+[0;32mI (1021) wifi:wifi firmware version: 562b41f[0m
+[0;32mI (1021) wifi:wifi certification version: v7.0[0m
+[0;32mI (1021) wifi:config NVS flash: enabled[0m
+[0;32mI (1031) wifi:config nano formatting: disabled[0m
+[0;32mI (1031) wifi:Init data frame dynamic rx buffer num: 64[0m
+[0;32mI (1041) wifi:Init static rx mgmt buffer num: 5[0m
+[0;32mI (1041) wifi:Init management short buffer num: 32[0m
+[0;32mI (1051) wifi:Init static tx buffer num: 32[0m
+[0;32mI (1051) wifi:Init static tx FG buffer num: 2[0m
+[0;32mI (1051) wifi:Init static rx buffer size: 1600[0m
+[0;32mI (1061) wifi:Init static rx buffer num: 16[0m
+[0;32mI (1061) wifi:Init dynamic rx buffer num: 64[0m
+[0;32mI (1071) wifi_init: rx ba win: 16[0m
+[0;32mI (1071) wifi_init: accept mbox: 6[0m
+[0;32mI (1071) wifi_init: tcpip mbox: 32[0m
+[0;32mI (1081) wifi_init: udp mbox: 6[0m
+[0;32mI (1081) wifi_init: tcp mbox: 6[0m
+[0;32mI (1081) wifi_init: tcp tx win: 32768[0m
+[0;32mI (1081) wifi_init: tcp rx win: 32768[0m
+[0;32mI (1091) wifi_init: tcp mss: 1440[0m
+[0;32mI (1091) wifi_init: WiFi IRAM OP enabled[0m
+[0;32mI (1091) wifi_init: WiFi RX IRAM OP enabled[0m
+[0;32mI (1101) wifi:mode : softAP (ac:a7:04:26:07:31)[0m
+[0;32mI (1101) wifi:Total power save buffer number: 16[0m
+[0;32mI (1111) wifi:Init max length of beacon: 752/752[0m
+[0;32mI (1111) wifi:Init max length of beacon: 752/752[0m
+[0;32mI (1121) WIFI_MGR: ✅ WiFi точка доступа запущена: DriveBot_CAM[0m
+[0;32mI (1121) esp_netif_lwip: DHCP server started on interface WIFI_AP_DEF with IP: 192.168.4.1[0m
+[0;32mI (1131) WIFI_MGR: 📡 IP адрес ESP32: 192.168.4.1[0m
+[0;32mI (1141) WIFI_MGR: 📡 Видеопоток: http://192.168.4.1:81/stream[0m
+[0;32mI (1141) WIFI_MGR: 📡 Максимум клиентов: 1 (только телефон)[0m
+[0;32mI (1151) DRIVEBOT_MAIN: ✅ UDP Сервер готов (порт 8080)[0m
+[0;32mI (1161) DRIVEBOT_MAIN: === СИСТЕМА ГОТОВА ===[0m
+Ӆ�due to checksum failure or outdated calibration data, mode(0)
+[0;32mI (901) BLE_MGR: BLE Host Task Started[0m
+[0;32mI (901) BLE_MGR: Service registered: 0x1800[0m
+[0;32mI (901) BLE_MGR: Characteristic registered: 0x2a00[0m
+[0;32mI (901) BLE_MGR: Characteristic registered: 0x2a01[0m
+[0;32mI (901) BLE_MGR: Service registered: 0x1801[0m
+[0;32mI (911) BLE_MGR: Characteristic registered: 0x2a05[0m
+[0;32mI (911) BLE_MGR: Characteristic registered: 0x2b3a[0m
+[0;32mI (911) BLE_MGR: Characteristic registered: 0x2b29[0m
+[0;32mI (921) BLE_MGR: Service registered: 0xffe0[0m
+[0;32mI (921) BLE_MGR: Characteristic registered: 0xffe1[0m
+[0;32mI (931) NimBLE: GAP procedure initiated: stop advertising.[0m
+
+[0;32mI (931) BLE_MGR: 🔄 Starting advertising...[0m
+[0;32mI (941) NimBLE: GAP procedure initiated: advertise; [0m
+[0;32mI (941) NimBLE: disc_mode=2[0m
+[0;32mI (941) NimBLE:  adv_channel_map=0 own_addr_type=0 adv_filter_policy=0 adv_itvl_min=800 adv_itvl_max=1600[0m
+[0;32mI (951) NimBLE: [0m
+
+[0;32mI (961) BLE_MGR: ✅ Advertising started[0m
+[0;32mI (961) BLE_MGR: BLE initialized successfully[0m
+[0;32mI (961) WIFI_MGR: 🚀 Запуск WiFi точки доступа: DriveBot_CAM (без пароля)[0m
+[0;32mI (971) pp: pp rom version: e7ae62f[0m
+[0;32mI (981) net80211: net80211 rom version: e7ae62f[0m
+[0;32mI (991) wifi:wifi driver task: 3fcc078c, prio:23, stack:3584, core=0[0m
+[0;32mI (991) wifi:wifi firmware version: 562b41f[0m
+[0;32mI (991) wifi:wifi certification version: v7.0[0m
+[0;32mI (991) wifi:config NVS flash: enabled[0m
+[0;32mI (1001) wifi:config nano formatting: disabled[0m
+[0;32mI (1001) wifi:Init data frame dynamic rx buffer num: 64[0m
+[0;32mI (1011) wifi:Init static rx mgmt buffer num: 5[0m
+[0;32mI (1011) wifi:Init management short buffer num: 32[0m
+[0;32mI (1021) wifi:Init static tx buffer num: 32[0m
+[0;32mI (1021) wifi:Init static tx FG buffer num: 2[0m
+[0;32mI (1021) wifi:Init static rx buffer size: 1600[0m
+[0;32mI (1031) wifi:Init static rx buffer num: 16[0m
+[0;32mI (1031) wifi:Init dynamic rx buffer num: 64[0m
+[0;32mI (1041) wifi_init: rx ba win: 16[0m
+[0;32mI (1041) wifi_init: accept mbox: 6[0m
+[0;32mI (1041) wifi_init: tcpip mbox: 32[0m
+[0;32mI (1041) wifi_init: udp mbox: 6[0m
+[0;32mI (1051) wifi_init: tcp mbox: 6[0m
+[0;32mI (1051) wifi_init: tcp tx win: 32768[0m
+[0;32mI (1051) wifi_init: tcp rx win: 32768[0m
+[0;32mI (1061) wifi_init: tcp mss: 1440[0m
+[0;32mI (1061) wifi_init: WiFi IRAM OP enabled[0m
+[0;32mI (1061) wifi_init: WiFi RX IRAM OP enabled[0m
+[0;32mI (1071) wifi:mode : softAP (ac:a7:04:26:07:31)[0m
+[0;32mI (1071) wifi:Total power save buffer number: 16[0m
+[0;32mI (1081) wifi:Init max length of beacon: 752/752[0m
+[0;32mI (1081) wifi:Init max length of beacon: 752/752[0m
+[0;32mI (1091) WIFI_MGR: ✅ WiFi точка доступа запущена: DriveBot_CAM[0m
+[0;32mI (1091) esp_netif_lwip: DHCP server started on interface WIFI_AP_DEF with IP: 192.168.4.1[0m
+[0;32mI (1101) WIFI_MGR: 📡 IP адрес ESP32: 192.168.4.1[0m
+[0;32mI (1111) WIFI_MGR: 📡 Видеопоток: http://192.168.4.1:81/stream[0m
+[0;32mI (1111) WIFI_MGR: 📡 Максимум клиентов: 1 (только телефон)[0m
+[0;32mI (1121) DRIVEBOT_MAIN: ✅ UDP Сервер готов (порт 8080)[0m
+[0;32mI (1131) DRIVEBOT_MAIN: === СИСТЕМА ГОТОВА ===[0m
+[0;32mI (891) BLE_MGR: BLE Host Task Started[0m
+[0;32mI (891) BLE_MGR: Service registered: 0x1800[0m
+[0;32mI (891) BLE_MGR: Characteristic registered: 0x2a00[0m
+[0;32mI (891) BLE_MGR: Characteristic registered: 0x2a01[0m
+[0;32mI (891) BLE_MGR: Service registered: 0x1801[0m
+[0;32mI (891) BLE_MGR: Characteristic registered: 0x2a05[0m
+[0;32mI (901) BLE_MGR: Characteristic registered: 0x2b3a[0m
+[0;32mI (901) BLE_MGR: Characteristic registered: 0x2b29[0m
+[0;32mI (911) BLE_MGR: Service registered: 0xffe0[0m
+[0;32mI (911) BLE_MGR: Characteristic registered: 0xffe1[0m
+[0;32mI (921) NimBLE: GAP procedure initiated: stop advertising.[0m
+
+[0;32mI (921) BLE_MGR: 🔄 Starting advertising...[0m
+[0;32mI (931) NimBLE: GAP procedure initiated: advertise; [0m
+[0;32mI (931) NimBLE: disc_mode=2[0m
+[0;32mI (931) NimBLE:  adv_channel_map=0 own_addr_type=0 adv_filter_policy=0 adv_itvl_min=800 adv_itvl_max=1600[0m
+[0;32mI (941) NimBLE: [0m
+
+[0;32mI (951) BLE_MGR: ✅ Advertising started[0m
+[0;32mI (951) BLE_MGR: BLE initialized successfully[0m
+[0;32mI (951) WIFI_MGR: 🚀 Запуск WiFi точки доступа: DriveBot_CAM (без пароля)[0m
+[0;32mI (961) pp: pp rom version: e7ae62f[0m
+[0;32mI (961) net80211: net80211 rom version: e7ae62f[0m
+[0;32mI (981) wifi:wifi driver task: 3fcc078c, prio:23, stack:3584, core=0[0m
+[0;32mI (981) wifi:wifi firmware version: 562b41f[0m
+[0;32mI (981) wifi:wifi certification version: v7.0[0m
+[0;32mI (981) wifi:config NVS flash: enabled[0m
+[0;32mI (991) wifi:config nano formatting: disabled[0m
+[0;32mI (991) wifi:Init data frame dynamic rx buffer num: 64[0m
+[0;32mI (1001) wifi:Init static rx mgmt buffer num: 5[0m
+[0;32mI (1001) wifi:Init management short buffer num: 32[0m
+[0;32mI (1001) wifi:Init static tx buffer num: 32[0m
+[0;32mI (1011) wifi:Init static tx FG buffer num: 2[0m
+[0;32mI (1011) wifi:Init static rx buffer size: 1600[0m
+[0;32mI (1021) wifi:Init static rx buffer num: 16[0m
+[0;32mI (1021) wifi:Init dynamic rx buffer num: 64[0m
+[0;32mI (1021) wifi_init: rx ba win: 16[0m
+[0;32mI (1031) wifi_init: accept mbox: 6[0m
+[0;32mI (1031) wifi_init: tcpip mbox: 32[0m
+[0;32mI (1031) wifi_init: udp mbox: 6[0m
+[0;32mI (1041) wifi_init: tcp mbox: 6[0m
+[0;32mI (1041) wifi_init: tcp tx win: 32768[0m
+[0;32mI (1041) wifi_init: tcp rx win: 32768[0m
+[0;32mI (1051) wifi_init: tcp mss: 1440[0m
+[0;32mI (1051) wifi_init: WiFi IRAM OP enabled[0m
+[0;32mI (1051) wifi_init: WiFi RX IRAM OP enabled[0m
+[0;32mI (1061) wifi:mode : softAP (ac:a7:04:26:07:31)[0m
+[0;32mI (1061) wifi:Total power save buffer number: 16[0m
+[0;32mI (1071) wifi:Init max length of beacon: 752/752[0m
+[0;32mI (1071) wifi:Init max length of beacon: 752/752[0m
+[0;32mI (1071) WIFI_MGR: ✅ WiFi точка доступа запущена: DriveBot_CAM[0m
+[0;32mI (1071) esp_netif_lwip: DHCP server started on interface WIFI_AP_DEF with IP: 192.168.4.1[0m
+[0;32mI (1091) WIFI_MGR: 📡 IP адрес ESP32: 192.168.4.1[0m
+[0;32mI (1091) WIFI_MGR: 📡 Видеопоток: http://192.168.4.1:81/stream[0m
+[0;32mI (1101) WIFI_MGR: 📡 Максимум клиентов: 1 (только телефон)[0m
+[0;32mI (1111) DRIVEBOT_MAIN: ✅ UDP Сервер готов (порт 8080)[0m
+[0;32mI (1121) DRIVEBOT_MAIN: === СИСТЕМА ГОТОВА ===[0m
+[0;32mI (621) esp_psram: SPI SRAM memory test OK[0m
+[0;32mI (629) cpu_start: GPIO 44 and 43 are used as console UART I/O pins[0m
+[0;32mI (630) cpu_start: Pro cpu start user code[0m
+[0;32mI (630) cpu_start: cpu freq: 240000000 Hz[0m
+[0;32mI (631) app_init: Application information:[0m
+[0;32mI (635) app_init: Project name:     drivebot[0m
+[0;32mI (639) app_init: App version:      a6f997c-dirty[0m
+[0;32mI (644) app_init: Compile time:     Apr  5 2026 20:24:42[0m
+[0;32mI (649) app_init: ELF file SHA256:  2ce98db33...[0m
+[0;32mI (653) app_init: ESP-IDF:          v5.4.3-904-gacd7b505de[0m
+[0;32mI (658) efuse_init: Min chip rev:     v0.0[0m
+[0;32mI (662) efuse_init: Max chip rev:     v0.99 [0m
+[0;32mI (666) efuse_init: Chip rev:         v0.2[0m
+[0;32mI (670) heap_init: Initializing. RAM available for dynamic allocation:[0m
+[0;32mI (676) heap_init: At 3FCAB6D0 len 0003E040 (248 KiB): RAM[0m
+[0;32mI (681) heap_init: At 3FCE9710 len 00005724 (21 KiB): RAM[0m
+[0;32mI (686) heap_init: At 600FE000 len 00001FE8 (7 KiB): RTCRAM[0m
+[0;32mI (692) esp_psram: Adding pool of 8192K of PSRAM memory to heap allocator[0m
+[0;32mI (699) spi_flash: detected chip: boya[0m
+[0;32mI (702) spi_flash: flash io: dio[0m
+[0;32mI (705) sleep_gpio: Configure to isolate all GPIO pins in sleep state[0m
+[0;32mI (711) sleep_gpio: Enable automatic switching of GPIO sleep configuration[0m
+[0;32mI (718) esp_core_dump_uart: Init core dump to UART[0m
+[0;32mI (722) coexist: coex firmware version: 7260f71[0m
+[0;32mI (726) coexist: coexist rom version e7ae62f[0m
+[0;32mI (731) main_task: Started on CPU0[0m
+[0;32mI (751) esp_psram: Reserving pool of 256K of internal memory for DMA/internal allocations[0m
+[0;32mI (751) main_task: Calling app_main()[0m
+
+
+=== 🛠 DRIVEBOT STARTING ===
+
+[0;32mI (761) AUDIO_TRANSPORT: ✅ TX I2S канал инициализирован (DOUT=3) на I2S_NUM_1[0m
+[0;32mI (761) gpio: GPIO[2]| InputEn: 0| OutputEn: 0| OpenDrain: 0| Pullup: 1| Pulldown: 0| Intr:0 [0m
+[0;32mI (771) gpio: GPIO[1]| InputEn: 0| OutputEn: 0| OpenDrain: 0| Pullup: 1| Pulldown: 0| Intr:0 [0m
+[0;32mI (781) gpio: GPIO[4]| InputEn: 0| OutputEn: 0| OpenDrain: 0| Pullup: 1| Pulldown: 0| Intr:0 [0m
+[0;32mI (791) gpio: GPIO[5]| InputEn: 0| OutputEn: 0| OpenDrain: 0| Pullup: 1| Pulldown: 0| Intr:0 [0m
+[0;32mI (801) gpio: GPIO[16]| InputEn: 0| OutputEn: 0| OpenDrain: 0| Pullup: 1| Pulldown: 0| Intr:0 [0m
+[0;32mI (801) gpio: GPIO[17]| InputEn: 0| OutputEn: 0| OpenDrain: 0| Pullup: 1| Pulldown: 0| Intr:0 [0m
+[0;32mI (811) gpio: GPIO[18]| InputEn: 0| OutputEn: 0| OpenDrain: 0| Pullup: 1| Pulldown: 0| Intr:0 [0m
+[0;32mI (821) BLE_MGR: Initializing NimBLE BLE stack[0m
+[0;32mI (821) BLE_INIT: BT controller compile version [1bb2f50][0m
+[0;32mI (831) BLE_INIT: Using main XTAL as clock source[0m
+[0;32mI (831) BLE_INIT: Feature Config, ADV:1, BLE_50:1, DTM:1, SCAN:1, CCA:0, SMP:1, CONNECT:1[0m
+[0;32mI (841) BLE_INIT: Bluetooth MAC: ac:a7:04:26:07:32[0m
+[0;32mI (851) phy_init: phy_version 711,97bcf0a2,Aug 25 2025,19:04:10[0m
+[0;32mI (881) BLE_MGR: BLE Host Task Started[0m
+[0;32mI (881) BLE_MGR: Service registered: 0x1800[0m
+[0;32mI (891) BLE_MGR: Characteristic registered: 0x2a00[0m
+[0;32mI (891) BLE_MGR: Characteristic registered: 0x2a01[0m
+[0;32mI (891) BLE_MGR: Service registered: 0x1801[0m
+[0;32mI (891) BLE_MGR: Characteristic registered: 0x2a05[0m
+[0;32mI (901) BLE_MGR: Characteristic registered: 0x2b3a[0m
+[0;32mI (901) BLE_MGR: Characteristic registered: 0x2b29[0m
+[0;32mI (911) BLE_MGR: Service registered: 0xffe0[0m
+[0;32mI (911) BLE_MGR: Characteristic registered: 0xffe1[0m
+[0;32mI (921) NimBLE: GAP procedure initiated: stop advertising.[0m
+
+[0;32mI (921) BLE_MGR: 🔄 Starting advertising...[0m
+[0;32mI (931) NimBLE: GAP procedure initiated: advertise; [0m
+[0;32mI (931) NimBLE: disc_mode=2[0m
+[0;32mI (931) NimBLE:  adv_channel_map=0 own_addr_type=0 adv_filter_policy=0 adv_itvl_min=800 adv_itvl_max=1600[0m
+[0;32mI (941) NimBLE: [0m
+
+[0;32mI (941) BLE_MGR: ✅ Advertising started[0m
+[0;32mI (951) BLE_MGR: BLE initialized successfully[0m
+[0;32mI (951) WIFI_MGR: 🚀 Запуск WiFi точки доступа: DriveBot_CAM (без пароля)[0m
+[0;32mI (961) pp: pp rom version: e7ae62f[0m
+[0;32mI (961) net80211: net80211 rom version: e7ae62f[0m
+[0;32mI (981) wifi:wifi driver task: 3fcc078c, prio:23, stack:3584, core=0[0m
+[0;32mI (981) wifi:wifi firmware version: 562b41f[0m
+[0;32mI (981) wifi:wifi certification version: v7.0[0m
+[0;32mI (981) wifi:config NVS flash: enabled[0m
+[0;32mI (991) wifi:config nano formatting: disabled[0m
+[0;32mI (991) wifi:Init data frame dynamic rx buffer num: 64[0m
+[0;32mI (991) wifi:Init static rx mgmt buffer num: 5[0m
+[0;32mI (1001) wifi:Init management short buffer num: 32[0m
+[0;32mI (1001) wifi:Init static tx buffer num: 32[0m
+[0;32mI (1011) wifi:Init static tx FG buffer num: 2[0m
+[0;32mI (1011) wifi:Init static rx buffer size: 1600[0m
+[0;32mI (1021) wifi:Init static rx buffer num: 16[0m
+[0;32mI (1021) wifi:Init dynamic rx buffer num: 64[0m
+[0;32mI (1021) wifi_init: rx ba win: 16[0m
+[0;32mI (1031) wifi_init: accept mbox: 6[0m
+[0;32mI (1031) wifi_init: tcpip mbox: 32[0m
+[0;32mI (1031) wifi_init: udp mbox: 6[0m
+[0;32mI (1041) wifi_init: tcp mbox: 6[0m
+[0;32mI (1041) wifi_init: tcp tx win: 32768[0m
+[0;32mI (1041) wifi_init: tcp rx win: 32768[0m
+[0;32mI (1041) wifi_init: tcp mss: 1440[0m
+[0;32mI (1051) wifi_init: WiFi IRAM OP enabled[0m
+[0;32mI (1051) wifi_init: WiFi RX IRAM OP enabled[0m
+[0;32mI (1061) wifi:mode : softAP (ac:a7:04:26:07:31)[0m
+[0;32mI (1061) wifi:Total power save buffer number: 16[0m
+[0;32mI (1061) wifi:Init max length of beacon: 752/752[0m
+[0;32mI (1071) wifi:Init max length of beacon: 752/752[0m
+[0;32mI (1071) WIFI_MGR: ✅ WiFi точка доступа запущена: DriveBot_CAM[0m
+[0;32mI (1071) esp_netif_lwip: DHCP server started on interface WIFI_AP_DEF with IP: 192.168.4.1[0m
+[0;32mI (1091) WIFI_MGR: 📡 IP адрес ESP32: 192.168.4.1[0m
+[0;32mI (1091) WIFI_MGR: 📡 Видеопоток: http://192.168.4.1:81/stream[0m
+[0;32mI (1101) WIFI_MGR: 📡 Максимум клиентов: 1 (только телефон)[0m
+[0;32mI (1111) DRIVEBOT_MAIN: ✅ UDP Сервер готов (порт 8080)[0m
+[0;32mI (1121) DRIVEBOT_MAIN: === СИСТЕМА ГОТОВА ===[0m
+[0;32mI (22311) wifi:new:<1,0>, old:<1,1>, ap:<1,1>, sta:<255,255>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (22311) wifi:station: 32:44:eb:48:e5:38 join, AID=1, bgn, 20[0m
+[0;32mI (22311) wifi:Set ps type: 0, coexist: 1[0m
+
+[0;32mI (22311) wifi:Coexist!!! Wi-Fi station would only keep waked when available[0m
+
+[0;32mI (22321) WIFI_MGR: 📱 Телефон подключен по WiFi[0m
+[0;32mI (22331) WIFI_MGR: 📡 Видеопоток: http://192.168.4.1:81/stream[0m
+[0;32mI (22571) esp_netif_lwip: DHCP server assigned IP to a client, IP is: 192.168.4.2[0m
+[0;32mI (22711) wifi:<ba-add>idx:2 (ifx:1, 32:44:eb:48:e5:38), tid:0, ssn:1, winSize:64[0m
+[0;32mI (34771) DRIVEBOT_MAIN: 📷 Принудительный запуск камеры[0m
+[0;33mW (35271) httpd_uri: httpd_uri: URI '/stream' not found[0m
+[0;33mW (35281) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;32mI (36041) DRIVEBOT_MAIN: 📱 Команда: HORN_ON[0m
+[0;32mI (36041) AUDIO_TRANSPORT: Включаю динамик для гудка[0m
+[0;32mI (36041) AUDIO_TRANSPORT: 🔊 Динамик активирован[0m
+[0;32mI (36151) AUDIO_TRANSPORT: 🔊 Запись I2S: результат=0, записано байт=2048[0m
+[0;33mW (36321) httpd_uri: httpd_uri: URI '/stream?t=1775418220333' not found[0m
+[0;33mW (36321) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;32mI (36651) AUDIO_TRANSPORT: 🔇 Динамик деактивирован[0m
+[0;32mI (36651) AUDIO_TRANSPORT: Динамик выключен[0m
+[0;33mW (37371) httpd_uri: httpd_uri: URI '/stream?t=1775418221375' not found[0m
+[0;33mW (37371) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (38411) httpd_uri: httpd_uri: URI '/stream?t=1775418222436' not found[0m
+[0;33mW (38411) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (39451) httpd_uri: httpd_uri: URI '/stream?t=1775418223482' not found[0m
+[0;33mW (39451) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (40501) httpd_uri: httpd_uri: URI '/stream?t=1775418224516' not found[0m
+[0;33mW (40501) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (41571) httpd_uri: httpd_uri: URI '/stream?t=1775418225576' not found[0m
+[0;33mW (41571) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;32mI (41661) DRIVEBOT_MAIN: 📱 Команда: HORN_OFF[0m
+[0;33mW (41661) BLE_MGR: BLE не подключен, команда не отправлена: HORN_OFF[0m
+[0;32mI (42541) DRIVEBOT_MAIN: 📱 Команда: HORN_ON[0m
+[0;32mI (42541) AUDIO_TRANSPORT: Включаю динамик для гудка[0m
+[0;32mI (42541) AUDIO_TRANSPORT: 🔊 Динамик активирован[0m
+[0;33mW (42611) httpd_uri: httpd_uri: URI '/stream?t=1775418226642' not found[0m
+[0;33mW (42611) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;32mI (42641) AUDIO_TRANSPORT: 🔊 Запись I2S: результат=0, записано байт=2048[0m
+[0;32mI (43141) AUDIO_TRANSPORT: 🔇 Динамик деактивирован[0m
+[0;32mI (43141) AUDIO_TRANSPORT: Динамик выключен[0m
+[0;33mW (43651) httpd_uri: httpd_uri: URI '/stream?t=1775418227665' not found[0m
+[0;33mW (43651) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (44711) httpd_uri: httpd_uri: URI '/stream?t=1775418228716' not found[0m
+[0;33mW (44711) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;32mI (45091) DRIVEBOT_MAIN: 📱 Команда: HORN_OFF[0m
+[0;33mW (45091) BLE_MGR: BLE не подключен, команда не отправлена: HORN_OFF[0m
+[0;33mW (45771) httpd_uri: httpd_uri: URI '/stream?t=1775418229784' not found[0m
+[0;33mW (45771) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;32mI (46511) DRIVEBOT_MAIN: 📱 Команда: HORN_ON[0m
+[0;32mI (46511) AUDIO_TRANSPORT: Включаю динамик для гудка[0m
+[0;32mI (46521) AUDIO_TRANSPORT: 🔊 Динамик активирован[0m
+[0;32mI (46621) AUDIO_TRANSPORT: 🔊 Запись I2S: результат=0, записано байт=2048[0m
+[0;33mW (46821) httpd_uri: httpd_uri: URI '/stream?t=1775418230846' not found[0m
+[0;33mW (46821) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;32mI (47121) AUDIO_TRANSPORT: 🔇 Динамик деактивирован[0m
+[0;32mI (47121) AUDIO_TRANSPORT: Динамик выключен[0m
+[0;33mW (47921) httpd_uri: httpd_uri: URI '/stream?t=1775418231884' not found[0m
+[0;33mW (47921) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (49011) httpd_uri: httpd_uri: URI '/stream?t=1775418232994' not found[0m
+[0;33mW (49011) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;32mI (49521) DRIVEBOT_MAIN: 📱 Команда: HORN_OFF[0m
+[0;33mW (49521) BLE_MGR: BLE не подключен, команда не отправлена: HORN_OFF[0m
+[0;33mW (50111) httpd_uri: httpd_uri: URI '/stream?t=1775418234087' not found[0m
+[0;33mW (50111) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (51161) httpd_uri: httpd_uri: URI '/stream?t=1775418235174' not found[0m
+[0;33mW (51161) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (52211) httpd_uri: httpd_uri: URI '/stream?t=1775418236228' not found[0m
+[0;33mW (52211) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m

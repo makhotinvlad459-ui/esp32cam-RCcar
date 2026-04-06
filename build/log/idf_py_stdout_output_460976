@@ -1,0 +1,1863 @@
+ESP-ROM:esp32s3-20210327
+Build:Mar 27 2021
+rst:0x1 (POWERON),boot:0x8 (SPI_FAST_FLASH_BOOT)
+SPIWP:0xee
+mode:DIO, clock div:1
+load:0x3fce2810,len:0x1194
+load:0x403c8700,len:0x4
+load:0x403c8704,len:0xce0
+load:0x403cb700,len:0x2d5c
+entry 0x403c8910
+[0;32mI (27) boot: ESP-IDF v5.4.3-904-gacd7b505de 2nd stage bootloader[0m
+[0;32mI (27) boot: compile time Apr  1 2026 19:35:07[0m
+[0;32mI (27) boot: Multicore bootloader[0m
+[0;32mI (28) boot: chip revision: v0.2[0m
+[0;32mI (31) boot: efuse block revision: v1.3[0m
+[0;32mI (35) boot.esp32s3: Boot SPI Speed : 80MHz[0m
+[0;32mI (39) boot.esp32s3: SPI Mode       : DIO[0m
+[0;32mI (42) boot.esp32s3: SPI Flash Size : 16MB[0m
+[0;32mI (46) boot: Enabling RNG early entropy source...[0m
+[0;32mI (51) boot: Partition Table:[0m
+[0;32mI (53) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (60) boot:  0 nvs              WiFi data        01 02 00009000 00006000[0m
+[0;32mI (66) boot:  1 otadata          OTA data         01 00 0000f000 00002000[0m
+[0;32mI (73) boot:  2 phy_init         RF data          01 01 00011000 00001000[0m
+[0;32mI (79) boot:  3 factory          factory app      00 00 00020000 001e0000[0m
+[0;32mI (86) boot: End of partition table[0m
+[0;32mI (89) boot: Defaulting to factory image[0m
+[0;32mI (93) esp_image: segment 0: paddr=00020020 vaddr=3c0a0020 size=17134h ( 94516) map[0m
+[0;32mI (117) esp_image: segment 1: paddr=0003715c vaddr=3fca2400 size=0531ch ( 21276) load[0m
+[0;32mI (121) esp_image: segment 2: paddr=0003c480 vaddr=40378000 size=03b98h ( 15256) load[0m
+[0;32mI (125) esp_image: segment 3: paddr=00040020 vaddr=42000020 size=97044h (618564) map[0m
+[0;32mI (237) esp_image: segment 4: paddr=000d706c vaddr=4037bb98 size=16820h ( 92192) load[0m
+[0;32mI (257) esp_image: segment 5: paddr=000ed894 vaddr=50000000 size=0001ch (    28) load[0m
+[0;32mI (268) boot: Loaded app from partition at offset 0x20000[0m
+[0;32mI (268) boot: Disabling RNG early entropy source...[0m
+[0;32mI (278) octal_psram: vendor id    : 0x0d (AP)[0m
+[0;32mI (278) octal_psram: dev id       : 0x02 (generation 3)[0m
+[0;32mI (278) octal_psram: density      : 0x03 (64 Mbit)[0m
+[0;32mI (280) octal_psram: good-die     : 0x01 (Pass)[0m
+[0;32mI (285) octal_psram: Latency      : 0x01 (Fixed)[0m
+[0;32mI (289) octal_psram: VCC          : 0x01 (3V)[0m
+[0;32mI (293) octal_psram: SRF          : 0x01 (Fast Refresh)[0m
+[0;32mI (298) octal_psram: BurstType    : 0x01 (Hybrid Wrap)[0m
+[0;32mI (303) octal_psram: BurstLen     : 0x01 (32 Byte)[0m
+[0;32mI (307) octal_psram: Readlatency  : 0x02 (10 cycles@Fixed)[0m
+[0;32mI (313) octal_psram: DriveStrength: 0x00 (1/1)[0m
+[0;32mI (317) MSPI Timing: PSRAM timing tuning index: 5[0m
+[0;32mI (321) esp_psram: Found 8MB PSRAM device[0m
+[0;32mI (325) esp_psram: Speed: 80MHz[0m
+[0;32mI (328) cpu_start: Multicore app[0m
+[0;32mI (621) esp_psram: SPI SRAM memory test OK[0m
+[0;32mI (629) cpu_start: GPIO 44 and 43 are used as console UART I/O pins[0m
+[0;32mI (630) cpu_start: Pro cpu start user code[0m
+[0;32mI (630) cpu_start: cpu freq: 240000000 Hz[0m
+[0;32mI (631) app_init: Application information:[0m
+[0;32mI (635) app_init: Project name:     drivebot[0m
+[0;32mI (639) app_init: App version:      a6f997c-dirty[0m
+[0;32mI (644) app_init: Compile time:     Apr  5 2026 20:24:42[0m
+[0;32mI (649) app_init: ELF file SHA256:  2ce98db33...[0m
+[0;32mI (653) app_init: ESP-IDF:          v5.4.3-904-gacd7b505de[0m
+[0;32mI (658) efuse_init: Min chip rev:     v0.0[0m
+[0;32mI (662) efuse_init: Max chip rev:     v0.99 [0m
+[0;32mI (666) efuse_init: Chip rev:         v0.2[0m
+[0;32mI (670) heap_init: Initializing. RAM available for dynamic allocation:[0m
+[0;32mI (676) heap_init: At 3FCAB6D0 len 0003E040 (248 KiB): RAM[0m
+[0;32mI (681) heap_init: At 3FCE9710 len 00005724 (21 KiB): RAM[0m
+[0;32mI (686) heap_init: At 600FE000 len 00001FE8 (7 KiB): RTCRAM[0m
+[0;32mI (692) esp_psram: Adding pool of 8192K of PSRAM memory to heap allocator[0m
+[0;32mI (699) spi_flash: detected chip: boya[0m
+[0;32mI (702) spi_flash: flash io: dio[0m
+[0;32mI (705) sleep_gpio: Configure to isolate all GPIO pins in sleep state[0m
+[0;32mI (711) sleep_gpio: Enable automatic switching of GPIO sleep configuration[0m
+[0;32mI (718) esp_core_dump_uart: Init core dump to UART[0m
+[0;32mI (722) coexist: coex firmware version: 7260f71[0m
+[0;32mI (726) coexist: coexist rom version e7ae62f[0m
+[0;32mI (731) main_task: Started on CPU0[0m
+[0;32mI (751) esp_psram: Reserving pool of 256K of internal memory for DMA/internal allocations[0m
+[0;32mI (751) main_task: Calling app_main()[0m
+
+
+=== 🛠 DRIVEBOT STARTING ===
+
+[0;32mI (761) AUDIO_TRANSPORT: ✅ TX I2S канал инициализирован (DOUT=3) на I2S_NUM_1[0m
+[0;32mI (761) gpio: GPIO[2]| InputEn: 0| OutputEn: 0| OpenDrain: 0| Pullup: 1| Pulldown: 0| Intr:0 [0m
+[0;32mI (771) gpio: GPIO[1]| InputEn: 0| OutputEn: 0| OpenDrain: 0| Pullup: 1| Pulldown: 0| Intr:0 [0m
+[0;32mI (781) gpio: GPIO[4]| InputEn: 0| OutputEn: 0| OpenDrain: 0| Pullup: 1| Pulldown: 0| Intr:0 [0m
+[0;32mI (791) gpio: GPIO[5]| InputEn: 0| OutputEn: 0| OpenDrain: 0| Pullup: 1| Pulldown: 0| Intr:0 [0m
+[0;32mI (801) gpio: GPIO[16]| InputEn: 0| OutputEn: 0| OpenDrain: 0| Pullup: 1| Pulldown: 0| Intr:0 [0m
+[0;32mI (801) gpio: GPIO[17]| InputEn: 0| OutputEn: 0| OpenDrain: 0| Pullup: 1| Pulldown: 0| Intr:0 [0m
+[0;32mI (811) gpio: GPIO[18]| InputEn: 0| OutputEn: 0| OpenDrain: 0| Pullup: 1| Pulldown: 0| Intr:0 [0m
+[0;32mI (821) BLE_MGR: Initializing NimBLE BLE stack[0m
+[0;32mI (821) BLE_INIT: BT controller compile version [1bb2f50][0m
+[0;32mI (831) BLE_INIT: Using main XTAL as clock source[0m
+[0;32mI (831) BLE_INIT: Feature Config, ADV:1, BLE_50:1, DTM:1, SCAN:1, CCA:0, SMP:1, CONNECT:1[0m
+[0;32mI (841) BLE_INIT: Bluetooth MAC: ac:a7:04:26:07:32[0m
+[0;32mI (851) phy_init: phy_version 711,97bcf0a2,Aug 25 2025,19:04:10[0m
+[0;32mI (881) BLE_MGR: BLE Host Task Started[0m
+[0;32mI (891) BLE_MGR: Service registered: 0x1800[0m
+[0;32mI (891) BLE_MGR: Characteristic registered: 0x2a00[0m
+[0;32mI (891) BLE_MGR: Characteristic registered: 0x2a01[0m
+[0;32mI (891) BLE_MGR: Service registered: 0x1801[0m
+[0;32mI (891) BLE_MGR: Characteristic registered: 0x2a05[0m
+[0;32mI (901) BLE_MGR: Characteristic registered: 0x2b3a[0m
+[0;32mI (901) BLE_MGR: Characteristic registered: 0x2b29[0m
+[0;32mI (911) BLE_MGR: Service registered: 0xffe0[0m
+[0;32mI (911) BLE_MGR: Characteristic registered: 0xffe1[0m
+[0;32mI (921) NimBLE: GAP procedure initiated: stop advertising.[0m
+
+[0;32mI (921) BLE_MGR: 🔄 Starting advertising...[0m
+[0;32mI (931) NimBLE: GAP procedure initiated: advertise; [0m
+[0;32mI (931) NimBLE: disc_mode=2[0m
+[0;32mI (931) NimBLE:  adv_channel_map=0 own_addr_type=0 adv_filter_policy=0 adv_itvl_min=800 adv_itvl_max=1600[0m
+[0;32mI (941) NimBLE: [0m
+
+[0;32mI (941) BLE_MGR: ✅ Advertising started[0m
+[0;32mI (951) BLE_MGR: BLE initialized successfully[0m
+[0;32mI (951) WIFI_MGR: 🚀 Запуск WiFi точки доступа: DriveBot_CAM (без пароля)[0m
+[0;32mI (961) pp: pp rom version: e7ae62f[0m
+[0;32mI (961) net80211: net80211 rom version: e7ae62f[0m
+[0;32mI (981) wifi:wifi driver task: 3fcc078c, prio:23, stack:3584, core=0[0m
+[0;32mI (981) wifi:wifi firmware version: 562b41f[0m
+[0;32mI (981) wifi:wifi certification version: v7.0[0m
+[0;32mI (981) wifi:config NVS flash: enabled[0m
+[0;32mI (991) wifi:config nano formatting: disabled[0m
+[0;32mI (991) wifi:Init data frame dynamic rx buffer num: 64[0m
+[0;32mI (991) wifi:Init static rx mgmt buffer num: 5[0m
+[0;32mI (1001) wifi:Init management short buffer num: 32[0m
+[0;32mI (1001) wifi:Init static tx buffer num: 32[0m
+[0;32mI (1011) wifi:Init static tx FG buffer num: 2[0m
+[0;32mI (1011) wifi:Init static rx buffer size: 1600[0m
+[0;32mI (1021) wifi:Init static rx buffer num: 16[0m
+[0;32mI (1021) wifi:Init dynamic rx buffer num: 64[0m
+[0;32mI (1021) wifi_init: rx ba win: 16[0m
+[0;32mI (1031) wifi_init: accept mbox: 6[0m
+[0;32mI (1031) wifi_init: tcpip mbox: 32[0m
+[0;32mI (1031) wifi_init: udp mbox: 6[0m
+[0;32mI (1041) wifi_init: tcp mbox: 6[0m
+[0;32mI (1041) wifi_init: tcp tx win: 32768[0m
+[0;32mI (1041) wifi_init: tcp rx win: 32768[0m
+[0;32mI (1051) wifi_init: tcp mss: 1440[0m
+[0;32mI (1051) wifi_init: WiFi IRAM OP enabled[0m
+[0;32mI (1051) wifi_init: WiFi RX IRAM OP enabled[0m
+[0;32mI (1061) wifi:mode : softAP (ac:a7:04:26:07:31)[0m
+[0;32mI (1061) wifi:Total power save buffer number: 16[0m
+[0;32mI (1061) wifi:Init max length of beacon: 752/752[0m
+[0;32mI (1071) wifi:Init max length of beacon: 752/752[0m
+[0;32mI (1071) WIFI_MGR: ✅ WiFi точка доступа запущена: DriveBot_CAM[0m
+[0;32mI (1071) esp_netif_lwip: DHCP server started on interface WIFI_AP_DEF with IP: 192.168.4.1[0m
+[0;32mI (1091) WIFI_MGR: 📡 IP адрес ESP32: 192.168.4.1[0m
+[0;32mI (1091) WIFI_MGR: 📡 Видеопоток: http://192.168.4.1:81/stream[0m
+[0;32mI (1101) WIFI_MGR: 📡 Максимум клиентов: 1 (только телефон)[0m
+[0;32mI (1111) DRIVEBOT_MAIN: ✅ UDP Сервер готов (порт 8080)[0m
+[0;32mI (1121) DRIVEBOT_MAIN: === СИСТЕМА ГОТОВА ===[0m
+[0;32mI (8631) wifi:new:<1,0>, old:<1,1>, ap:<1,1>, sta:<255,255>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (8631) wifi:station: 32:44:eb:48:e5:38 join, AID=1, bgn, 20[0m
+[0;32mI (8631) wifi:Set ps type: 0, coexist: 1[0m
+
+[0;32mI (8631) wifi:Coexist!!! Wi-Fi station would only keep waked when available[0m
+
+[0;32mI (8641) WIFI_MGR: 📱 Телефон подключен по WiFi[0m
+[0;32mI (8641) WIFI_MGR: 📡 Видеопоток: http://192.168.4.1:81/stream[0m
+[0;32mI (8741) wifi:<ba-add>idx:2 (ifx:1, 32:44:eb:48:e5:38), tid:0, ssn:0, winSize:64[0m
+[0;32mI (8801) esp_netif_lwip: DHCP server assigned IP to a client, IP is: 192.168.4.2[0m
+[0;32mI (49991) DRIVEBOT_MAIN: 📷 Принудительный запуск камеры[0m
+[0;33mW (50511) httpd_uri: httpd_uri: URI '/stream' not found[0m
+[0;33mW (50511) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (51551) httpd_uri: httpd_uri: URI '/stream?t=1775418492547' not found[0m
+[0;33mW (51551) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (52591) httpd_uri: httpd_uri: URI '/stream?t=1775418493584' not found[0m
+[0;33mW (52601) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;32mI (52781) DRIVEBOT_MAIN: 📱 Команда: HORN_ON[0m
+[0;32mI (52781) AUDIO_TRANSPORT: Включаю динамик для гудка[0m
+[0;32mI (52781) AUDIO_TRANSPORT: 🔊 Динамик активирован[0m
+[0;32mI (52891) AUDIO_TRANSPORT: 🔊 Запись I2S: результат=0, записано байт=2048[0m
+[0;32mI (53391) AUDIO_TRANSPORT: 🔇 Динамик деактивирован[0m
+[0;32mI (53391) AUDIO_TRANSPORT: Динамик выключен[0m
+[0;33mW (53661) httpd_uri: httpd_uri: URI '/stream?t=1775418494644' not found[0m
+[0;33mW (53661) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (54711) httpd_uri: httpd_uri: URI '/stream?t=1775418495700' not found[0m
+[0;33mW (54711) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (55771) httpd_uri: httpd_uri: URI '/stream?t=1775418496762' not found[0m
+[0;33mW (55771) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (56821) httpd_uri: httpd_uri: URI '/stream?t=1775418497820' not found[0m
+[0;33mW (56821) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;32mI (56861) DRIVEBOT_MAIN: 📱 Команда: HORN_OFF[0m
+[0;33mW (56861) BLE_MGR: BLE не подключен, команда не отправлена: HORN_OFF[0m
+[0;33mW (57871) httpd_uri: httpd_uri: URI '/stream?t=1775418498857' not found[0m
+[0;33mW (57871) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;32mI (58841) DRIVEBOT_MAIN: 📱 Команда: HORN_ON[0m
+[0;32mI (58841) AUDIO_TRANSPORT: Включаю динамик для гудка[0m
+[0;32mI (58841) AUDIO_TRANSPORT: 🔊 Динамик активирован[0m
+[0;33mW (58891) httpd_uri: httpd_uri: URI '/stream?t=1775418499913' not found[0m
+[0;33mW (58901) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;32mI (58951) AUDIO_TRANSPORT: 🔊 Запись I2S: результат=0, записано байт=2048[0m
+[0;32mI (59451) AUDIO_TRANSPORT: 🔇 Динамик деактивирован[0m
+[0;32mI (59451) AUDIO_TRANSPORT: Динамик выключен[0m
+[0;33mW (59951) httpd_uri: httpd_uri: URI '/stream?t=1775418500934' not found[0m
+[0;33mW (59951) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (61001) httpd_uri: httpd_uri: URI '/stream?t=1775418502009' not found[0m
+[0;33mW (61001) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (62051) httpd_uri: httpd_uri: URI '/stream?t=1775418503043' not found[0m
+[0;33mW (62051) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (63091) httpd_uri: httpd_uri: URI '/stream?t=1775418504092' not found[0m
+[0;33mW (63091) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;32mI (63531) DRIVEBOT_MAIN: 📱 Команда: HORN_OFF[0m
+[0;33mW (63531) BLE_MGR: BLE не подключен, команда не отправлена: HORN_OFF[0m
+[0;33mW (64121) httpd_uri: httpd_uri: URI '/stream?t=1775418505126' not found[0m
+[0;33mW (64121) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;32mI (64171) DRIVEBOT_MAIN: 📱 Команда: RADIO_ON[0m
+[0;32mI (64171) DRIVEBOT_MAIN: 📻 Включение РАЦИИ... tx_chan: 0x3c0c09c4[0m
+[0;33mW (65181) httpd_uri: httpd_uri: URI '/stream?t=1775418506164' not found[0m
+[0;33mW (65181) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;32mI (65801) DRIVEBOT_MAIN: 📱 Команда: RADIO_OFF[0m
+[0;32mI (65801) DRIVEBOT_MAIN: 📴 Выключение РАЦИИ[0m
+[0;33mW (66221) httpd_uri: httpd_uri: URI '/stream?t=1775418507217' not found[0m
+[0;33mW (66221) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (67281) httpd_uri: httpd_uri: URI '/stream?t=1775418508263' not found[0m
+[0;33mW (67281) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (68321) httpd_uri: httpd_uri: URI '/stream?t=1775418509318' not found[0m
+[0;33mW (68321) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;32mI (76661) wifi:station: 32:44:eb:48:e5:38 leave, AID = 1, reason = 3, bss_flags is 33721459, bss:0x3c0c262c[0m
+[0;32mI (76661) wifi:new:<1,0>, old:<1,0>, ap:<1,1>, sta:<255,255>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (76661) wifi:<ba-del>idx:2, tid:0[0m
+[0;32mI (76671) wifi:new:<1,1>, old:<1,0>, ap:<1,1>, sta:<255,255>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (76671) WIFI_MGR: 📱 Телефон отключился от WiFi (reason: 3)[0m
+ESP-ROM:esp32s3-20210327
+Build:Mar 27 2021
+rst:0x1 (POWERON),boot:0x2a (SPI_FAST_FLASH_BOOT)
+SPIWP:0xee
+mode:DIO, clock div:1
+load:0x3fce2810,len:0x1194
+load:0x403c8700,len:0x4
+load:0x403c8704,len:0xce0
+load:0x403cb700,len:0x2d5c
+entry 0x403c8910
+[0;32mI (27) boot: ESP-IDF v5.4.3-904-gacd7b505de 2nd stage bootloader[0m
+[0;32mI (27) boot: compile time Apr  1 2026 19:35:07[0m
+[0;32mI (27) boot: Multicore bootloader[0m
+[0;32mI (28) boot: chip revision: v0.2[0m
+[0;32mI (31) boot: efuse block revision: v1.3[0m
+[0;32mI (35) boot.esp32s3: Boot SPI Speed : 80MHz[0m
+[0;32mI (39) boot.esp32s3: SPI Mode       : DIO[0m
+[0;32mI (42) boot.esp32s3: SPI Flash Size : 16MB[0m
+[0;32mI (46) boot: Enabling RNG early entropy source...[0m
+[0;32mI (51) boot: Partition Table:[0m
+[0;32mI (53) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (60) boot:  0 nvs              WiFi data        01 02 00009000 00006000[0m
+[0;32mI (66) boot:  1 otadata          OTA data         01 00 0000f000 00002000[0m
+[0;32mI (73) boot:  2 phy_init         RF data          01 01 00011000 00001000[0m
+[0;32mI (79) boot:  3 factory          factory app      00 00 00020000 001e0000[0m
+[0;32mI (86) boot: End of partition table[0m
+[0;32mI (89) boot: Defaulting to factory image[0m
+[0;32mI (93) esp_image: segment 0: paddr=00020020 vaddr=3c0a0020 size=17134h ( 94516) map[0m
+[0;32mI (117) esp_image: segment 1: paddr=0003715c vaddr=3fca2400 size=0531ch ( 21276) load[0m
+[0;32mI (121) esp_image: segment 2: paddr=0003c480 vaddr=40378000 size=03b98h ( 15256) load[0m
+[0;32mI (125) esp_image: segment 3: paddr=00040020 vaddr=42000020 size=97044h (618564) map[0m
+[0;32mI (237) esp_image: segment 4: paddr=000d706c vaddr=4037bb98 size=16820h ( 92192) load[0m
+[0;32mI (257) esp_image: segment 5: paddr=000ed894 vaddr=50000000 size=0001ch (    28) load[0m
+[0;32mI (268) boot: Loaded app from partition at offset 0x20000[0m
+[0;32mI (268) boot: Disabling RNG early entropy source...[0m
+[0;32mI (278) octal_psram: vendor id    : 0x0d (AP)[0m
+[0;32mI (278) octal_psram: dev id       : 0x02 (generation 3)[0m
+[0;32mI (278) octal_psram: density      : 0x03 (64 Mbit)[0m
+[0;32mI (280) octal_psram: good-die     : 0x01 (Pass)[0m
+[0;32mI (285) octal_psram: Latency      : 0x01 (Fixed)[0m
+[0;32mI (289) octal_psram: VCC          : 0x01 (3V)[0m
+[0;32mI (293) octal_psram: SRF          : 0x01 (Fast Refresh)[0m
+[0;32mI (298) octal_psram: BurstType    : 0x01 (Hybrid Wrap)[0m
+[0;32mI (303) octal_psram: BurstLen     : 0x01 (32 Byte)[0m
+[0;32mI (307) octal_psram: Readlatency  : 0x02 (10 cycles@Fixed)[0m
+[0;32mI (313) octal_psram: DriveStrength: 0x00 (1/1)[0m
+[0;32mI (317) MSPI Timing: PSRAM timing tuning index: 5[0m
+[0;32mI (321) esp_psram: Found 8MB PSRAM device[0m
+[0;32mI (325) esp_psram: Speed: 80MHz[0m
+[0;32mI (328) cpu_start: Multicore app[0m
+[0;32mI (621) esp_psram: SPI SRAM memory test OK[0m
+[0;32mI (629) cpu_start: GPIO 44 and 43 are used as console UART I/O pins[0m
+[0;32mI (630) cpu_start: Pro cpu start user code[0m
+[0;32mI (630) cpu_start: cpu freq: 240000000 Hz[0m
+[0;32mI (632) app_init: Application information:[0m
+[0;32mI (635) app_init: Project name:     drivebot[0m
+[0;32mI (639) app_init: App version:      a6f997c-dirty[0m
+[0;32mI (644) app_init: Compile time:     Apr  5 2026 20:24:42[0m
+[0;32mI (649) app_init: ELF file SHA256:  2ce98db33...[0m
+[0;32mI (653) app_init: ESP-IDF:          v5.4.3-904-gacd7b505de[0m
+[0;32mI (658) efuse_init: Min chip rev:     v0.0[0m
+[0;32mI (662) efuse_init: Max chip rev:     v0.99 [0m
+[0;32mI (666) efuse_init: Chip rev:         v0.2[0m
+[0;32mI (670) heap_init: Initializing. RAM available for dynamic allocation:[0m
+[0;32mI (676) heap_init: At 3FCAB6D0 len 0003E040 (248 KiB): RAM[0m
+[0;32mI (681) heap_init: At 3FCE9710 len 00005724 (21 KiB): RAM[0m
+[0;32mI (687) heap_init: At 600FE000 len 00001FE8 (7 KiB): RTCRAM[0m
+[0;32mI (692) esp_psram: Adding pool of 8192K of PSRAM memory to heap allocator[0m
+[0;32mI (699) spi_flash: detected chip: boya[0m
+[0;32mI (702) spi_flash: flash io: dio[0m
+[0;32mI (705) sleep_gpio: Configure to isolate all GPIO pins in sleep state[0m
+[0;32mI (711) sleep_gpio: Enable automatic switching of GPIO sleep configuration[0m
+[0;32mI (718) esp_core_dump_uart: Init core dump to UART[0m
+[0;32mI (722) coexist: coex firmware version: 7260f71[0m
+[0;32mI (726) coexist: coexist rom version e7ae62f[0m
+[0;32mI (731) main_task: Started on CPU0[0m
+[0;32mI (31021) wifi:new:<1,0>, old:<1,1>, ap:<1,1>, sta:<255,255>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (31021) wifi:station: 32:44:eb:48:e5:38 join, AID=1, bgn, 20[0m
+[0;32mI (31021) wifi:Set ps type: 0, coexist: 1[0m
+
+[0;32mI (31031) wifi:Coexist!!! Wi-Fi station would only keep waked when available[0m
+
+[0;32mI (31031) WIFI_MGR: 📱 Телефон подключен по WiFi[0m
+[0;32mI (31041) WIFI_MGR: 📡 Видеопоток: http://192.168.4.1:81/stream[0m
+[0;32mI (31211) esp_netif_lwip: DHCP server assigned IP to a client, IP is: 192.168.4.2[0m
+[0;32mI (31371) wifi:<ba-add>idx:2 (ifx:1, 32:44:eb:48:e5:38), tid:0, ssn:1, winSize:64[0m
+[0;33mW (35471) httpd_uri: httpd_uri: URI '/stream?t=1775418556360' not found[0m
+[0;33mW (35471) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;32mI (35491) DRIVEBOT_MAIN: 📷 Принудительный запуск камеры[0m
+[0;33mW (36021) httpd_uri: httpd_uri: URI '/stream' not found[0m
+[0;33mW (36021) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;32mI (37061) DRIVEBOT_MAIN: 📱 Команда: HORN_ON[0m
+[0;32mI (37061) AUDIO_TRANSPORT: Включаю динамик для гудка[0m
+[0;32mI (37061) AUDIO_TRANSPORT: 🔊 Динамик активирован[0m
+[0;33mW (37061) httpd_uri: httpd_uri: URI '/stream?t=1775418561246' not found[0m
+[0;33mW (37071) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;32mI (37161) AUDIO_TRANSPORT: 🔊 Запись I2S: результат=0, записано байт=2048[0m
+[0;32mI (37661) AUDIO_TRANSPORT: 🔇 Динамик деактивирован[0m
+[0;32mI (37661) AUDIO_TRANSPORT: Динамик выключен[0m
+[0;33mW (38131) httpd_uri: httpd_uri: URI '/stream?t=1775418562293' not found[0m
+[0;33mW (38131) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (39151) httpd_uri: httpd_uri: URI '/stream?t=1775418563344' not found[0m
+[0;33mW (39151) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;32mI (39551) DRIVEBOT_MAIN: 📱 Команда: HORN_OFF[0m
+[0;33mW (39551) BLE_MGR: BLE не подключен, команда не отправлена: HORN_OFF[0m
+[0;32mI (40171) DRIVEBOT_MAIN: 📱 Команда: HORN_ON[0m
+[0;32mI (40171) AUDIO_TRANSPORT: Включаю динамик для гудка[0m
+[0;32mI (40171) AUDIO_TRANSPORT: 🔊 Динамик активирован[0m
+[0;33mW (40171) httpd_uri: httpd_uri: URI '/stream?t=1775418564375' not found[0m
+[0;33mW (40191) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;32mI (40281) AUDIO_TRANSPORT: 🔊 Запись I2S: результат=0, записано байт=2048[0m
+[0;32mI (40781) AUDIO_TRANSPORT: 🔇 Динамик деактивирован[0m
+[0;32mI (40781) AUDIO_TRANSPORT: Динамик выключен[0m
+[0;33mW (41261) httpd_uri: httpd_uri: URI '/stream?t=1775418565412' not found[0m
+[0;33mW (41261) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (42311) httpd_uri: httpd_uri: URI '/stream?t=1775418566478' not found[0m
+[0;33mW (42311) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;32mI (43271) DRIVEBOT_MAIN: 📱 Команда: HORN_OFF[0m
+[0;33mW (43281) BLE_MGR: BLE не подключен, команда не отправлена: HORN_OFF[0m
+[0;33mW (43331) httpd_uri: httpd_uri: URI '/stream?t=1775418567533' not found[0m
+[0;33mW (43331) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (44401) httpd_uri: httpd_uri: URI '/stream?t=1775418568560' not found[0m
+[0;33mW (44401) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (45441) httpd_uri: httpd_uri: URI '/stream?t=1775418569619' not found[0m
+[0;33mW (45441) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;32mI (49211) wifi:station: 32:44:eb:48:e5:38 leave, AID = 1, reason = 3, bss_flags is 33721459, bss:0x3c0c262c[0m
+[0;32mI (49211) wifi:new:<1,0>, old:<1,0>, ap:<1,1>, sta:<255,255>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (49211) wifi:<ba-del>idx:2, tid:0[0m
+[0;32mI (49221) wifi:new:<1,1>, old:<1,0>, ap:<1,1>, sta:<255,255>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (49221) WIFI_MGR: 📱 Телефон отключился от WiFi (reason: 3)[0m
+[0;32mI (202551) wifi:new:<1,0>, old:<1,1>, ap:<1,1>, sta:<255,255>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (202551) wifi:station: 32:44:eb:48:e5:38 join, AID=1, bgn, 20[0m
+[0;32mI (202561) wifi:Set ps type: 0, coexist: 1[0m
+
+[0;32mI (202561) wifi:Coexist!!! Wi-Fi station would only keep waked when available[0m
+
+[0;32mI (202571) WIFI_MGR: 📱 Телефон подключен по WiFi[0m
+[0;32mI (202571) WIFI_MGR: 📡 Видеопоток: http://192.168.4.1:81/stream[0m
+[0;32mI (202821) esp_netif_lwip: DHCP server assigned IP to a client, IP is: 192.168.4.2[0m
+[0;32mI (202961) wifi:<ba-add>idx:2 (ifx:1, 32:44:eb:48:e5:38), tid:0, ssn:1, winSize:64[0m
+[0;32mI (223351) wifi:<ba-add>idx:3 (ifx:1, 32:44:eb:48:e5:38), tid:1, ssn:0, winSize:64[0m
+[0;32mI (223351) wifi:[ADDBA]RX DELBA, reason:37, delete tid:1, initiator:1(originator)[0m
+[0;32mI (223351) wifi:<ba-del>idx:3, tid:1[0m
+[0;32mI (243261) DRIVEBOT_MAIN: 📷 Принудительный запуск камеры[0m
+[0;33mW (243781) httpd_uri: httpd_uri: URI '/stream' not found[0m
+[0;33mW (243781) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (244841) httpd_uri: httpd_uri: URI '/stream?t=1775418768999' not found[0m
+[0;33mW (244841) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;32mI (244911) DRIVEBOT_MAIN: 📱 Команда: HORN_ON[0m
+[0;32mI (244911) AUDIO_TRANSPORT: Включаю динамик для гудка[0m
+[0;32mI (244911) AUDIO_TRANSPORT: 🔊 Динамик активирован[0m
+[0;32mI (245021) AUDIO_TRANSPORT: 🔊 Запись I2S: результат=0, записано байт=2048[0m
+[0;32mI (245521) AUDIO_TRANSPORT: 🔇 Динамик деактивирован[0m
+[0;32mI (245521) AUDIO_TRANSPORT: Динамик выключен[0m
+[0;33mW (245911) httpd_uri: httpd_uri: URI '/stream?t=1775418770059' not found[0m
+[0;33mW (245911) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (246971) httpd_uri: httpd_uri: URI '/stream?t=1775418771126' not found[0m
+[0;33mW (246971) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (248051) httpd_uri: httpd_uri: URI '/stream?t=1775418772192' not found[0m
+[0;33mW (248051) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (249131) httpd_uri: httpd_uri: URI '/stream?t=1775418773266' not found[0m
+[0;33mW (249131) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (250181) httpd_uri: httpd_uri: URI '/stream?t=1775418774344' not found[0m
+[0;33mW (250181) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (251251) httpd_uri: httpd_uri: URI '/stream?t=1775418775400' not found[0m
+[0;33mW (251251) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (252311) httpd_uri: httpd_uri: URI '/stream?t=1775418776471' not found[0m
+[0;33mW (252311) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (253361) httpd_uri: httpd_uri: URI '/stream?t=1775418777528' not found[0m
+[0;33mW (253361) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (254451) httpd_uri: httpd_uri: URI '/stream?t=1775418778588' not found[0m
+[0;33mW (254451) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (255511) httpd_uri: httpd_uri: URI '/stream?t=1775418779670' not found[0m
+[0;33mW (255511) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (256571) httpd_uri: httpd_uri: URI '/stream?t=1775418780733' not found[0m
+[0;33mW (256571) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (257621) httpd_uri: httpd_uri: URI '/stream?t=1775418781789' not found[0m
+[0;33mW (257621) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (258661) httpd_uri: httpd_uri: URI '/stream?t=1775418782839' not found[0m
+[0;33mW (258661) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (259721) httpd_uri: httpd_uri: URI '/stream?t=1775418783880' not found[0m
+[0;33mW (259721) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (260781) httpd_uri: httpd_uri: URI '/stream?t=1775418784941' not found[0m
+[0;33mW (260781) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (261871) httpd_uri: httpd_uri: URI '/stream?t=1775418786005' not found[0m
+[0;33mW (261871) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (262911) httpd_uri: httpd_uri: URI '/stream?t=1775418787085' not found[0m
+[0;33mW (262911) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (263941) httpd_uri: httpd_uri: URI '/stream?t=1775418788122' not found[0m
+[0;33mW (263941) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (264991) httpd_uri: httpd_uri: URI '/stream?t=1775418789159' not found[0m
+[0;33mW (264991) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (266061) httpd_uri: httpd_uri: URI '/stream?t=1775418790208' not found[0m
+[0;33mW (266061) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (267141) httpd_uri: httpd_uri: URI '/stream?t=1775418791282' not found[0m
+[0;33mW (267141) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (268181) httpd_uri: httpd_uri: URI '/stream?t=1775418792356' not found[0m
+[0;33mW (268181) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (269221) httpd_uri: httpd_uri: URI '/stream?t=1775418793402' not found[0m
+[0;33mW (269221) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (270271) httpd_uri: httpd_uri: URI '/stream?t=1775418794441' not found[0m
+[0;33mW (270271) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (271321) httpd_uri: httpd_uri: URI '/stream?t=1775418795491' not found[0m
+[0;33mW (271321) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (272351) httpd_uri: httpd_uri: URI '/stream?t=1775418796534' not found[0m
+[0;33mW (272351) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (273411) httpd_uri: httpd_uri: URI '/stream?t=1775418797580' not found[0m
+[0;33mW (273411) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (274481) httpd_uri: httpd_uri: URI '/stream?t=1775418798633' not found[0m
+[0;33mW (274481) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;32mI (280241) DRIVEBOT_MAIN: 📷 Принудительный запуск камеры[0m
+[0;33mW (280741) httpd_uri: httpd_uri: URI '/stream' not found[0m
+[0;33mW (280741) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (281781) httpd_uri: httpd_uri: URI '/stream?t=1775418805952' not found[0m
+[0;33mW (281781) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (282811) httpd_uri: httpd_uri: URI '/stream?t=1775418806998' not found[0m
+[0;33mW (282811) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (283871) httpd_uri: httpd_uri: URI '/stream?t=1775418808037' not found[0m
+[0;33mW (283871) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (284931) httpd_uri: httpd_uri: URI '/stream?t=1775418809094' not found[0m
+[0;33mW (284931) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (286011) httpd_uri: httpd_uri: URI '/stream?t=1775418810159' not found[0m
+[0;33mW (286011) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;32mI (286351) DRIVEBOT_MAIN: 📱 Команда: HORN_OFF[0m
+[0;33mW (286361) BLE_MGR: BLE не подключен, команда не отправлена: HORN_OFF[0m
+[0;33mW (287071) httpd_uri: httpd_uri: URI '/stream?t=1775418811238' not found[0m
+[0;33mW (287071) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (288141) httpd_uri: httpd_uri: URI '/stream?t=1775418812289' not found[0m
+[0;33mW (288141) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (289191) httpd_uri: httpd_uri: URI '/stream?t=1775418813355' not found[0m
+[0;33mW (289191) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (290291) httpd_uri: httpd_uri: URI '/stream?t=1775418814423' not found[0m
+[0;33mW (290291) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (291371) httpd_uri: httpd_uri: URI '/stream?t=1775418815513' not found[0m
+[0;33mW (291371) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (292431) httpd_uri: httpd_uri: URI '/stream?t=1775418816596' not found[0m
+[0;33mW (292431) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (293481) httpd_uri: httpd_uri: URI '/stream?t=1775418817661' not found[0m
+[0;33mW (293481) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (294551) httpd_uri: httpd_uri: URI '/stream?t=1775418818710' not found[0m
+[0;33mW (294551) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (295611) httpd_uri: httpd_uri: URI '/stream?t=1775418819772' not found[0m
+[0;33mW (295611) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (296671) httpd_uri: httpd_uri: URI '/stream?t=1775418820830' not found[0m
+[0;33mW (296671) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (297731) httpd_uri: httpd_uri: URI '/stream?t=1775418821894' not found[0m
+[0;33mW (297731) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (298781) httpd_uri: httpd_uri: URI '/stream?t=1775418822947' not found[0m
+[0;33mW (298781) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (299821) httpd_uri: httpd_uri: URI '/stream?t=1775418824000' not found[0m
+[0;33mW (299821) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (300881) httpd_uri: httpd_uri: URI '/stream?t=1775418825041' not found[0m
+[0;33mW (300881) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (301911) httpd_uri: httpd_uri: URI '/stream?t=1775418826098' not found[0m
+[0;33mW (301911) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (302961) httpd_uri: httpd_uri: URI '/stream?t=1775418827121' not found[0m
+[0;33mW (302961) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (304001) httpd_uri: httpd_uri: URI '/stream?t=1775418828182' not found[0m
+[0;33mW (304001) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (305031) httpd_uri: httpd_uri: URI '/stream?t=1775418829211' not found[0m
+[0;33mW (305031) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (306061) httpd_uri: httpd_uri: URI '/stream?t=1775418830239' not found[0m
+[0;33mW (306061) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (307111) httpd_uri: httpd_uri: URI '/stream?t=1775418831275' not found[0m
+[0;33mW (307111) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (308191) httpd_uri: httpd_uri: URI '/stream?t=1775418832333' not found[0m
+[0;33mW (308191) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (309291) httpd_uri: httpd_uri: URI '/stream?t=1775418833423' not found[0m
+[0;33mW (309291) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (310431) httpd_uri: httpd_uri: URI '/stream?t=1775418834522' not found[0m
+[0;33mW (310431) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (311531) httpd_uri: httpd_uri: URI '/stream?t=1775418835645' not found[0m
+[0;33mW (311531) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;32mI (312521) DRIVEBOT_MAIN: 📱 Команда: HORN_ON[0m
+[0;32mI (312521) AUDIO_TRANSPORT: Включаю динамик для гудка[0m
+[0;32mI (312521) AUDIO_TRANSPORT: 🔊 Динамик активирован[0m
+[0;33mW (312561) httpd_uri: httpd_uri: URI '/stream?t=1775418836746' not found[0m
+[0;33mW (312561) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;32mI (312621) AUDIO_TRANSPORT: 🔊 Запись I2S: результат=0, записано байт=2048[0m
+[0;32mI (313121) AUDIO_TRANSPORT: 🔇 Динамик деактивирован[0m
+[0;32mI (313121) AUDIO_TRANSPORT: Динамик выключен[0m
+[0;33mW (313621) httpd_uri: httpd_uri: URI '/stream?t=1775418837779' not found[0m
+[0;33mW (313621) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (314711) httpd_uri: httpd_uri: URI '/stream?t=1775418838851' not found[0m
+[0;33mW (314711) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (315791) httpd_uri: httpd_uri: URI '/stream?t=1775418839928' not found[0m
+[0;33mW (315791) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;32mI (316331) DRIVEBOT_MAIN: 📱 Команда: HORN_OFF[0m
+[0;33mW (316331) BLE_MGR: BLE не подключен, команда не отправлена: HORN_OFF[0m
+[0;33mW (316861) httpd_uri: httpd_uri: URI '/stream?t=1775418841024' not found[0m
+[0;33mW (316861) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (317921) httpd_uri: httpd_uri: URI '/stream?t=1775418842082' not found[0m
+[0;33mW (317921) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;32mI (318161) DRIVEBOT_MAIN: 📱 Команда: HORN_ON[0m
+[0;32mI (318161) AUDIO_TRANSPORT: Включаю динамик для гудка[0m
+[0;32mI (318161) AUDIO_TRANSPORT: 🔊 Динамик активирован[0m
+[0;32mI (318271) AUDIO_TRANSPORT: 🔊 Запись I2S: результат=0, записано байт=2048[0m
+[0;32mI (318771) AUDIO_TRANSPORT: 🔇 Динамик деактивирован[0m
+[0;32mI (318771) AUDIO_TRANSPORT: Динамик выключен[0m
+[0;33mW (318971) httpd_uri: httpd_uri: URI '/stream?t=1775418843151' not found[0m
+[0;33mW (318971) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;32mI (319411) DRIVEBOT_MAIN: 📱 Команда: HORN_OFF[0m
+[0;33mW (319411) BLE_MGR: BLE не подключен, команда не отправлена: HORN_OFF[0m
+[0;33mW (320031) httpd_uri: httpd_uri: URI '/stream?t=1775418844193' not found[0m
+[0;33mW (320031) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (321071) httpd_uri: httpd_uri: URI '/stream?t=1775418845248' not found[0m
+[0;33mW (321071) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;32mI (321461) DRIVEBOT_MAIN: 📱 Команда: HORN_ON[0m
+[0;32mI (321461) AUDIO_TRANSPORT: Включаю динамик для гудка[0m
+[0;32mI (321461) AUDIO_TRANSPORT: 🔊 Динамик активирован[0m
+[0;32mI (321561) AUDIO_TRANSPORT: 🔊 Запись I2S: результат=0, записано байт=2048[0m
+[0;32mI (322061) AUDIO_TRANSPORT: 🔇 Динамик деактивирован[0m
+[0;32mI (322061) AUDIO_TRANSPORT: Динамик выключен[0m
+[0;33mW (322131) httpd_uri: httpd_uri: URI '/stream?t=1775418846293' not found[0m
+[0;33mW (322131) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;32mI (322321) DRIVEBOT_MAIN: 📱 Команда: HORN_OFF[0m
+[0;33mW (322321) BLE_MGR: BLE не подключен, команда не отправлена: HORN_OFF[0m
+[0;33mW (323221) httpd_uri: httpd_uri: URI '/stream?t=1775418847352' not found[0m
+[0;33mW (323221) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (324291) httpd_uri: httpd_uri: URI '/stream?t=1775418848440' not found[0m
+[0;33mW (324291) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (325371) httpd_uri: httpd_uri: URI '/stream?t=1775418849504' not found[0m
+[0;33mW (325371) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (326421) httpd_uri: httpd_uri: URI '/stream?t=1775418850588' not found[0m
+[0;33mW (326421) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (327521) httpd_uri: httpd_uri: URI '/stream?t=1775418851657' not found[0m
+[0;33mW (327521) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (328611) httpd_uri: httpd_uri: URI '/stream?t=1775418852743' not found[0m
+[0;33mW (328611) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (329671) httpd_uri: httpd_uri: URI '/stream?t=1775418853825' not found[0m
+[0;33mW (329671) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (330721) httpd_uri: httpd_uri: URI '/stream?t=1775418854884' not found[0m
+[0;33mW (330721) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (331811) httpd_uri: httpd_uri: URI '/stream?t=1775418855950' not found[0m
+[0;33mW (331811) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (332861) httpd_uri: httpd_uri: URI '/stream?t=1775418857023' not found[0m
+[0;33mW (332861) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (333941) httpd_uri: httpd_uri: URI '/stream?t=1775418858084' not found[0m
+[0;33mW (333941) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;32mI (334481) DRIVEBOT_MAIN: 📱 Команда: HORN_ON[0m
+[0;32mI (334481) AUDIO_TRANSPORT: Включаю динамик для гудка[0m
+[0;32mI (334481) AUDIO_TRANSPORT: 🔊 Динамик активирован[0m
+[0;32mI (334591) AUDIO_TRANSPORT: 🔊 Запись I2S: результат=0, записано байт=2048[0m
+[0;33mW (334991) httpd_uri: httpd_uri: URI '/stream?t=1775418859159' not found[0m
+[0;33mW (334991) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;32mI (335091) AUDIO_TRANSPORT: 🔇 Динамик деактивирован[0m
+[0;32mI (335091) AUDIO_TRANSPORT: Динамик выключен[0m
+[0;33mW (336061) httpd_uri: httpd_uri: URI '/stream?t=1775418860216' not found[0m
+[0;33mW (336061) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (337121) httpd_uri: httpd_uri: URI '/stream?t=1775418861281' not found[0m
+[0;33mW (337121) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (338171) httpd_uri: httpd_uri: URI '/stream?t=1775418862339' not found[0m
+[0;33mW (338171) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (339241) httpd_uri: httpd_uri: URI '/stream?t=1775418863401' not found[0m
+[0;33mW (339241) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (340311) httpd_uri: httpd_uri: URI '/stream?t=1775418864461' not found[0m
+[0;33mW (340311) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (341391) httpd_uri: httpd_uri: URI '/stream?t=1775418865531' not found[0m
+[0;33mW (341391) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (342441) httpd_uri: httpd_uri: URI '/stream?t=1775418866611' not found[0m
+[0;33mW (342441) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (343501) httpd_uri: httpd_uri: URI '/stream?t=1775418867662' not found[0m
+[0;33mW (343501) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (344551) httpd_uri: httpd_uri: URI '/stream?t=1775418868720' not found[0m
+[0;33mW (344551) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (345641) httpd_uri: httpd_uri: URI '/stream?t=1775418869782' not found[0m
+[0;33mW (345641) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (346721) httpd_uri: httpd_uri: URI '/stream?t=1775418870864' not found[0m
+[0;33mW (346721) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (347761) httpd_uri: httpd_uri: URI '/stream?t=1775418871935' not found[0m
+[0;33mW (347761) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (348841) httpd_uri: httpd_uri: URI '/stream?t=1775418872979' not found[0m
+[0;33mW (348841) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (349921) httpd_uri: httpd_uri: URI '/stream?t=1775418874060' not found[0m
+[0;33mW (349921) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (351011) httpd_uri: httpd_uri: URI '/stream?t=1775418875145' not found[0m
+[0;33mW (351011) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (352071) httpd_uri: httpd_uri: URI '/stream?t=1775418876234' not found[0m
+[0;33mW (352071) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (353121) httpd_uri: httpd_uri: URI '/stream?t=1775418877282' not found[0m
+[0;33mW (353121) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (354151) httpd_uri: httpd_uri: URI '/stream?t=1775418878335' not found[0m
+[0;33mW (354151) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (355201) httpd_uri: httpd_uri: URI '/stream?t=1775418879368' not found[0m
+[0;33mW (355201) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (356271) httpd_uri: httpd_uri: URI '/stream?t=1775418880436' not found[0m
+[0;33mW (356271) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (357331) httpd_uri: httpd_uri: URI '/stream?t=1775418881497' not found[0m
+[0;33mW (357331) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (358381) httpd_uri: httpd_uri: URI '/stream?t=1775418882545' not found[0m
+[0;33mW (358381) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (359451) httpd_uri: httpd_uri: URI '/stream?t=1775418883612' not found[0m
+[0;33mW (359451) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (360491) httpd_uri: httpd_uri: URI '/stream?t=1775418884665' not found[0m
+[0;33mW (360491) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (361551) httpd_uri: httpd_uri: URI '/stream?t=1775418885720' not found[0m
+[0;33mW (361551) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (362631) httpd_uri: httpd_uri: URI '/stream?t=1775418886782' not found[0m
+[0;33mW (362631) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (363721) httpd_uri: httpd_uri: URI '/stream?t=1775418887846' not found[0m
+[0;33mW (363721) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (364801) httpd_uri: httpd_uri: URI '/stream?t=1775418888945' not found[0m
+[0;33mW (364801) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (365881) httpd_uri: httpd_uri: URI '/stream?t=1775418890019' not found[0m
+[0;33mW (365881) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (366971) httpd_uri: httpd_uri: URI '/stream?t=1775418891100' not found[0m
+[0;33mW (366971) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (368051) httpd_uri: httpd_uri: URI '/stream?t=1775418892189' not found[0m
+[0;33mW (368051) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (369121) httpd_uri: httpd_uri: URI '/stream?t=1775418893268' not found[0m
+[0;33mW (369121) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (370191) httpd_uri: httpd_uri: URI '/stream?t=1775418894339' not found[0m
+[0;33mW (370191) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (371231) httpd_uri: httpd_uri: URI '/stream?t=1775418895415' not found[0m
+[0;33mW (371231) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (372261) httpd_uri: httpd_uri: URI '/stream?t=1775418896441' not found[0m
+[0;33mW (372261) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (373331) httpd_uri: httpd_uri: URI '/stream?t=1775418897486' not found[0m
+[0;33mW (373331) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (374361) httpd_uri: httpd_uri: URI '/stream?t=1775418898539' not found[0m
+[0;33mW (374361) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (375391) httpd_uri: httpd_uri: URI '/stream?t=1775418899578' not found[0m
+[0;33mW (375391) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (376471) httpd_uri: httpd_uri: URI '/stream?t=1775418900616' not found[0m
+[0;33mW (376471) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (377531) httpd_uri: httpd_uri: URI '/stream?t=1775418901685' not found[0m
+[0;33mW (377531) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (378591) httpd_uri: httpd_uri: URI '/stream?t=1775418902751' not found[0m
+[0;33mW (378591) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (379651) httpd_uri: httpd_uri: URI '/stream?t=1775418903818' not found[0m
+[0;33mW (379651) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (380731) httpd_uri: httpd_uri: URI '/stream?t=1775418904880' not found[0m
+[0;33mW (380731) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (381781) httpd_uri: httpd_uri: URI '/stream?t=1775418905942' not found[0m
+[0;33mW (381781) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (382851) httpd_uri: httpd_uri: URI '/stream?t=1775418907001' not found[0m
+[0;33mW (382851) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (383911) httpd_uri: httpd_uri: URI '/stream?t=1775418908072' not found[0m
+[0;33mW (383911) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;32mI (540341) DRIVEBOT_MAIN: 📷 Принудительный запуск камеры[0m
+[0;33mW (540861) httpd_uri: httpd_uri: URI '/stream' not found[0m
+[0;33mW (540861) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (541881) httpd_uri: httpd_uri: URI '/stream?t=1775419066063' not found[0m
+[0;33mW (541881) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (542921) httpd_uri: httpd_uri: URI '/stream?t=1775419067085' not found[0m
+[0;33mW (542921) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (543971) httpd_uri: httpd_uri: URI '/stream?t=1775419068141' not found[0m
+[0;33mW (543971) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;32mI (544941) DRIVEBOT_MAIN: 📷 Принудительный запуск камеры[0m
+[0;33mW (545641) httpd_uri: httpd_uri: URI '/stream?t=1775419069809' not found[0m
+[0;33mW (545641) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;32mI (553491) DRIVEBOT_MAIN: 📷 Принудительный запуск камеры[0m
+[0;33mW (553651) httpd_uri: httpd_uri: URI '/stream?t=1775419076545' not found[0m
+[0;33mW (553651) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (554011) httpd_uri: httpd_uri: URI '/stream' not found[0m
+[0;33mW (554011) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (555041) httpd_uri: httpd_uri: URI '/stream?t=1775419079219' not found[0m
+[0;33mW (555041) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;32mI (555971) DRIVEBOT_MAIN: 📱 Команда: HORN_ON[0m
+[0;32mI (555971) AUDIO_TRANSPORT: Включаю динамик для гудка[0m
+[0;32mI (555971) AUDIO_TRANSPORT: 🔊 Динамик активирован[0m
+[0;33mW (556061) httpd_uri: httpd_uri: URI '/stream?t=1775419080253' not found[0m
+[0;33mW (556061) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;32mI (556081) AUDIO_TRANSPORT: 🔊 Запись I2S: результат=0, записано байт=2048[0m
+[0;32mI (556581) AUDIO_TRANSPORT: 🔇 Динамик деактивирован[0m
+[0;32mI (556581) AUDIO_TRANSPORT: Динамик выключен[0m
+[0;33mW (557131) httpd_uri: httpd_uri: URI '/stream?t=1775419081279' not found[0m
+[0;33mW (557131) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (558171) httpd_uri: httpd_uri: URI '/stream?t=1775419082341' not found[0m
+[0;33mW (558171) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;32mI (558711) DRIVEBOT_MAIN: 📱 Команда: HORN_OFF[0m
+[0;33mW (558711) BLE_MGR: BLE не подключен, команда не отправлена: HORN_OFF[0m
+[0;33mW (559211) httpd_uri: httpd_uri: URI '/stream?t=1775419083381' not found[0m
+[0;33mW (559211) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;32mI (559371) DRIVEBOT_MAIN: 📱 Команда: LIGHTS_BLINK[0m
+[0;32mI (559371) DRIVEBOT_MAIN: 🚨 МИГАНИЕ[0m
+[0;32mI (559961) DRIVEBOT_MAIN: 📱 Команда: RADIO_ON[0m
+[0;32mI (559961) DRIVEBOT_MAIN: 📻 Включение РАЦИИ... tx_chan: 0x3c0c09c4[0m
+[0;33mW (560281) httpd_uri: httpd_uri: URI '/stream?t=1775419084430' not found[0m
+[0;33mW (560281) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;32mI (560661) DRIVEBOT_MAIN: 📱 Команда: RADIO_OFF[0m
+[0;32mI (560661) DRIVEBOT_MAIN: 📴 Выключение РАЦИИ[0m
+[0;32mI (561121) DRIVEBOT_MAIN: 📱 Команда: HORN_ON[0m
+[0;32mI (561121) AUDIO_TRANSPORT: Включаю динамик для гудка[0m
+[0;32mI (561121) AUDIO_TRANSPORT: 🔊 Динамик активирован[0m
+[0;32mI (561231) AUDIO_TRANSPORT: 🔊 Запись I2S: результат=0, записано байт=2048[0m
+[0;33mW (561311) httpd_uri: httpd_uri: URI '/stream?t=1775419085491' not found[0m
+[0;33mW (561311) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;32mI (561731) AUDIO_TRANSPORT: 🔇 Динамик деактивирован[0m
+[0;32mI (561731) AUDIO_TRANSPORT: Динамик выключен[0m
+[0;33mW (562391) httpd_uri: httpd_uri: URI '/stream?t=1775419086515' not found[0m
+[0;33mW (562391) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;32mI (563061) DRIVEBOT_MAIN: 📱 Команда: HORN_OFF[0m
+[0;33mW (563071) BLE_MGR: BLE не подключен, команда не отправлена: HORN_OFF[0m
+[0;33mW (563431) httpd_uri: httpd_uri: URI '/stream?t=1775419087602' not found[0m
+[0;33mW (563431) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;32mI (564411) DRIVEBOT_MAIN: 📱 Команда: HORN_ON[0m
+[0;32mI (564411) AUDIO_TRANSPORT: Включаю динамик для гудка[0m
+[0;32mI (564411) AUDIO_TRANSPORT: 🔊 Динамик активирован[0m
+[0;33mW (564461) httpd_uri: httpd_uri: URI '/stream?t=1775419088636' not found[0m
+[0;33mW (564461) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;32mI (564511) AUDIO_TRANSPORT: 🔊 Запись I2S: результат=0, записано байт=2048[0m
+[0;32mI (565011) AUDIO_TRANSPORT: 🔇 Динамик деактивирован[0m
+[0;32mI (565011) AUDIO_TRANSPORT: Динамик выключен[0m
+[0;33mW (565541) httpd_uri: httpd_uri: URI '/stream?t=1775419089673' not found[0m
+[0;33mW (565541) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;32mI (566551) DRIVEBOT_MAIN: 📱 Команда: HORN_OFF[0m
+[0;33mW (566551) BLE_MGR: BLE не подключен, команда не отправлена: HORN_OFF[0m
+[0;33mW (566581) httpd_uri: httpd_uri: URI '/stream?t=1775419090758' not found[0m
+[0;33mW (566581) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (567641) httpd_uri: httpd_uri: URI '/stream?t=1775419091789' not found[0m
+[0;33mW (567641) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (568711) httpd_uri: httpd_uri: URI '/stream?t=1775419092856' not found[0m
+[0;33mW (568711) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (569761) httpd_uri: httpd_uri: URI '/stream?t=1775419093921' not found[0m
+[0;33mW (569761) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (570811) httpd_uri: httpd_uri: URI '/stream?t=1775419094975' not found[0m
+[0;33mW (570811) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;32mI (573161) DRIVEBOT_MAIN: 📷 Принудительный запуск камеры[0m
+[0;33mW (573661) httpd_uri: httpd_uri: URI '/stream' not found[0m
+[0;33mW (573661) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (574691) httpd_uri: httpd_uri: URI '/stream?t=1775419098868' not found[0m
+[0;33mW (574691) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (575741) httpd_uri: httpd_uri: URI '/stream?t=1775419099906' not found[0m
+[0;33mW (575741) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (576801) httpd_uri: httpd_uri: URI '/stream?t=1775419100959' not found[0m
+[0;33mW (576801) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;32mI (577391) DRIVEBOT_MAIN: 📱 Команда: HORN_ON[0m
+[0;32mI (577391) AUDIO_TRANSPORT: Включаю динамик для гудка[0m
+[0;32mI (577391) AUDIO_TRANSPORT: 🔊 Динамик активирован[0m
+[0;32mI (577501) AUDIO_TRANSPORT: 🔊 Запись I2S: результат=0, записано байт=2048[0m
+[0;33mW (577851) httpd_uri: httpd_uri: URI '/stream?t=1775419102021' not found[0m
+[0;33mW (577851) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;32mI (578001) AUDIO_TRANSPORT: 🔇 Динамик деактивирован[0m
+[0;32mI (578001) AUDIO_TRANSPORT: Динамик выключен[0m
+[0;33mW (578901) httpd_uri: httpd_uri: URI '/stream?t=1775419103060' not found[0m
+[0;33mW (578901) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (579971) httpd_uri: httpd_uri: URI '/stream?t=1775419104122' not found[0m
+[0;33mW (579971) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (581031) httpd_uri: httpd_uri: URI '/stream?t=1775419105191' not found[0m
+[0;33mW (581031) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (582091) httpd_uri: httpd_uri: URI '/stream?t=1775419106253' not found[0m
+[0;33mW (582091) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (583151) httpd_uri: httpd_uri: URI '/stream?t=1775419107310' not found[0m
+[0;33mW (583151) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (584221) httpd_uri: httpd_uri: URI '/stream?t=1775419108369' not found[0m
+[0;33mW (584221) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (585301) httpd_uri: httpd_uri: URI '/stream?t=1775419109435' not found[0m
+[0;33mW (585301) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (586381) httpd_uri: httpd_uri: URI '/stream?t=1775419110512' not found[0m
+[0;33mW (586381) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (587461) httpd_uri: httpd_uri: URI '/stream?t=1775419111596' not found[0m
+[0;33mW (587461) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (588521) httpd_uri: httpd_uri: URI '/stream?t=1775419112677' not found[0m
+[0;33mW (588521) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (589601) httpd_uri: httpd_uri: URI '/stream?t=1775419113735' not found[0m
+[0;33mW (589601) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (590671) httpd_uri: httpd_uri: URI '/stream?t=1775419114807' not found[0m
+[0;33mW (590671) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (591731) httpd_uri: httpd_uri: URI '/stream?t=1775419115878' not found[0m
+[0;33mW (591731) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (593051) httpd_uri: httpd_uri: URI '/stream?t=1775419116944' not found[0m
+[0;33mW (593051) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (594101) httpd_uri: httpd_uri: URI '/stream?t=1775419118259' not found[0m
+[0;33mW (594101) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (595151) httpd_uri: httpd_uri: URI '/stream?t=1775419119327' not found[0m
+[0;33mW (595151) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (596181) httpd_uri: httpd_uri: URI '/stream?t=1775419120359' not found[0m
+[0;33mW (596181) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (597221) httpd_uri: httpd_uri: URI '/stream?t=1775419121392' not found[0m
+[0;33mW (597221) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (598261) httpd_uri: httpd_uri: URI '/stream?t=1775419122427' not found[0m
+[0;33mW (598261) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (599361) httpd_uri: httpd_uri: URI '/stream?t=1775419123474' not found[0m
+[0;33mW (599361) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (600411) httpd_uri: httpd_uri: URI '/stream?t=1775419124571' not found[0m
+[0;33mW (600411) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (601501) httpd_uri: httpd_uri: URI '/stream?t=1775419125640' not found[0m
+[0;33mW (601501) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (602551) httpd_uri: httpd_uri: URI '/stream?t=1775419126713' not found[0m
+[0;33mW (602551) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (603631) httpd_uri: httpd_uri: URI '/stream?t=1775419127767' not found[0m
+[0;33mW (603631) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (604691) httpd_uri: httpd_uri: URI '/stream?t=1775419128844' not found[0m
+[0;33mW (604691) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;32mI (604821) DRIVEBOT_MAIN: 📱 Команда: HORN_OFF[0m
+[0;33mW (604821) BLE_MGR: BLE не подключен, команда не отправлена: HORN_OFF[0m
+[0;32mI (605731) DRIVEBOT_MAIN: 📱 Команда: HORN_ON[0m
+[0;32mI (605731) AUDIO_TRANSPORT: Включаю динамик для гудка[0m
+[0;32mI (605731) AUDIO_TRANSPORT: 🔊 Динамик активирован[0m
+[0;33mW (605731) httpd_uri: httpd_uri: URI '/stream?t=1775419129907' not found[0m
+[0;33mW (605741) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;32mI (605831) AUDIO_TRANSPORT: 🔊 Запись I2S: результат=0, записано байт=2048[0m
+[0;32mI (606331) AUDIO_TRANSPORT: 🔇 Динамик деактивирован[0m
+[0;32mI (606331) AUDIO_TRANSPORT: Динамик выключен[0m
+[0;33mW (606791) httpd_uri: httpd_uri: URI '/stream?t=1775419130958' not found[0m
+[0;33mW (606791) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (607881) httpd_uri: httpd_uri: URI '/stream?t=1775419132009' not found[0m
+[0;33mW (607881) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (608971) httpd_uri: httpd_uri: URI '/stream?t=1775419133091' not found[0m
+[0;33mW (608971) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (610041) httpd_uri: httpd_uri: URI '/stream?t=1775419134196' not found[0m
+[0;33mW (610041) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (611111) httpd_uri: httpd_uri: URI '/stream?t=1775419135274' not found[0m
+[0;33mW (611111) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;32mI (611271) DRIVEBOT_MAIN: 📱 Команда: HORN_OFF[0m
+[0;33mW (611271) BLE_MGR: BLE не подключен, команда не отправлена: HORN_OFF[0m
+[0;33mW (612151) httpd_uri: httpd_uri: URI '/stream?t=1775419136318' not found[0m
+[0;33mW (612151) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (613201) httpd_uri: httpd_uri: URI '/stream?t=1775419137354' not found[0m
+[0;33mW (613201) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (614281) httpd_uri: httpd_uri: URI '/stream?t=1775419138413' not found[0m
+[0;33mW (614281) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (615351) httpd_uri: httpd_uri: URI '/stream?t=1775419139494' not found[0m
+[0;33mW (615351) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;32mI (616321) DRIVEBOT_MAIN: 📱 Команда: HORN_ON[0m
+[0;32mI (616321) AUDIO_TRANSPORT: Включаю динамик для гудка[0m
+[0;32mI (616321) AUDIO_TRANSPORT: 🔊 Динамик активирован[0m
+[0;33mW (616371) httpd_uri: httpd_uri: URI '/stream?t=1775419140555' not found[0m
+[0;33mW (616371) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;32mI (616421) AUDIO_TRANSPORT: 🔊 Запись I2S: результат=0, записано байт=2048[0m
+[0;32mI (616921) AUDIO_TRANSPORT: 🔇 Динамик деактивирован[0m
+[0;32mI (616921) AUDIO_TRANSPORT: Динамик выключен[0m
+[0;33mW (617421) httpd_uri: httpd_uri: URI '/stream?t=1775419141578' not found[0m
+[0;33mW (617421) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;32mI (617791) DRIVEBOT_MAIN: 📱 Команда: HORN_OFF[0m
+[0;33mW (617791) BLE_MGR: BLE не подключен, команда не отправлена: HORN_OFF[0m
+[0;33mW (618491) httpd_uri: httpd_uri: URI '/stream?t=1775419142643' not found[0m
+[0;33mW (618491) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (619541) httpd_uri: httpd_uri: URI '/stream?t=1775419143697' not found[0m
+[0;33mW (619541) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (620641) httpd_uri: httpd_uri: URI '/stream?t=1775419144763' not found[0m
+[0;33mW (620641) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;32mI (621511) DRIVEBOT_MAIN: 📱 Команда: HORN_ON[0m
+[0;32mI (621511) AUDIO_TRANSPORT: Включаю динамик для гудка[0m
+[0;32mI (621511) AUDIO_TRANSPORT: 🔊 Динамик активирован[0m
+[0;32mI (621611) AUDIO_TRANSPORT: 🔊 Запись I2S: результат=0, записано байт=2048[0m
+[0;33mW (621661) httpd_uri: httpd_uri: URI '/stream?t=1775419145848' not found[0m
+[0;33mW (621661) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;32mI (622111) AUDIO_TRANSPORT: 🔇 Динамик деактивирован[0m
+[0;32mI (622111) AUDIO_TRANSPORT: Динамик выключен[0m
+[0;32mI (622121) DRIVEBOT_MAIN: 📱 Команда: HORN_OFF[0m
+[0;33mW (622121) BLE_MGR: BLE не подключен, команда не отправлена: HORN_OFF[0m
+[0;33mW (622721) httpd_uri: httpd_uri: URI '/stream?t=1775419146873' not found[0m
+[0;33mW (622721) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (623771) httpd_uri: httpd_uri: URI '/stream?t=1775419147932' not found[0m
+[0;33mW (623771) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (624831) httpd_uri: httpd_uri: URI '/stream?t=1775419148993' not found[0m
+[0;33mW (624831) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;32mI (625641) DRIVEBOT_MAIN: 📱 Команда: HORN_ON[0m
+[0;32mI (625641) AUDIO_TRANSPORT: Включаю динамик для гудка[0m
+[0;32mI (625641) AUDIO_TRANSPORT: 🔊 Динамик активирован[0m
+[0;32mI (625751) AUDIO_TRANSPORT: 🔊 Запись I2S: результат=0, записано байт=2048[0m
+[0;33mW (625871) httpd_uri: httpd_uri: URI '/stream?t=1775419150043' not found[0m
+[0;33mW (625871) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;32mI (626251) AUDIO_TRANSPORT: 🔇 Динамик деактивирован[0m
+[0;32mI (626251) AUDIO_TRANSPORT: Динамик выключен[0m
+[0;32mI (626261) DRIVEBOT_MAIN: 📱 Команда: HORN_OFF[0m
+[0;33mW (626261) BLE_MGR: BLE не подключен, команда не отправлена: HORN_OFF[0m
+[0;33mW (626921) httpd_uri: httpd_uri: URI '/stream?t=1775419151076' not found[0m
+[0;33mW (626921) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (628011) httpd_uri: httpd_uri: URI '/stream?t=1775419152139' not found[0m
+[0;33mW (628011) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (629101) httpd_uri: httpd_uri: URI '/stream?t=1775419153229' not found[0m
+[0;33mW (629101) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;32mI (629891) DRIVEBOT_MAIN: 📱 Команда: HORN_ON[0m
+[0;32mI (629891) AUDIO_TRANSPORT: Включаю динамик для гудка[0m
+[0;32mI (629891) AUDIO_TRANSPORT: 🔊 Динамик активирован[0m
+[0;32mI (629991) AUDIO_TRANSPORT: 🔊 Запись I2S: результат=0, записано байт=2048[0m
+[0;33mW (630141) httpd_uri: httpd_uri: URI '/stream?t=1775419154312' not found[0m
+[0;33mW (630141) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;32mI (630491) AUDIO_TRANSPORT: 🔇 Динамик деактивирован[0m
+[0;32mI (630491) AUDIO_TRANSPORT: Динамик выключен[0m
+[0;32mI (630501) DRIVEBOT_MAIN: 📱 Команда: HORN_OFF[0m
+[0;33mW (630501) BLE_MGR: BLE не подключен, команда не отправлена: HORN_OFF[0m
+[0;33mW (631191) httpd_uri: httpd_uri: URI '/stream?t=1775419155350' not found[0m
+[0;33mW (631191) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;32mI (631491) DRIVEBOT_MAIN: 📱 Команда: HORN_ON[0m
+[0;32mI (631491) AUDIO_TRANSPORT: Включаю динамик для гудка[0m
+[0;32mI (631491) AUDIO_TRANSPORT: 🔊 Динамик активирован[0m
+[0;32mI (631601) AUDIO_TRANSPORT: 🔊 Запись I2S: результат=0, записано байт=2048[0m
+[0;32mI (632101) AUDIO_TRANSPORT: 🔇 Динамик деактивирован[0m
+[0;32mI (632101) AUDIO_TRANSPORT: Динамик выключен[0m
+[0;33mW (632231) httpd_uri: httpd_uri: URI '/stream?t=1775419156395' not found[0m
+[0;33mW (632231) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (633311) httpd_uri: httpd_uri: URI '/stream?t=1775419157454' not found[0m
+[0;33mW (633311) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (634371) httpd_uri: httpd_uri: URI '/stream?t=1775419158523' not found[0m
+[0;33mW (634371) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (635411) httpd_uri: httpd_uri: URI '/stream?t=1775419159579' not found[0m
+[0;33mW (635411) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (636471) httpd_uri: httpd_uri: URI '/stream?t=1775419160626' not found[0m
+[0;33mW (636471) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (637541) httpd_uri: httpd_uri: URI '/stream?t=1775419161695' not found[0m
+[0;33mW (637541) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (638601) httpd_uri: httpd_uri: URI '/stream?t=1775419162756' not found[0m
+[0;33mW (638601) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (639661) httpd_uri: httpd_uri: URI '/stream?t=1775419163812' not found[0m
+[0;33mW (639661) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (640731) httpd_uri: httpd_uri: URI '/stream?t=1775419164876' not found[0m
+[0;33mW (640731) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (641811) httpd_uri: httpd_uri: URI '/stream?t=1775419165947' not found[0m
+[0;33mW (641811) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (642891) httpd_uri: httpd_uri: URI '/stream?t=1775419167023' not found[0m
+[0;33mW (642891) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (643981) httpd_uri: httpd_uri: URI '/stream?t=1775419168100' not found[0m
+[0;33mW (643981) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (645061) httpd_uri: httpd_uri: URI '/stream?t=1775419169193' not found[0m
+[0;33mW (645061) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (646131) httpd_uri: httpd_uri: URI '/stream?t=1775419170265' not found[0m
+[0;33mW (646131) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (647211) httpd_uri: httpd_uri: URI '/stream?t=1775419171349' not found[0m
+[0;33mW (647211) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (648261) httpd_uri: httpd_uri: URI '/stream?t=1775419172426' not found[0m
+[0;33mW (648261) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (649291) httpd_uri: httpd_uri: URI '/stream?t=1775419173471' not found[0m
+[0;33mW (649291) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (650331) httpd_uri: httpd_uri: URI '/stream?t=1775419174499' not found[0m
+[0;33mW (650331) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+�������콪���������� ���������������p��r��p�������������������f�������������������� �����������������������������������������f�W ��50��1���ttpd�uri� ��tpd�uri: �ri��/st��a��t=17754��1744��' ��t f��nd�*�����������������x���������re���s�nd���: ����~�t ����������������������������������������������������������������������������������������������������������������������������������nd�� ��th��g ���ch�s ���give��rI�
+��str��m?t=17754���724�6� �W ������1� ��tp��ur� h��p��uri: �r� ��stream�t=177�4����44��� ��t ���nd�*���������� ���p���x����������r����s��d�e�r:�����n�t��������������������������������n������������������������������������������������������������������������r��p����������������������nd�� ��thing ����h��t�e���ven ��i-
+��stre�m?t�17754���724�6� �W ��5�������ttp��uri���t����uri:��r���st���m�t=177�4�����4��'���� ���nd�������������z����������������re�����nd�r�������t��������������������������������������������������������������������������������������������������������������������������������f��nd�� ��th�ng ���ch�s ��e ���en���i�
+��stre�m?t�1�754���724�6��nW ���0��1� ��tp��uri� ���pd�ur�: �r� ��s��eam�t=1�754��17�4��� ��t ���nd�*������������������x����������r�������d���r:�����n�t�������������������������������n���������������������������������������������������������������������������p����������������������nd � ��thing m���h����e ��v�n �ri�
+'�stream?t�1�754���724�6' �W ��50��1����tpd�uri� �ttp��uri: �r� ���t�e���t=17754��1��4�9' ��t ���nd���������������t���x�����t��l_r����s�nd��r:�����~�t �����������������������������v�����������������������������������������������������������������������r����������������������f��nd�� ��thing ��tch�s ��e0g�ven �rI�
+��stre�m?t=1775419�72426� nW (6����1) ��tpd�uri: ���pd_uri: �R� ��stream�t=17754��1744��' ��t ���nd�*���������� ��tp���xrx:��t����re�p�send�e�r: ��� ��t ����份������������h����������n���y���������������7��������������������������������� ����������������������������e������������f��nd � n�thing mat�h�s t�e ��ven �ri-
+'�stream?t�177541��72426� nW ��50331���ttpd�uri� ��tpd�uri: �r� �/stre���t=17754��1744��' ��t f��nd�*�����������h�����xr����t���r����sender򺠴���n�t���I (621) esp_psram: SPI SRAM memory test OK
+���W��c�s��{Cg���z������Z����gb�cZ�cZ�sbb���gboSbf��bfsSF����k��B���J*��}����}�յ�}Յ��� Init core dump to UART
+[0;32mI (722) coexist: coex firmware version: 7260f71[0m
+[0;32mI (726) coexist: coexist rom version e7ae62f[0m
+[0;32mI (731) main_task: Started on CPU0[0m
+[0;32mI (751) esp_psram: Reserving pool of 256K of internal memory for DMA/internal allocations[0m
+[0;32mI (751) main_task: Calling app_main()[0m
+
+
+=== 🛠 DRIVEBOT STARTING ===
+
+[0;32mI (761) AUDIO_TRANSPORT: ✅ TX I2S канал инициализирован (DOUT=3) на I2S_NUM_1[0m
+[0;32mI (761) gpio: GPIO[2]| InputEn: 0| OutputEn: 0| OpenDrain: 0| Pullup: 1| Pulldown: 0| Intr:0 [0m
+[0;32mI (771) gpio: GPIO[1]| InputEn: 0| OutputEn: 0| OpenDrain: 0| Pullup: 1| Pulldown: 0| Intr:0 [0m
+[0;32mI (781) gpio: GPIO[4]| InputEn: 0| OutputEn: 0| OpenDrain: 0| Pullup: 1| Pulldown: 0| Intr:0 [0m
+[0;32mI (791) gpio: GPIO[5]| InputEn: 0| OutputEn: 0| OpenDrain: 0| Pullup: 1| Pulldown: 0| Intr:0 [0m
+[0;32mI (801) gpio: GPIO[16]| InputEn: 0| OutputEn: 0| OpenDrain: 0| Pullup: 1| Pulldown: 0| Intr:0 [0m
+[0;32mI (801) gpio: GPIO[17]| InputEn: 0| OutputEn: 0| OpenDrain: 0| Pullup: 1| Pulldown: 0| Intr:0 [0m
+[0;32mI (811) gpio: GPIO[18]| InputEn: 0| OutputEn: 0| OpenDrain: 0| Pullup: 1| Pulldown: 0| Intr:0 [0m
+[0;32mI (821) BLE_MGR: Initializing NimBLE BLE stack[0m
+[0;32mI (821) BLE_INIT: BT controller compile version [1bb2f50][0m
+[0;32mI (831) BLE_INIT: Using main XTAL as clock source[0m
+[0;32mI (831) BLE_INIT: Feature Config, ADV:1, BLE_50:1, DTM:1, SCAN:1, CCA:0, SMP:1, CONNECT:1[0m
+[0;32mI (841) BLE_INIT: Bluetooth MAC: ac:a7:04:26:07:32[0m
+[0;32mI (851) phy_init: phy_version 711,97bcf0a2,Aug 25 2025,19:04:10[0m
+[0;32mI (881) phy_init: Saving new calibration data due to checksum failure or outdated calibration data, mode(0)[0m
+[0;32mI (931) BLE_MGR: BLE Host Task Started[0m
+[0;32mI (931) BLE_MGR: Service registered: 0x1800[0m
+[0;32mI (931) BLE_MGR: Characteristic registered: 0x2a00[0m
+[0;32mI (931) BLE_MGR: Characteristic registered: 0x2a01[0m
+[0;32mI (931) BLE_MGR: Service registered: 0x1801[0m
+[0;32mI (941) BLE_MGR: Characteristic registered: 0x2a05[0m
+[0;32mI (941) BLE_MGR: Characteristic registered: 0x2b3a[0m
+[0;32mI (951) BLE_MGR: Characteristic registered: 0x2b29[0m
+[0;32mI (951) BLE_MGR: Service registered: 0xffe0[0m
+[0;32mI (951) BLE_MGR: Characteristic registered: 0xffe1[0m
+[0;32mI (961) NimBLE: GAP procedure initiated: stop advertising.[0m
+
+[0;32mI (961) BLE_MGR: 🔄 Starting advertising...[0m
+[0;32mI (971) NimBLE: GAP procedure initiated: advertise; [0m
+[0;32mI (971) NimBLE: disc_mode=2[0m
+[0;32mI (971) NimBLE:  adv_channel_map=0 own_addr_type=0 adv_filter_policy=0 adv_itvl_min=800 adv_itvl_max=1600[0m
+[0;32mI (981) NimBLE: [0m
+
+[0;32mI (991) BLE_MGR: ✅ Advertising started[0m
+[0;32mI (991) BLE_MGR: BLE initialized successfully[0m
+[0;32mI (991) WIFI_MGR: 🚀 Запуск WiFi точки доступа: DriveBot_CAM (без пароля)[0m
+[0;32mI (1001) pp: pp rom version: e7ae62f[0m
+[0;32mI (1011) net80211: net80211 rom version: e7ae62f[0m
+[0;32mI (1021) wifi:wifi driver task: 3fcc0710, prio:23, stack:3584, core=0[0m
+[0;32mI (1021) wifi:wifi firmware version: 562b41f[0m
+[0;32mI (1021) wifi:wifi certification version: v7.0[0m
+[0;32mI (1021) wifi:config NVS flash: enabled[0m
+[0;32mI (1031) wifi:config nano formatting: disabled[0m
+[0;32mI (1031) wifi:Init data frame dynamic rx buffer num: 64[0m
+[0;32mI (1041) wifi:Init static rx mgmt buffer num: 5[0m
+[0;32mI (1041) wifi:Init management short buffer num: 32[0m
+[0;32mI (1051) wifi:Init static tx buffer num: 32[0m
+[0;32mI (1051) wifi:Init static tx FG buffer num: 2[0m
+[0;32mI (1051) wifi:Init static rx buffer size: 1600[0m
+[0;32mI (1061) wifi:Init static rx buffer num: 16[0m
+[0;32mI (1061) wifi:Init dynamic rx buffer num: 64[0m
+[0;32mI (1071) wifi_init: rx ba win: 16[0m
+[0;32mI (1071) wifi_init: accept mbox: 6[0m
+[0;32mI (1071) wifi_init: tcpip mbox: 32[0m
+[0;32mI (1081) wifi_init: udp mbox: 6[0m
+[0;32mI (1081) wifi_init: tcp mbox: 6[0m
+[0;32mI (1081) wifi_init: tcp tx win: 32768[0m
+[0;32mI (1081) wifi_init: tcp rx win: 32768[0m
+[0;32mI (1091) wifi_init: tcp mss: 1440[0m
+[0;32mI (1091) wifi_init: WiFi IRAM OP enabled[0m
+[0;32mI (1091) wifi_init: WiFi RX IRAM OP enabled[0m
+[0;32mI (1101) wifi:mode : softAP (ac:a7:04:26:07:31)[0m
+[0;32mI (1101) wifi:Total power save buffer number: 16[0m
+[0;32mI (1111) wifi:Init max length of beacon: 752/752[0m
+[0;32mI (1111) wifi:Init max length of beacon: 752/752[0m
+[0;32mI (1121) WIFI_MGR: ✅ WiFi точка доступа запущена: DriveBot_CAM[0m
+[0;32mI (1121) esp_netif_lwip: DHCP server started on interface WIFI_AP_DEF with IP: 192.168.4.1[0m
+[0;32mI (1131) WIFI_MGR: 📡 IP адрес ESP32: 192.168.4.1[0m
+[0;32mI (1141) WIFI_MGR: 📡 Видеопоток: http://192.168.4.1:81/stream[0m
+[0;32mI (1141) WIFI_MGR: 📡 Максимум клиентов: 1 (только телефон)[0m
+[0;32mI (1151) DRIVEBOT_MAIN: ✅ UDP Сервер готов (порт 8080)[0m
+[0;32mI (1161) DRIVEBOT_MAIN: === СИСТЕМА ГОТОВА ===[0m
+[0;32mI (3351) wifi:new:<1,0>, old:<1,1>, ap:<1,1>, sta:<255,255>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (3351) wifi:station: 32:44:eb:48:e5:38 join, AID=1, bgn, 20[0m
+[0;32mI (3351) wifi:Set ps type: 0, coexist: 1[0m
+
+[0;32mI (3351) wifi:Coexist!!! Wi-Fi station would only keep waked when available[0m
+
+[0;32mI (3361) WIFI_MGR: 📱 Телефон подключен по WiFi[0m
+[0;32mI (3361) WIFI_MGR: 📡 Видеопоток: http://192.168.4.1:81/stream[0m
+[0;32mI (3481) wifi:<ba-add>idx:2 (ifx:1, 32:44:eb:48:e5:38), tid:0, ssn:0, winSize:64[0m
+[0;32mI (3521) esp_netif_lwip: DHCP server assigned IP to a client, IP is: 192.168.4.2[0m
+[0;33mW (6661) httpd_uri: httpd_uri: URI '/stream?t=1775419182934' not found[0m
+[0;33mW (6661) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (7691) httpd_uri: httpd_uri: URI '/stream?t=1775419183990' not found[0m
+[0;33mW (7691) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (8751) httpd_uri: httpd_uri: URI '/stream?t=1775419185022' not found[0m
+[0;33mW (8751) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (9801) httpd_uri: httpd_uri: URI '/stream?t=1775419186083' not found[0m
+[0;33mW (9801) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (10861) httpd_uri: httpd_uri: URI '/stream?t=1775419187130' not found[0m
+[0;33mW (10861) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (11941) httpd_uri: httpd_uri: URI '/stream?t=1775419188204' not found[0m
+[0;33mW (11941) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (12991) httpd_uri: httpd_uri: URI '/stream?t=1775419189262' not found[0m
+[0;33mW (12991) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (14051) httpd_uri: httpd_uri: URI '/stream?t=1775419190320' not found[0m
+[0;33mW (14051) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (15111) httpd_uri: httpd_uri: URI '/stream?t=1775419191379' not found[0m
+[0;33mW (15111) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (16201) httpd_uri: httpd_uri: URI '/stream?t=1775419192452' not found[0m
+[0;33mW (16201) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (17251) httpd_uri: httpd_uri: URI '/stream?t=1775419193526' not found[0m
+[0;33mW (17251) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (18311) httpd_uri: httpd_uri: URI '/stream?t=1775419194583' not found[0m
+[0;33mW (18311) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (19361) httpd_uri: httpd_uri: URI '/stream?t=1775419195635' not found[0m
+[0;33mW (19361) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (20431) httpd_uri: httpd_uri: URI '/stream?t=1775419196703' not found[0m
+[0;33mW (20431) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (21501) httpd_uri: httpd_uri: URI '/stream?t=1775419197768' not found[0m
+[0;33mW (21501) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (22581) httpd_uri: httpd_uri: URI '/stream?t=1775419198832' not found[0m
+[0;33mW (22581) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;32mI (621) esp_psram: SPI SRAM memory test OK[0m
+[0;32mI (629) cpu_start: GPIO 44 and 43 are used as console UART I/O pins[0m
+[0;32mI (630) cpu_start: Pro cpu start user code[0m
+[0;32mI (630) cpu_start: cpu freq: 240000000 Hz[0m
+[0;32mI (631) app_init: Application information:[0m
+[0;32mI (635) app_init: Project name:     drivebot[0m
+[0;32mI (639) app_init: App version:      a6f997c-dirty[0m
+[0;32mI (644) app_init: Compile time:     Apr  5 2026 20:24:42[0m
+[0;32mI (649) app_init: ELF file SHA256:  2ce98db33...[0m
+[0;32mI (653) app_init: ESP-IDF:          v5.4.3-904-gacd7b505de[0m
+[0;32mI (658) efuse_init: Min chip rev:     v0.0[0m
+[0;32mI (662) efuse_init: Max chip rev:     v0.99 [0m
+[0;32mI (666) efuse_init: Chip rev:         v0.2[0m
+[0;32mI (670) heap_init: Initializing. RAM available for dynamic allocation:[0m
+[0;32mI (676) heap_init: At 3FCAB6D0 len 0003E040 (248 KiB): RAM[0m
+[0;32mI (681) heap_init: At 3FCE9710 len 00005724 (21 KiB): RAM[0m
+[0;32mI (686) heap_init: At 600FE000 len 00001FE8 (7 KiB): RTCRAM[0m
+[0;32mI (692) esp_psram: Adding pool of 8192K of PSRAM memory to heap allocator[0m
+[0;32mI (699) spi_flash: detected chip: boya[0m
+[0;32mI (702) spi_flash: flash io: dio[0m
+[0;32mI (705) sleep_gpio: Configure to isolate all GPIO pins in sleep state[0m
+[0;32mI (711) sleep_gpio: Enable automatic switching of GPIO sleep configuration[0m
+[0;32mI (718) esp_core_dump_uart: Init core dump to UART[0m
+[0;32mI (722) coexist: coex firmware version: 7260f71[0m
+[0;32mI (726) coexist: coexist rom version e7ae62f[0m
+[0;32mI (731) main_task: Started on CPU0[0m
+[0;32mI (751) esp_psram: Reserving pool of 256K of internal memory for DMA/internal allocations[0m
+[0;32mI (751) main_task: Calling app_main()[0m
+
+
+=== 🛠 DRIVEBOT STARTING ===
+
+[0;32mI (761) AUDIO_TRANSPORT: ✅ TX I2S канал инициализирован (DOUT=3) на I2S_NUM_1[0m
+[0;32mI (761) gpio: GPIO[2]| InputEn: 0| OutputEn: 0| OpenDrain: 0| Pullup: 1| Pulldown: 0| Intr:0 [0m
+[0;32mI (771) gpio: GPIO[1]| InputEn: 0| OutputEn: 0| OpenDrain: 0| Pullup: 1| Pulldown: 0| Intr:0 [0m
+[0;32mI (781) gpio: GPIO[4]| InputEn: 0| OutputEn: 0| OpenDrain: 0| Pullup: 1| Pulldown: 0| Intr:0 [0m
+[0;32mI (791) gpio: GPIO[5]| InputEn: 0| OutputEn: 0| OpenDrain: 0| Pullup: 1| Pulldown: 0| Intr:0 [0m
+[0;32mI (801) gpio: GPIO[16]| InputEn: 0| OutputEn: 0| OpenDrain: 0| Pullup: 1| Pulldown: 0| Intr:0 [0m
+[0;32mI (801) gpio: GPIO[17]| InputEn: 0| OutputEn: 0| OpenDrain: 0| Pullup: 1| Pulldown: 0| Intr:0 [0m
+[0;32mI (811) gpio: GPIO[18]| InputEn: 0| OutputEn: 0| OpenDrain: 0| Pullup: 1| Pulldown: 0| Intr:0 [0m
+[0;32mI (821) BLE_MGR: Initializing NimBLE BLE stack[0m
+[0;32mI (821) BLE_INIT: BT controller compile version [1bb2f50][0m
+[0;32mI (831) BLE_INIT: Using main XTAL as clock source[0m
+[0;32mI (831) BLE_INIT: Feature Config, ADV:1, BLE_50:1, DTM:1, SCAN:1, CCA:0, SMP:1, CONNECT:1[0m
+[0;32mI (841) BLE_INIT: Bluetooth MAC: ac:a7:04:26:07:32[0m
+[0;32mI (851) phy_init: phy_version 711,97bcf0a2,Aug 25 2025,19:04:10[0m
+[0;32mI (881) BLE_MGR: BLE Host Task Started[0m
+[0;32mI (881) BLE_MGR: Service registered: 0x1800[0m
+[0;32mI (891) BLE_MGR: Characteristic registered: 0x2a00[0m
+[0;32mI (891) BLE_MGR: Characteristic registered: 0x2a01[0m
+[0;32mI (891) BLE_MGR: Service registered: 0x1801[0m
+[0;32mI (891) BLE_MGR: Characteristic registered: 0x2a05[0m
+[0;32mI (901) BLE_MGR: Characteristic registered: 0x2b3a[0m
+[0;32mI (901) BLE_MGR: Characteristic registered: 0x2b29[0m
+[0;32mI (911) BLE_MGR: Service registered: 0xffe0[0m
+[0;32mI (911) BLE_MGR: Characteristic registered: 0xffe1[0m
+[0;32mI (921) NimBLE: GAP procedure initiated: stop advertising.[0m
+
+[0;32mI (921) BLE_MGR: 🔄 Starting advertising...[0m
+[0;32mI (931) NimBLE: GAP procedure initiated: advertise; [0m
+[0;32mI (931) NimBLE: disc_mode=2[0m
+[0;32mI (931) NimBLE:  adv_channel_map=0 own_addr_type=0 adv_filter_policy=0 adv_itvl_min=800 adv_itvl_max=1600[0m
+[0;32mI (941) NimBLE: [0m
+
+[0;32mI (941) BLE_MGR: ✅ Advertising started[0m
+[0;32mI (951) BLE_MGR: BLE initialized successfully[0m
+[0;32mI (951) WIFI_MGR: 🚀 Запуск WiFi точки доступа: DriveBot_CAM (без пароля)[0m
+[0;32mI (961) pp: pp rom version: e7ae62f[0m
+[0;32mI (961) net80211: net80211 rom version: e7ae62f[0m
+[0;32mI (981) wifi:wifi driver task: 3fcc078c, prio:23, stack:3584, core=0[0m
+[0;32mI (981) wifi:wifi firmware version: 562b41f[0m
+[0;32mI (981) wifi:wifi certification version: v7.0[0m
+[0;32mI (981) wifi:config NVS flash: enabled[0m
+[0;32mI (991) wifi:config nano formatting: disabled[0m
+[0;32mI (991) wifi:Init data frame dynamic rx buffer num: 64[0m
+[0;32mI (991) wifi:Init static rx mgmt buffer num: 5[0m
+[0;32mI (1001) wifi:Init management short buffer num: 32[0m
+[0;32mI (1001) wifi:Init static tx buffer num: 32[0m
+[0;32mI (1011) wifi:Init static tx FG buffer num: 2[0m
+[0;32mI (1011) wifi:Init static rx buffer size: 1600[0m
+[0;32mI (1021) wifi:Init static rx buffer num: 16[0m
+[0;32mI (1021) wifi:Init dynamic rx buffer num: 64[0m
+[0;32mI (1021) wifi_init: rx ba win: 16[0m
+[0;32mI (1031) wifi_init: accept mbox: 6[0m
+[0;32mI (1031) wifi_init: tcpip mbox: 32[0m
+I (103�	
+
+
+	
+
+	
+
+		
+
+
+
+	
+
+
+
+				
+	
+
+ I (621) esp_psram: SPI SRAM memory test OK
+I (629) cpu_start: GPIO 44 and 43 are used as console UART I/O pins
+I (630) cpu_start: Pro cpu start user code
+I (630) cpu_start: cpu freq: 240000000 Hz
+[0;32mI (631) app_init: Application information:[0m
+[0;32mI (635) app_init: Project name:     drivebot[0m
+[0;32mI (639) app_init: App version:      a6f997c-dirty[0m
+[0;32mI (644) app_init: Compile time:     Apr  5 2026 20:24:42[0m
+[0;32mI (649) app_init: ELF file SHA256:  2ce98db33...[0m
+[0;32mI (653) app_init: ESP-IDF:          v5.4.3-904-gacd7b505de[0m
+[0;32mI (658) efuse_init: Min chip rev:     v0.0[0m
+[0;32mI (662) efuse_init: Max chip rev:     v0.99 [0m
+[0;32mI (666) efuse_init: Chip rev:         v0.2[0m
+[0;32mI (670) heap_init: Initializing. RAM available for dynamic allocation:[0m
+[0;32mI (676) heap_init: At 3FCAB6D0 len 0003E040 (248 KiB): RAM[0m
+[0;32mI (681) heap_init: At 3FCE9710 len 00005724 (21 KiB): RAM[0m
+[0;32mI (686) heap_init: At 600FE000 len 00001FE8 (7 KiB): RTCRAM[0m
+[0;32mI (692) esp_psram: Adding pool of 8192K of PSRAM memory to heap allocator[0m
+[0;32mI (699) spi_flash: detected chip: boya[0m
+[0;32mI (702) spi_flash: flash io: dio[0m
+[0;32mI (705) sleep_gpio: Configure to isolate all GPIO pins in sleep state[0m
+[0;32mI (711) sleep_gpio: Enable automatic switching of GPIO sleep configuration[0m
+[0;32mI (718) esp_core_dump_uart: Init core dump to UART[0m
+[0;32mI (722) coexist: coex firmware version: 7260f71[0m
+[0;32mI (726) coexist: coexist rom version e7ae62f[0m
+[0;32mI (731) main_task: Started on CPU0[0m
+[0;32mI (751) esp_psram: Reserving pool of 256K of internal memory for DMA/internal allocations[0m
+[0;32mI (751) main_task: Calling app_main()[0m
+
+
+=== 🛠 DRIVEBOT STARTING ===
+
+[0;32mI (761) AUDIO_TRANSPORT: ✅ TX I2S канал инициализирован (DOUT=3) на I2S_NUM_1[0m
+[0;32mI (761) gpio: GPIO[2]| InputEn: 0| OutputEn: 0| OpenDrain: 0| Pullup: 1| Pulldown: 0| Intr:0 [0m
+[0;32mI (771) gpio: GPIO[1]| InputEn: 0| OutputEn: 0| OpenDrain: 0| Pullup: 1| Pulldown: 0| Intr:0 [0m
+[0;32mI (781) gpio: GPIO[4]| InputEn: 0| OutputEn: 0| OpenDrain: 0| Pullup: 1| Pulldown: 0| Intr:0 [0m
+[0;32mI (791) gpio: GPIO[5]| InputEn: 0| OutputEn: 0| OpenDrain: 0| Pullup: 1| Pulldown: 0| Intr:0 [0m
+[0;32mI (801) gpio: GPIO[16]| InputEn: 0| OutputEn: 0| OpenDrain: 0| Pullup: 1| Pulldown: 0| Intr:0 [0m
+[0;32mI (801) gpio: GPIO[17]| InputEn: 0| OutputEn: 0| OpenDrain: 0| Pullup: 1| Pulldown: 0| Intr:0 [0m
+[0;32mI (811) gpio: GPIO[18]| InputEn: 0| OutputEn: 0| OpenDrain: 0| Pullup: 1| Pulldown: 0| Intr:0 [0m
+[0;32mI (821) BLE_MGR: Initializing NimBLE BLE stack[0m
+[0;32mI (821) BLE_INIT: BT controller compile version [1bb2f50][0m
+[0;32mI (831) BLE_INIT: Using main XTAL as clock source[0m
+[0;32mI (831) BLE_INIT: Feature Config, ADV:1, BLE_50:1, DTM:1, SCAN:1, CCA:0, SMP:1, CONNECT:1[0m
+[0;32mI (841) BLE_INIT: Bluetooth MAC: ac:a7:04:26:07:32[0m
+[0;32mI (851) phy_init: phy_version 711,97bcf0a2,Aug 25 2025,19:04:10[0m
+[0;32mI (881) BLE_MGR: BLE Host Task Started[0m
+[0;32mI (881) BLE_MGR: Service registered: 0x1800[0m
+[0;32mI (881) BLE_MGR: Characteristic registered: 0x2a00[0m
+[0;32mI (891) BLE_MGR: Characteristic registered: 0x2a01[0m
+[0;32mI (891) BLE_MGR: Service registered: 0x1801[0m
+[0;32mI (891) BLE_MGR: Characteristic registered: 0x2a05[0m
+[0;32mI (901) BLE_MGR: Characteristic registered: 0x2b3a[0m
+[0;32mI (901) BLE_MGR: Characteristic registered: 0x2b29[0m
+[0;32mI (911) BLE_MGR: Service registered: 0xffe0[0m
+[0;32mI (911) BLE_MGR: Characteristic registered: 0xffe1[0m
+[0;32mI (921) NimBLE: GAP procedure initiated: stop advertising.[0m
+
+[0;32mI (921) BLE_MGR: 🔄 Starting advertising...[0m
+[0;32mI (931) NimBLE: GAP procedure initiated: advertise; [0m
+[0;32mI (931) NimBLE: disc_mode=2[0m
+[0;32mI (931) NimBLE:  adv_channel_map=0 own_addr_type=0 adv_filter_policy=0 adv_itvl_min=800 adv_itvl_max=1600[0m
+[0;32mI (941) NimBLE: [0m
+
+[0;32mI (941) BLE_MGR: ✅ Advertising started[0m
+[0;32mI (951) BLE_MGR: BLE initialized successfully[0m
+[0;32mI (951) WIFI_MGR: 🚀 Запуск WiFi точки доступа: DriveBot_CAM (без пароля)[0m
+[0;32mI (961) pp: pp rom version: e7ae62f[0m
+[0;32mI (961) net80211: net80211 rom version: e7ae62f[0m
+[0;32mI (981) wifi:wifi driver task: 3fcc078c, prio:23, stack:3584, core=0[0m
+[0;32mI (981) wifi:wifi firmware version: 562b41f[0m
+[0;32mI (981) wifi:wifi certification version: v7.0[0m
+[0;32mI (981) wifi:config NVS flash: enabled[0m
+[0;32mI (991) wifi:config nano formatting: disabled[0m
+[0;32mI (991) wifi:Init data frame dynamic rx buffer num: 64[0m
+[0;32mI (991) wifi:Init static rx mgmt buffer num: 5[0m
+[0;32mI (1001) wifi:Init management short buffer num: 32[0m
+[0;32mI (1001) wifi:Init static tx buffer num: 32[0m
+[0;32mI (1011) wifi:Init static tx FG buffer num: 2[0m
+[0;32mI (1011) wifi:Init static rx buffer size: 1600[0m
+[0;32mI (1011) wifi:Init static rx buffer num: 16[0m
+[0;32mI (1021) wifi:Init dynamic rx buffer num: 64[0m
+[0;32mI (1021) wifi_init: rx ba win: 16[0m
+[0;32mI (1031) wifi_init: accept mbox: 6[0m
+[0;32mI (1031) wifi_init: tcpip mbox: 32[0m
+[0;32mI (1031) wifi_init: udp mbox: 6[0m
+[0;32mI (1031) wifi_init: tcp mbox: 6[0m
+[0;32mI (1041) wifi_init: tcp tx win: 32768[0m
+[0;32mI (1041) wifi_init: tcp rx win: 32768[0m
+[0;32mI (1041) wifi_init: tcp mss: 1440[0m
+[0;32mI (1051) wifi_init: WiFi IRAM OP enabled[0m
+[0;32mI (1051) wifi_init: WiFi RX IRAM OP enabled[0m
+[0;32mI (1061) wifi:mode : softAP (ac:a7:04:26:07:31)[0m
+[0;32mI (1061) wifi:Total power save buffer number: 16[0m
+[0;32mI (1061) wifi:Init max length of beacon: 752/752[0m
+[0;32mI (1071) wifi:Init max length of beacon: 752/752[0m
+[0;32mI (1071) WIFI_MGR: ✅ WiFi точка доступа запущена: DriveBot_CAM[0m
+[0;32mI (1071) esp_netif_lwip: DHCP server started on interface WIFI_AP_DEF with IP: 192.168.4.1[0m
+[0;32mI (1091) WIFI_MGR: 📡 IP адрес ESP32: 192.168.4.1[0m
+[0;32mI (1091) WIFI_MGR: 📡 Видеопоток: http://192.168.4.1:81/stream[0m
+[0;32mI (1101) WIFI_MGR: 📡 Максимум клиентов: 1 (только телефон)[0m
+[0;32mI (1111) DRIVEBOT_MAIN: ✅ UDP Сервер готов (порт 8080)[0m
+[0;32mI (1121) DRIVEBOT_MAIN: === СИСТЕМА ГОТОВА ===[0m
+KGwBw�����W��c�s��{�g���z������Z����gb�cZ�cZ�sbb���gboSbf��bbsSF+��app_main()
+
+
+=== 🛠 DRIVEBOT STARTING ===
+
+[0;32mI (761) AUDIO_TRANSPORT: ✅ TX I2S канал инициализирован (DOUT=3) на I2S_NUM_1[0m
+[0;32mI (761) gpio: GPIO[2]| InputEn: 0| OutputEn: 0| OpenDrain: 0| Pullup: 1| Pulldown: 0| Intr:0 [0m
+[0;32mI (771) gpio: GPIO[1]| InputEn: 0| OutputEn: 0| OpenDrain: 0| Pullup: 1| Pulldown: 0| Intr:0 [0m
+[0;32mI (781) gpio: GPIO[4]| InputEn: 0| OutputEn: 0| OpenDrain: 0| Pullup: 1| Pulldown: 0| Intr:0 [0m
+[0;32mI (791) gpio: GPIO[5]| InputEn: 0| OutputEn: 0| OpenDrain: 0| Pullup: 1| Pulldown: 0| Intr:0 [0m
+[0;32mI (801) gpio: GPIO[16]| InputEn: 0| OutputEn: 0| OpenDrain: 0| Pullup: 1| Pulldown: 0| Intr:0 [0m
+[0;32mI (801) gpio: GPIO[17]| InputEn: 0| OutputEn: 0| OpenDrain: 0| Pullup: 1| Pulldown: 0| Intr:0 [0m
+[0;32mI (811) gpio: GPIO[18]| InputEn: 0| OutputEn: 0| OpenDrain: 0| Pullup: 1| Pulldown: 0| Intr:0 [0m
+[0;32mI (821) BLE_MGR: Initializing NimBLE BLE stack[0m
+[0;32mI (821) BLE_INIT: BT controller compile version [1bb2f50][0m
+[0;32mI (831) BLE_INIT: Using main XTAL as clock source[0m
+[0;32mI (831) BLE_INIT: Feature Config, ADV:1, BLE_50:1, DTM:1, SCAN:1, CCA:0, SMP:1, CONNECT:1[0m
+[0;32mI (841) BLE_INIT: Bluetooth MAC: ac:a7:04:26:07:32[0m
+[0;32mI (851) phy_init: phy_version 711,97bcf0a2,Aug 25 2025,19:04:10[0m
+[0;32mI (881) BLE_MGR: BLE Host Task Started[0m
+[0;32mI (881) BLE_MGR: Service registered: 0x1800[0m
+[0;32mI (881) BLE_MGR: Characteristic registered: 0x2a00[0m
+[0;32mI (891) BLE_MGR: Characteristic registered: 0x2a01[0m
+[0;32mI (891) BLE_MGR: Service registered: 0x1801[0m
+[0;32mI (891) BLE_MGR: Characteristic registered: 0x2a05[0m
+[0;32mI (901) BLE_MGR: Characteristic registered: 0x2b3a[0m
+[0;32mI (901) BLE_MGR: Characteristic registered: 0x2b29[0m
+[0;32mI (911) BLE_MGR: Service registered: 0xffe0[0m
+[0;32mI (911) BLE_MGR: Characteristic registered: 0xffe1[0m
+[0;32mI (921) NimBLE: GAP procedure initiated: stop advertising.[0m
+
+[0;32mI (921) BLE_MGR: 🔄 Starting advertising...[0m
+[0;32mI (931) NimBLE: GAP procedure initiated: advertise; [0m
+[0;32mI (931) NimBLE: disc_mode=2[0m
+[0;32mI (931) NimBLE:  adv_channel_map=0 own_addr_type=0 adv_filter_policy=0 adv_itvl_min=800 adv_itvl_max=1600[0m
+[0;32mI (941) NimBLE: [0m
+
+[0;32mI (941) BLE_MGR: ✅ Advertising started[0m
+[0;32mI (951) BLE_MGR: BLE initialized successfully[0m
+[0;32mI (951) WIFI_MGR: 🚀 Запуск WiFi точки доступа: DriveBot_CAM (без пароля)[0m
+[0;32mI (961) pp: pp rom version: e7ae62f[0m
+[0;32mI (961) net80211: net80211 rom version: e7ae62f[0m
+[0;32mI (981) wifi:wifi driver task: 3fcc078c, prio:23, stack:3584, core=0[0m
+[0;32mI (981) wifi:wifi firmware version: 562b41f[0m
+[0;32mI (981) wifi:wifi certification version: v7.0[0m
+[0;32mI (981) wifi:config NVS flash: enabled[0m
+[0;32mI (991) wifi:config nano formatting: disabled[0m
+[0;32mI (991) wifi:Init data frame dynamic rx buffer num: 64[0m
+[0;32mI (991) wifi:Init static rx mgmt buffer num: 5[0m
+[0;32mI (1001) wifi:Init management short buffer num: 32[0m
+[0;32mI (1001) wifi:Init static tx buffer num: 32[0m
+[0;32mI (1011) wifi:Init static tx FG buffer num: 2[0m
+[0;32mI (1011) wifi:Init static rx buffer size: 1600[0m
+[0;32mI (1021) wifi:Init static rx buffer num: 16[0m
+[0;32mI (1021) wifi:Init dynamic rx buffer num: 64[0m
+[0;32mI (1021) wifi_init: rx ba win: 16[0m
+[0;32mI (1031) wifi_init: accept mbox: 6[0m
+[0;32mI (1031) wifi_init: tcpip mbox: 32[0m
+[0;32mI (1031) wifi_init: udp mbox: 6[0m
+[0;32mI (1031) wifi_init: tcp mbox: 6[0m
+[0;32mI (1041) wifi_init: tcp tx win: 32768[0m
+[0;32mI (1041) wifi_init: tcp rx win: 32768[0m
+[0;32mI (1041) wifi_init: tcp mss: 1440[0m
+[0;32mI (1051) wifi_init: WiFi IRAM OP enabled[0m
+[0;32mI (1051) wifi_init: WiFi RX IRAM OP enabled[0m
+[0;32mI (1061) wifi:mode : softAP (ac:a7:04:26:07:31)[0m
+[0;32mI (1061) wifi:Total power save buffer number: 16[0m
+[0;32mI (1061) wifi:Init max length of beacon: 752/752[0m
+[0;32mI (1071) wifi:Init max length of beacon: 752/752[0m
+[0;32mI (1071) WIFI_MGR: ✅ WiFi точка доступа запущена: DriveBot_CAM[0m
+[0;32mI (1071) esp_netif_lwip: DHCP server started on interface WIFI_AP_DEF with IP: 192.168.4.1[0m
+[0;32mI (1091) WIFI_MGR: 📡 IP адрес ESP32: 192.168.4.1[0m
+[0;32mI (1091) WIFI_MGR: 📡 Видеопоток: http://192.168.4.1:81/stream[0m
+[0;32mI (1101) WIFI_MGR: 📡 Максимум клиентов: 1 (только телефон)[0m
+[0;32mI (1111) DRIVEBOT_MAIN: ✅ UDP Сервер готов (порт 8080)[0m
+[0;32mI (1121) DRIVEBOT_MAIN: === СИСТЕМА ГОТОВА ===[0m
+�*'J��ѥ���饹��NimBLE BLE stack
+[0;32mI (821) BLE_INIT: BT controller compile version [1bb2f50][0m
+[0;32mI (831) BLE_INIT: Using main XTAL as clock source[0m
+[0;32mI (831) BLE_INIT: Feature Config, ADV:1, BLE_50:1, DTM:1, SCAN:1, CCA:0, SMP:1, CONNECT:1[0m
+[0;32mI (841) BLE_INIT: Bluetooth MAC: ac:a7:04:26:07:32[0m
+[0;32mI (851) phy_init: phy_version 711,97bcf0a2,Aug 25 2025,19:04:10[0m
+[0;32mI (881) BLE_MGR: BLE Host Task Started[0m
+[0;32mI (891) BLE_MGR: Service registered: 0x1800[0m
+[0;32mI (891) BLE_MGR: Characteristic registered: 0x2a00[0m
+[0;32mI (891) BLE_MGR: Characteristic registered: 0x2a01[0m
+[0;32mI (891) BLE_MGR: Service registered: 0x1801[0m
+[0;32mI (891) BLE_MGR: Characteristic registered: 0x2a05[0m
+[0;32mI (901) BLE_MGR: Characteristic registered: 0x2b3a[0m
+[0;32mI (901) BLE_MGR: Characteristic registered: 0x2b29[0m
+[0;32mI (911) BLE_MGR: Service registered: 0xffe0[0m
+[0;32mI (911) BLE_MGR: Characteristic registered: 0xffe1[0m
+[0;32mI (921) NimBLE: GAP procedure initiated: stop advertising.[0m
+
+[0;32mI (921) BLE_MGR: 🔄 Starting advertising...[0m
+[0;32mI (931) NimBLE: GAP procedure initiated: advertise; [0m
+[0;32mI (931) NimBLE: disc_mode=2[0m
+[0;32mI (931) NimBLE:  adv_channel_map=0 own_addr_type=0 adv_filter_policy=0 adv_itvl_min=800 adv_itvl_max=1600[0m
+[0;32mI (941) NimBLE: [0m
+
+[0;32mI (941) BLE_MGR: ✅ Advertising started[0m
+[0;32mI (951) BLE_MGR: BLE initialized successfully[0m
+[0;32mI (951) WIFI_MGR: 🚀 Запуск WiFi точки доступа: DriveBot_CAM (без пароля)[0m
+[0;32mI (961) pp: pp rom version: e7ae62f[0m
+[0;32mI (961) net80211: net80211 rom version: e7ae62f[0m
+[0;32mI (981) wifi:wifi driver task: 3fcc078c, prio:23, stack:3584, core=0[0m
+[0;32mI (981) wifi:wifi firmware version: 562b41f[0m
+[0;32mI (981) wifi:wifi certification version: v7.0[0m
+[0;32mI (981) wifi:config NVS flash: enabled[0m
+[0;32mI (991) wifi:config nano formatting: disabled[0m
+[0;32mI (991) wifi:Init data frame dynamic rx buffer num: 64[0m
+[0;32mI (991) wifi:Init static rx mgmt buffer num: 5[0m
+[0;32mI (1001) wifi:Init management short buffer num: 32[0m
+[0;32mI (1001) wifi:Init static tx buffer num: 32[0m
+[0;32mI (1011) wifi:Init static tx FG buffer num: 2[0m
+[0;32mI (1011) wifi:Init static rx buffer size: 1600[0m
+[0;32mI (1021) wifi:Init static rx buffer num: 16[0m
+[0;32mI (1021) wifi:Init dynamic rx buffer num: 64[0m
+[0;32mI (1021) wifi_init: rx ba win: 16[0m
+[0;32mI (1031) wifi_init: accept mbox: 6[0m
+�2� (7 KiB): RTCRAM
+[0;32mI (692) esp_psram: Adding pool of 8192K of PSRAM memory to heap allocator[0m
+[0;32mI (699) spi_flash: detected chip: boya[0m
+[0;32mI (702) spi_flash: flash io: dio[0m
+[0;32mI (705) sleep_gpio: Configure to isolate all GPIO pins in sleep state[0m
+[0;32mI (711) sleep_gpio: Enable automatic switching of GPIO sleep configuration[0m
+[0;32mI (718) esp_core_dump_uart: Init core dump to UART[0m
+[0;32mI (722) coexist: coex firmware version: 7260f71[0m
+[0;32mI (726) coexist: coexist rom version e7ae62f[0m
+[0;32mI (731) main_task: Started on CPU0[0m
+[0;32mI (751) esp_psram: Reserving pool of 256K of internal memory for DMA/internal allocations[0m
+[0;32mI (751) main_task: Calling app_main()[0m
+
+
+=== 🛠 DRIVEBOT STARTING ===
+
+[0;32mI (761) AUDIO_TRANSPORT: ✅ TX I2S канал инициализирован (DOUT=3) на I2S_NUM_1[0m
+[0;32mI (761) gpio: GPIO[2]| InputEn: 0| OutputEn: 0| OpenDrain: 0| Pullup: 1| Pulldown: 0| Intr:0 [0m
+[0;32mI (771) gpio: GPIO[1]| InputEn: 0| OutputEn: 0| OpenDrain: 0| Pullup: 1| Pulldown: 0| Intr:0 [0m
+[0;32mI (781) gpio: GPIO[4]| InputEn: 0| OutputEn: 0| OpenDrain: 0| Pullup: 1| Pulldown: 0| Intr:0 [0m
+[0;32mI (791) gpio: GPIO[5]| InputEn: 0| OutputEn: 0| OpenDrain: 0| Pullup: 1| Pulldown: 0| Intr:0 [0m
+[0;32mI (801) gpio: GPIO[16]| InputEn: 0| OutputEn: 0| OpenDrain: 0| Pullup: 1| Pulldown: 0| Intr:0 [0m
+[0;32mI (801) gpio: GPIO[17]| InputEn: 0| OutputEn: 0| OpenDrain: 0| Pullup: 1| Pulldown: 0| Intr:0 [0m
+[0;32mI (811) gpio: GPIO[18]| InputEn: 0| OutputEn: 0| OpenDrain: 0| Pullup: 1| Pulldown: 0| Intr:0 [0m
+[0;32mI (821) BLE_MGR: Initializing NimBLE BLE stack[0m
+[0;32mI (821) BLE_INIT: BT controller compile version [1bb2f50][0m
+[0;32mI (831) BLE_INIT: Using main XTAL as clock source[0m
+[0;32mI (831) BLE_INIT: Feature Config, ADV:1, BLE_50:1, DTM:1, SCAN:1, CCA:0, SMP:1, CONNECT:1[0m
+[0;32mI (841) BLE_INIT: Bluetooth MAC: ac:a7:04:26:07:32[0m
+[0;32mI (851) phy_init: phy_version 711,97bcf0a2,Aug 25 2025,19:04:10[0m
+[0;32mI (881) BLE_MGR: BLE Host Task Started[0m
+[0;32mI (881) BLE_MGR: Service registered: 0x1800[0m
+[0;32mI (891) BLE_MGR: Characteristic registered: 0x2a00[0m
+[0;32mI (891) BLE_MGR: Characteristic registered: 0x2a01[0m
+[0;32mI (891) BLE_MGR: Service registered: 0x1801[0m
+[0;32mI (891) BLE_MGR: Characteristic registered: 0x2a05[0m
+[0;32mI (901) BLE_MGR: Characteristic registered: 0x2b3a[0m
+[0;32mI (901) BLE_MGR: Characteristic registered: 0x2b29[0m
+[0;32mI (911) BLE_MGR: Service registered: 0xffe0[0m
+[0;32mI (911) BLE_MGR: Characteristic registered: 0xffe1[0m
+[0;32mI (921) NimBLE: GAP procedure initiated: stop advertising.[0m
+
+[0;32mI (921) BLE_MGR: 🔄 Starting advertising...[0m
+[0;32mI (931) NimBLE: GAP procedure initiated: advertise; [0m
+[0;32mI (931) NimBLE: disc_mode=2[0m
+[0;32mI (931) NimBLE:  adv_channel_map=0 own_addr_type=0 adv_filter_policy=0 adv_itvl_min=800 adv_itvl_max=1600[0m
+[0;32mI (941) NimBLE: [0m
+
+[0;32mI (941) BLE_MGR: ✅ Advertising started[0m
+[0;32mI (951) BLE_MGR: BLE initialized successfully[0m
+[0;32mI (951) WIFI_MGR: 🚀 Запуск WiFi точки доступа: DriveBot_CAM (без пароля)[0m
+[0;32mI (961) pp: pp rom version: e7ae62f[0m
+[0;32mI (961) net80211: net80211 rom version: e7ae62f[0m
+[0;32mI (981) wifi:wifi driver task: 3fcc078c, prio:23, stack:3584, core=0[0m
+[0;32mI (981) wifi:wifi firmware version: 562b41f[0m
+[0;32mI (981) wifi:wifi certification version: v7.0[0m
+[0;32mI (981) wifi:config NVS flash: enabled[0m
+[0;32mI (991) wifi:config nano formatting: disabled[0m
+[0;32mI (991) wifi:Init data frame dynamic rx buffer num: 64[0m
+[0;32mI (991) wifi:Init static rx mgmt buffer num: 5[0m
+[0;32mI (1001) wifi:Init management short buffer num: 32[0m
+[0;32mI (1001) wifi:Init static tx buffer num: 32[0m
+[0;32mI (1011) wifi:Init static tx FG buffer num: 2[0m
+[0;32mI (1011) wifi:Init static rx buffer size: 1600[0m
+[0;32mI (1021) wifi:Init static rx buffer num: 16[0m
+[0;32mI (1021) wifi:Init dynamic rx buffer num: 64[0m
+[0;32mI (1021) wifi_init: rx ba win: 16[0m
+[0;32mI (1031) wifi_init: accept mbox: 6[0m
+[0;32mI (1031) wifi_init: tcpip mbox: 32[0m
+[0;32mI (1031) wifi_init: udp mbox: 6[0m
+[0;32mI (1041) wifi_init: tcp mbox: 6[0m
+[0;32mI (1041) wifi_init: tcp tx win: 32768[0m
+[0;32mI (1041) wifi_init: tcp rx win: 32768[0m
+[0;32mI (1041) wifi_init: tcp mss: 1440[0m
+[0;32mI (1051) wifi_init: WiFi IRAM OP enabled[0m
+[0;32mI (1051) wifi_init: WiFi RX IRAM OP enabled[0m
+[0;32mI (1061) wifi:mode : softAP (ac:a7:04:26:07:31)[0m
+[0;32mI (1061) wifi:Total power save buffer number: 16[0m
+[0;32mI (1061) wifi:Init max length of beacon: 752/752[0m
+[0;32mI (1071) wifi:Init max length of beacon: 752/752[0m
+[0;32mI (1071) WIFI_MGR: ✅ WiFi точка доступа запущена: DriveBot_CAM[0m
+[0;32mI (1071) esp_netif_lwip: DHCP server started on interface WIFI_AP_DEF with IP: 192.168.4.1[0m
+[0;32mI (1091) WIFI_MGR: 📡 IP адрес ESP32: 192.168.4.1[0m
+[0;32mI (1091) WIFI_MGR: 📡 Видеопоток: http://192.168.4.1:81/stream[0m
+[0;32mI (1101) WIFI_MGR: 📡 Максимум клиентов: 1 (только телефон)[0m
+[0;32mI (1111) DRIVEBOT_MAIN: ✅ UDP Сервер готов (порт 8080)[0m
+[0;32mI (1121) DRIVEBOT_MAIN: === СИСТЕМА ГОТОВА ===[0m
+[0;32mI (621) esp_psram: SPI SRAM memory test OK[0m
+[0;32mI (629) cpu_start: GPIO 44 and 43 are used as console UART I/O pins[0m
+[0;32mI (630) cpu_start: Pro cpu start user code[0m
+[0;32mI (630) cpu_start: cpu freq: 240000000 Hz[0m
+[0;32mI (631) app_init: Application information:[0m
+[0;32mI (635) app_init: Project name:     drivebot[0m
+[0;32mI (639) app_init: App version:      a6f997c-dirty[0m
+[0;32mI (644) app_init: Compile time:     Apr  5 2026 20:24:42[0m
+[0;32mI (649) app_init: ELF file SHA256:  2ce98db33...[0m
+[0;32mI (653) app_init: ESP-IDF:          v5.4.3-904-gacd7b505de[0m
+[0;32mI (658) efuse_init: Min chip rev:     v0.0[0m
+[0;32mI (662) efuse_init: Max chip rev:     v0.99 [0m
+[0;32mI (666) efuse_init: Chip rev:         v0.2[0m
+[0;32mI (670) heap_init: Initializing. RAM available for dynamic allocation:[0m
+[0;32mI (676) heap_init: At 3FCAB6D0 len 0003E040 (248 KiB): RAM[0m
+[0;32mI (681) heap_init: At 3FCE9710 len 00005724 (21 KiB): RAM[0m
+[0;32mI (686) heap_init: At 600FE000 len 00001FE8 (7 KiB): RTCRAM[0m
+[0;32mI (692) esp_psram: Adding pool of 8192K of PSRAM memory to heap allocator[0m
+[0;32mI (699) spi_flash: detected chip: boya[0m
+[0;32mI (702) spi_flash: flash io: dio[0m
+[0;32mI (705) sleep_gpio: Configure to isolate all GPIO pins in sleep state[0m
+[0;32mI (711) sleep_gpio: Enable automatic switching of GPIO sleep configuration[0m
+[0;32mI (718) esp_core_dump_uart: Init core dump to UART[0m
+[0;32mI (722) coexist: coex firmware version: 7260f71[0m
+[0;32mI (726) coexist: coexist rom version e7ae62f[0m
+[0;32mI (731) main_task: Started on CPU0[0m
+[0;32mI (751) esp_psram: Reserving pool of 256K of internal memory for DMA/internal allocations[0m
+[0;32mI (751) main_task: Calling app_main()[0m
+
+
+=== 🛠 DRIVEBOT STARTING ===
+
+[0;32mI (761) AUDIO_TRANSPORT: ✅ TX I2S канал инициализирован (DOUT=3) на I2S_NUM_1[0m
+[0;32mI (761) gpio: GPIO[2]| InputEn: 0| OutputEn: 0| OpenDrain: 0| Pullup: 1| Pulldown: 0| Intr:0 [0m
+[0;32mI (771) gpio: GPIO[1]| InputEn: 0| OutputEn: 0| OpenDrain: 0| Pullup: 1| Pulldown: 0| Intr:0 [0m
+[0;32mI (781) gpio: GPIO[4]| InputEn: 0| OutputEn: 0| OpenDrain: 0| Pullup: 1| Pulldown: 0| Intr:0 [0m
+[0;32mI (791) gpio: GPIO[5]| InputEn: 0| OutputEn: 0| OpenDrain: 0| Pullup: 1| Pulldown: 0| Intr:0 [0m
+[0;32mI (801) gpio: GPIO[16]| InputEn: 0| OutputEn: 0| OpenDrain: 0| Pullup: 1| Pulldown: 0| Intr:0 [0m
+[0;32mI (801) gpio: GPIO[17]| InputEn: 0| OutputEn: 0| OpenDrain: 0| Pullup: 1| Pulldown: 0| Intr:0 [0m
+[0;32mI (811) gpio: GPIO[18]| InputEn: 0| OutputEn: 0| OpenDrain: 0| Pullup: 1| Pulldown: 0| Intr:0 [0m
+[0;32mI (821) BLE_MGR: Initializing NimBLE BLE stack[0m
+[0;32mI (821) BLE_INIT: BT controller compile version [1bb2f50][0m
+[0;32mI (831) BLE_INIT: Using main XTAL as clock source[0m
+[0;32mI (831) BLE_INIT: Feature Config, ADV:1, BLE_50:1, DTM:1, SCAN:1, CCA:0, SMP:1, CONNECT:1[0m
+[0;32mI (841) BLE_INIT: Bluetooth MAC: ac:a7:04:26:07:32[0m
+[0;32mI (851) phy_init: phy_version 711,97bcf0a2,Aug 25 2025,19:04:10[0m
+[0;32mI (881) BLE_MGR: BLE Host Task Started[0m
+[0;32mI (891) BLE_MGR: Service registered: 0x1800[0m
+[0;32mI (891) BLE_MGR: Characteristic registered: 0x2a00[0m
+[0;32mI (891) BLE_MGR: Characteristic registered: 0x2a01[0m
+[0;32mI (891) BLE_MGR: Service registered: 0x1801[0m
+[0;32mI (891) BLE_MGR: Characteristic registered: 0x2a05[0m
+[0;32mI (901) BLE_MGR: Characteristic registered: 0x2b3a[0m
+[0;32mI (901) BLE_MGR: Characteristic registered: 0x2b29[0m
+[0;32mI (911) BLE_MGR: Service registered: 0xffe0[0m
+[0;32mI (911) BLE_MGR: Characteristic registered: 0xffe1[0m
+[0;32mI (921) NimBLE: GAP procedure initiated: stop advertising.[0m
+
+[0;32mI (921) BLE_MGR: 🔄 Starting advertising...[0m
+[0;32mI (931) NimBLE: GAP procedure initiated: advertise; [0m
+[0;32mI (931) NimBLE: disc_mode=2[0m
+[0;32mI (931) NimBLE:  adv_channel_map=0 own_addr_type=0 adv_filter_policy=0 adv_itvl_min=800 adv_itvl_max=1600[0m
+[0;32mI (941) NimBLE: [0m
+
+[0;32mI (941) BLE_MGR: ✅ Advertising started[0m
+[0;32mI (951) BLE_MGR: BLE initialized successfully[0m
+[0;32mI (951) WIFI_MGR: 🚀 Запуск WiFi точки доступа: DriveBot_CAM (без пароля)[0m
+[0;32mI (961) pp: pp rom version: e7ae62f[0m
+[0;32mI (961) net80211: net80211 rom version: e7ae62f[0m
+[0;32mI (981) wifi:wifi driver task: 3fcc078c, prio:23, stack:3584, core=0[0m
+[0;32mI (981) wifi:wifi firmware version: 562b41f[0m
+[0;32mI (981) wifi:wifi certification version: v7.0[0m
+[0;32mI (981) wifi:config NVS flash: enabled[0m
+[0;32mI (991) wifi:config nano formatting: disabled[0m
+[0;32mI (991) wifi:Init data frame dynamic rx buffer num: 64[0m
+[0;32mI (991) wifi:Init static rx mgmt buffer num: 5[0m
+[0;32mI (1001) wifi:Init management short buffer num: 32[0m
+[0;32mI (1001) wifi:Init static tx buffer num: 32[0m
+[0;32mI (1011) wifi:Init static tx FG buffer num: 2[0m
+[0;32mI (1011) wifi:Init static rx buffer size: 1600[0m
+[0;32mI (1021) wifi:Init static rx buffer num: 16[0m
+[0;32mI (1021) wifi:Init dynamic rx buffer num: 64[0m
+[0;32mI (1021) wifi_init: rx ba win: 16[0m
+[0;32mI (1031) wifi_init: accept mbox: 6[0m
+[0;32mI (1031) wifi_init: tcpip mbox: 32[0m
+[0;32mI (1031) wifi_init: udp mbox: 6[0m
+[0;32mI (1041) wifi_init: tcp mbox: 6[0m
+[0;32mI (1041) wifi_init: tcp tx win: 32768[0m
+[0;32mI (1041) wifi_init: tcp rx win: 32768[0m
+[0;32mI (1041) wifi_init: tcp mss: 1440[0m
+[0;32mI (1051) wifi_init: WiFi IRAM OP enabled[0m
+[0;32mI (1051) wifi_init: WiFi RX IRAM OP enabled[0m
+[0;32mI (1061) wifi:mode : softAP (ac:a7:04:26:07:31)[0m
+[0;32mI (1061) wifi:Total power save buffer number: 16[0m
+[0;32mI (1061) wifi:Init max length of beacon: 752/752[0m
+[0;32mI (1071) wifi:Init max length of beacon: 752/752[0m
+[0;32mI (1071) WIFI_MGR: ✅ WiFi точка доступа запущена: DriveBot_CAM[0m
+[0;32mI (1071) esp_netif_lwip: DHCP server started on interface WIFI_AP_DEF with IP: 192.168.4.1[0m
+[0;32mI (1091) WIFI_MGR: 📡 IP адрес ESP32: 192.168.4.1[0m
+[0;32mI (1091) WIFI_MGR: 📡 Видеопоток: http://192.168.4.1:81/stream[0m
+[0;32mI (1101) WIFI_MGR: 📡 Максимум клиентов: 1 (только телефон)[0m
+[0;32mI (1111) DRIVEBOT_MAIN: ✅ UDP Сервер готов (порт 8080)[0m
+[0;32mI (1121) DRIVEBOT_MAIN: === СИСТЕМА ГОТОВА ===[0m
+[0;32mI (32771) wifi:new:<1,0>, old:<1,1>, ap:<1,1>, sta:<255,255>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (32771) wifi:station: 32:44:eb:48:e5:38 join, AID=1, bgn, 20[0m
+[0;32mI (32771) wifi:Set ps type: 0, coexist: 1[0m
+
+[0;32mI (32771) wifi:Coexist!!! Wi-Fi station would only keep waked when available[0m
+
+[0;32mI (32781) WIFI_MGR: 📱 Телефон подключен по WiFi[0m
+[0;32mI (32781) WIFI_MGR: 📡 Видеопоток: http://192.168.4.1:81/stream[0m
+[0;32mI (32921) wifi:<ba-add>idx:2 (ifx:1, 32:44:eb:48:e5:38), tid:0, ssn:0, winSize:64[0m
+[0;32mI (32981) esp_netif_lwip: DHCP server assigned IP to a client, IP is: 192.168.4.2[0m
+[0;32mI (35751) DRIVEBOT_MAIN: 📷 Принудительный запуск камеры[0m
+[0;33mW (36271) httpd_uri: httpd_uri: URI '/stream' not found[0m
+[0;33mW (36271) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (37291) httpd_uri: httpd_uri: URI '/stream?t=1775419295760' not found[0m
+[0;33mW (37291) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;32mI (37641) DRIVEBOT_MAIN: 📱 Команда: HORN_OFF[0m
+[0;33mW (37651) BLE_MGR: BLE не подключен, команда не отправлена: HORN_OFF[0m
+[0;33mW (38331) httpd_uri: httpd_uri: URI '/stream?t=1775419296785' not found[0m
+[0;33mW (38331) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (39361) httpd_uri: httpd_uri: URI '/stream?t=1775419297819' not found[0m
+[0;33mW (39361) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (40411) httpd_uri: httpd_uri: URI '/stream?t=1775419298860' not found[0m
+[0;33mW (40411) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (41441) httpd_uri: httpd_uri: URI '/stream?t=1775419299900' not found[0m
+[0;33mW (41441) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (43391) httpd_uri: httpd_uri: URI '/stream?t=1775419301809' not found[0m
+[0;33mW (43391) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;32mI (43591) DRIVEBOT_MAIN: 📷 Принудительный запуск камеры[0m
+[0;33mW (45371) httpd_uri: httpd_uri: URI '/stream?t=1775419303809' not found[0m
+[0;33mW (45371) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (45731) httpd_uri: httpd_uri: URI '/stream' not found[0m
+[0;33mW (45731) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (46821) httpd_uri: httpd_uri: URI '/stream?t=1775419305221' not found[0m
+[0;33mW (46821) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (47361) httpd_uri: httpd_uri: URI '/stream?t=1775419305810' not found[0m
+[0;33mW (47361) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (47861) httpd_uri: httpd_uri: URI '/stream?t=1775419306307' not found[0m
+[0;33mW (47861) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (48901) httpd_uri: httpd_uri: URI '/stream?t=1775419307359' not found[0m
+[0;33mW (48911) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (49351) httpd_uri: httpd_uri: URI '/stream?t=1775419307810' not found[0m
+[0;33mW (49351) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (49951) httpd_uri: httpd_uri: URI '/stream?t=1775419308395' not found[0m
+[0;33mW (49951) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (51001) httpd_uri: httpd_uri: URI '/stream?t=1775419309444' not found[0m
+[0;33mW (51001) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (51361) httpd_uri: httpd_uri: URI '/stream?t=1775419309810' not found[0m
+[0;33mW (51361) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (52051) httpd_uri: httpd_uri: URI '/stream?t=1775419310486' not found[0m
+[0;33mW (52051) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (53161) httpd_uri: httpd_uri: URI '/stream?t=1775419311544' not found[0m
+[0;33mW (53161) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (53351) httpd_uri: httpd_uri: URI '/stream?t=1775419311809' not found[0m
+[0;33mW (53351) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (54211) httpd_uri: httpd_uri: URI '/stream?t=1775419312648' not found[0m
+[0;33mW (54211) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (55261) httpd_uri: httpd_uri: URI '/stream?t=1775419313710' not found[0m
+[0;33mW (55261) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (55341) httpd_uri: httpd_uri: URI '/stream?t=1775419313809' not found[0m
+[0;33mW (55341) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (56341) httpd_uri: httpd_uri: URI '/stream?t=1775419314758' not found[0m
+[0;33mW (56341) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (57371) httpd_uri: httpd_uri: URI '/stream?t=1775419315809' not found[0m
+[0;33mW (57371) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (57371) httpd_uri: httpd_uri: URI '/stream?t=1775419315833' not found[0m
+[0;33mW (57381) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (58451) httpd_uri: httpd_uri: URI '/stream?t=1775419316872' not found[0m
+[0;33mW (58451) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (59391) httpd_uri: httpd_uri: URI '/stream?t=1775419317810' not found[0m
+[0;33mW (59391) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (59481) httpd_uri: httpd_uri: URI '/stream?t=1775419317940' not found[0m
+[0;33mW (59481) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (60541) httpd_uri: httpd_uri: URI '/stream?t=1775419318980' not found[0m
+[0;33mW (60541) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (61351) httpd_uri: httpd_uri: URI '/stream?t=1775419319809' not found[0m
+[0;33mW (61351) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (61571) httpd_uri: httpd_uri: URI '/stream?t=1775419320040' not found[0m
+[0;33mW (61571) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (62621) httpd_uri: httpd_uri: URI '/stream?t=1775419321058' not found[0m
+[0;33mW (62631) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (63341) httpd_uri: httpd_uri: URI '/stream?t=1775419321809' not found[0m
+[0;33mW (63341) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (63661) httpd_uri: httpd_uri: URI '/stream?t=1775419322115' not found[0m
+[0;33mW (63661) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (64701) httpd_uri: httpd_uri: URI '/stream?t=1775419323146' not found[0m
+[0;33mW (64701) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (65351) httpd_uri: httpd_uri: URI '/stream?t=1775419323809' not found[0m
+[0;33mW (65351) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (65751) httpd_uri: httpd_uri: URI '/stream?t=1775419324188' not found[0m
+[0;33mW (65751) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (66871) httpd_uri: httpd_uri: URI '/stream?t=1775419325250' not found[0m
+[0;33mW (66871) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (67371) httpd_uri: httpd_uri: URI '/stream?t=1775419325810' not found[0m
+[0;33mW (67371) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (67921) httpd_uri: httpd_uri: URI '/stream?t=1775419326363' not found[0m
+[0;33mW (67921) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (68981) httpd_uri: httpd_uri: URI '/stream?t=1775419327420' not found[0m
+[0;33mW (68981) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (69371) httpd_uri: httpd_uri: URI '/stream?t=1775419327810' not found[0m
+[0;33mW (69371) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (70041) httpd_uri: httpd_uri: URI '/stream?t=1775419328474' not found[0m
+[0;33mW (70041) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (71091) httpd_uri: httpd_uri: URI '/stream?t=1775419329528' not found[0m
+[0;33mW (71091) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (71361) httpd_uri: httpd_uri: URI '/stream?t=1775419329810' not found[0m
+[0;33mW (71361) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (72151) httpd_uri: httpd_uri: URI '/stream?t=1775419330592' not found[0m
+[0;33mW (72151) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (73261) httpd_uri: httpd_uri: URI '/stream?t=1775419331649' not found[0m
+[0;33mW (73261) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (73341) httpd_uri: httpd_uri: URI '/stream?t=1775419331809' not found[0m
+[0;33mW (73341) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (74311) httpd_uri: httpd_uri: URI '/stream?t=1775419332748' not found[0m
+[0;33mW (74311) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (75371) httpd_uri: httpd_uri: URI '/stream?t=1775419333809' not found[0m
+[0;33mW (75371) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (75381) httpd_uri: httpd_uri: URI '/stream?t=1775419333814' not found[0m
+[0;33mW (75381) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (76471) httpd_uri: httpd_uri: URI '/stream?t=1775419334877' not found[0m
+[0;33mW (76471) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (77391) httpd_uri: httpd_uri: URI '/stream?t=1775419335809' not found[0m
+[0;33mW (77391) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (77511) httpd_uri: httpd_uri: URI '/stream?t=1775419335962' not found[0m
+[0;33mW (77511) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (78571) httpd_uri: httpd_uri: URI '/stream?t=1775419337000' not found[0m
+[0;33mW (78571) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (79351) httpd_uri: httpd_uri: URI '/stream?t=1775419337809' not found[0m
+[0;33mW (79351) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (79621) httpd_uri: httpd_uri: URI '/stream?t=1775419338065' not found[0m
+[0;33mW (79621) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;32mI (79921) DRIVEBOT_MAIN: 📱 Команда: HORN_ON[0m
+[0;32mI (79921) AUDIO_TRANSPORT: Включаю динамик для гудка[0m
+[0;32mI (79921) AUDIO_TRANSPORT: 🔊 Динамик активирован[0m
+[0;32mI (80031) AUDIO_TRANSPORT: 🔊 Запись I2S: результат=0, записано байт=2048[0m
+[0;32mI (80531) AUDIO_TRANSPORT: 🔇 Динамик деактивирован[0m
+[0;32mI (80531) AUDIO_TRANSPORT: Динамик выключен[0m
+[0;33mW (80671) httpd_uri: httpd_uri: URI '/stream?t=1775419339105' not found[0m
+[0;33mW (80671) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (81371) httpd_uri: httpd_uri: URI '/stream?t=1775419339810' not found[0m
+[0;33mW (81371) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (81741) httpd_uri: httpd_uri: URI '/stream?t=1775419340171' not found[0m
+[0;33mW (81741) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (82841) httpd_uri: httpd_uri: URI '/stream?t=1775419341250' not found[0m
+[0;33mW (82841) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (83371) httpd_uri: httpd_uri: URI '/stream?t=1775419341809' not found[0m
+[0;33mW (83371) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (83891) httpd_uri: httpd_uri: URI '/stream?t=1775419342335' not found[0m
+[0;33mW (83891) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (84981) httpd_uri: httpd_uri: URI '/stream?t=1775419343395' not found[0m
+[0;33mW (84981) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (85371) httpd_uri: httpd_uri: URI '/stream?t=1775419343809' not found[0m
+[0;33mW (85371) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (86031) httpd_uri: httpd_uri: URI '/stream?t=1775419344479' not found[0m
+[0;33mW (86031) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (87081) httpd_uri: httpd_uri: URI '/stream?t=1775419345520' not found[0m
+[0;33mW (87081) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (87361) httpd_uri: httpd_uri: URI '/stream?t=1775419345810' not found[0m
+[0;33mW (87361) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (88181) httpd_uri: httpd_uri: URI '/stream?t=1775419346573' not found[0m
+[0;33mW (88181) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (89241) httpd_uri: httpd_uri: URI '/stream?t=1775419347678' not found[0m
+[0;33mW (89241) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (89341) httpd_uri: httpd_uri: URI '/stream?t=1775419347809' not found[0m
+[0;33mW (89341) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (90321) httpd_uri: httpd_uri: URI '/stream?t=1775419348744' not found[0m
+[0;33mW (90321) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (91431) httpd_uri: httpd_uri: URI '/stream?t=1775419349809' not found[0m
+[0;33mW (91431) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (91441) httpd_uri: httpd_uri: URI '/stream?t=1775419349812' not found[0m
+[0;33mW (91441) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (92541) httpd_uri: httpd_uri: URI '/stream?t=1775419350937' not found[0m
+[0;33mW (92541) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (93361) httpd_uri: httpd_uri: URI '/stream?t=1775419351809' not found[0m
+[0;33mW (93361) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (93611) httpd_uri: httpd_uri: URI '/stream?t=1775419352037' not found[0m
+[0;33mW (93611) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (94671) httpd_uri: httpd_uri: URI '/stream?t=1775419353103' not found[0m
+[0;33mW (94671) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (95361) httpd_uri: httpd_uri: URI '/stream?t=1775419353809' not found[0m
+[0;33mW (95361) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (95721) httpd_uri: httpd_uri: URI '/stream?t=1775419354162' not found[0m
+[0;33mW (95721) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (96781) httpd_uri: httpd_uri: URI '/stream?t=1775419355221' not found[0m
+[0;33mW (96781) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (97351) httpd_uri: httpd_uri: URI '/stream?t=1775419355809' not found[0m
+[0;33mW (97351) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (97811) httpd_uri: httpd_uri: URI '/stream?t=1775419356273' not found[0m
+[0;33mW (97821) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (98871) httpd_uri: httpd_uri: URI '/stream?t=1775419357301' not found[0m
+[0;33mW (98871) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (99361) httpd_uri: httpd_uri: URI '/stream?t=1775419357809' not found[0m
+[0;33mW (99361) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (99911) httpd_uri: httpd_uri: URI '/stream?t=1775419358362' not found[0m
+[0;33mW (99911) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (100971) httpd_uri: httpd_uri: URI '/stream?t=1775419359427' not found[0m
+[0;33mW (100971) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (101361) httpd_uri: httpd_uri: URI '/stream?t=1775419359809' not found[0m
+[0;33mW (101361) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (102011) httpd_uri: httpd_uri: URI '/stream?t=1775419360468' not found[0m
+[0;33mW (102011) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (103061) httpd_uri: httpd_uri: URI '/stream?t=1775419361507' not found[0m
+[0;33mW (103061) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (104111) httpd_uri: httpd_uri: URI '/stream?t=1775419362547' not found[0m
+[0;33mW (104111) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;32mI (104581) DRIVEBOT_MAIN: 📱 Команда: HORN_OFF[0m
+[0;33mW (104581) BLE_MGR: BLE не подключен, команда не отправлена: HORN_OFF[0m
+[0;33mW (105161) httpd_uri: httpd_uri: URI '/stream?t=1775419363601' not found[0m
+[0;33mW (105161) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (106221) httpd_uri: httpd_uri: URI '/stream?t=1775419364654' not found[0m
+[0;33mW (106221) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;32mI (106281) DRIVEBOT_MAIN: 📱 Команда: HORN_ON[0m
+[0;32mI (106281) AUDIO_TRANSPORT: Включаю динамик для гудка[0m
+[0;32mI (106281) AUDIO_TRANSPORT: 🔊 Динамик активирован[0m
+[0;32mI (106381) AUDIO_TRANSPORT: 🔊 Запись I2S: результат=0, записано байт=2048[0m
+[0;32mI (106881) AUDIO_TRANSPORT: 🔇 Динамик деактивирован[0m
+[0;32mI (106881) AUDIO_TRANSPORT: Динамик выключен[0m
+[0;33mW (107271) httpd_uri: httpd_uri: URI '/stream?t=1775419365705' not found[0m
+[0;33mW (107271) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (108321) httpd_uri: httpd_uri: URI '/stream?t=1775419366769' not found[0m
+[0;33mW (108321) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (109391) httpd_uri: httpd_uri: URI '/stream?t=1775419367812' not found[0m
+[0;33mW (109391) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (110461) httpd_uri: httpd_uri: URI '/stream?t=1775419368885' not found[0m
+[0;33mW (110461) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (111521) httpd_uri: httpd_uri: URI '/stream?t=1775419369954' not found[0m
+[0;33mW (111521) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (112611) httpd_uri: httpd_uri: URI '/stream?t=1775419371012' not found[0m
+[0;33mW (112611) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (113691) httpd_uri: httpd_uri: URI '/stream?t=1775419372095' not found[0m
+[0;33mW (113691) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (114761) httpd_uri: httpd_uri: URI '/stream?t=1775419373195' not found[0m
+[0;33mW (114761) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (115831) httpd_uri: httpd_uri: URI '/stream?t=1775419374247' not found[0m
+[0;33mW (115831) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (116911) httpd_uri: httpd_uri: URI '/stream?t=1775419375325' not found[0m
+[0;33mW (116911) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (118001) httpd_uri: httpd_uri: URI '/stream?t=1775419376414' not found[0m
+[0;33mW (118001) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (119081) httpd_uri: httpd_uri: URI '/stream?t=1775419377491' not found[0m
+[0;33mW (119081) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (120131) httpd_uri: httpd_uri: URI '/stream?t=1775419378568' not found[0m
+[0;33mW (120131) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (121181) httpd_uri: httpd_uri: URI '/stream?t=1775419379620' not found[0m
+[0;33mW (121181) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (122251) httpd_uri: httpd_uri: URI '/stream?t=1775419380683' not found[0m
+[0;33mW (122251) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (123311) httpd_uri: httpd_uri: URI '/stream?t=1775419381747' not found[0m
+[0;33mW (123311) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (124351) httpd_uri: httpd_uri: URI '/stream?t=1775419382803' not found[0m
+[0;33mW (124351) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (125411) httpd_uri: httpd_uri: URI '/stream?t=1775419383845' not found[0m
+[0;33mW (125411) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (126451) httpd_uri: httpd_uri: URI '/stream?t=1775419384897' not found[0m
+[0;33mW (126451) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (127491) httpd_uri: httpd_uri: URI '/stream?t=1775419385933' not found[0m
+[0;33mW (127491) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (128551) httpd_uri: httpd_uri: URI '/stream?t=1775419386988' not found[0m
+[0;33mW (128551) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (129601) httpd_uri: httpd_uri: URI '/stream?t=1775419388040' not found[0m
+[0;33mW (129601) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (130661) httpd_uri: httpd_uri: URI '/stream?t=1775419389098' not found[0m
+[0;33mW (130661) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (131711) httpd_uri: httpd_uri: URI '/stream?t=1775419390152' not found[0m
+[0;33mW (131711) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (132761) httpd_uri: httpd_uri: URI '/stream?t=1775419391205' not found[0m
+[0;33mW (132761) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (133821) httpd_uri: httpd_uri: URI '/stream?t=1775419392264' not found[0m
+[0;33mW (133831) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (134871) httpd_uri: httpd_uri: URI '/stream?t=1775419393320' not found[0m
+[0;33mW (134871) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m
+[0;33mW (135931) httpd_uri: httpd_uri: URI '/stream?t=1775419394356' not found[0m
+[0;33mW (135931) httpd_txrx: httpd_resp_send_err: 404 Not Found - Nothing matches the given URI[0m

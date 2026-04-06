@@ -1,3 +1,4 @@
+
 #include <stdio.h>
 #include <string.h>
 #include <stdbool.h>
@@ -30,6 +31,7 @@ extern esp_err_t audio_i2s_init(void);
 extern void audio_enable_tx(bool enable);
 extern void audio_start_recording(void);
 extern void audio_stop_recording(void);
+extern void audio_play_horn(void);
 
 static const char *TAG = "DRIVEBOT_MAIN";
 static httpd_handle_t http_server = NULL;
@@ -60,7 +62,7 @@ static esp_err_t stream_handler(httpd_req_t *req) {
         return ESP_OK;
     }
 
-    if (!camera_started) {
+     if (!camera_started) {
         camera_server_init();
         camera_started = true;
     }
@@ -91,6 +93,7 @@ static esp_err_t stream_handler(httpd_req_t *req) {
         }
     }
     return httpd_resp_send_chunk(req, NULL, 0);
+    
 }
 
 static esp_err_t start_http_server(void) {
@@ -153,36 +156,8 @@ static void udp_command_task(void *pvParameters) {
             
             // 2. СИГНАЛ (HORN) — ГЛУБОКАЯ ПРОВЕРКА
             else if (strcmp(buffer, "HORN_ON") == 0) {
-    ESP_LOGI(TAG, "🎺 СИГНАЛ: Запуск...");
-    if (tx_chan != NULL) { 
-        // Включаем канал только если он выключен
-        i2s_chan_info_t chan_info;
-        i2s_channel_get_info(tx_chan, &chan_info);
-        if (chan_info.state != I2S_CHAN_STATE_RUNNING) {
-            i2s_channel_enable(tx_chan);
-        }
-
-        // Выделяем память в быстрой внутренней RAM (для DMA)
-        int16_t *t_buf = heap_caps_malloc(2048, MALLOC_CAP_INTERNAL | MALLOC_CAP_DMA);
-        if (t_buf) {
-            // Генерируем "гудок" (меандр)
-            for (int i = 0; i < 1024; i += 2) {
-                int16_t sample = (i % 30 < 15) ? 20000 : -20000;
-                t_buf[i] = sample;     // Left
-                t_buf[i+1] = sample;   // Right
+                audio_play_horn();
             }
-            
-            size_t w = 0;
-            // Цикл для длительности звука (например, 0.5 секунды)
-            for(int j = 0; j < 150; j++) {
-                i2s_channel_write(tx_chan, t_buf, 2048, &w, pdMS_TO_TICKS(100));
-            }
-            
-            heap_caps_free(t_buf);
-            ESP_LOGI(TAG, "✅ Звук отправлен на GPIO 14");
-        }
-    }
-}
 
             // 3. СВЕТ
             else if (strcmp(buffer, "LIGHTS_ON") == 0)    { ESP_LOGI(TAG, "💡 ФАРЫ ВКЛ"); } 
@@ -225,7 +200,9 @@ void app_main(void) {
     }
     ESP_ERROR_CHECK(ret);
 
-    audio_i2s_init(); 
+    audio_i2s_init();
+   
+     
     led_controller_init();
     ble_manager_init(NULL);
     wifi_manager_init_ap();
@@ -237,4 +214,4 @@ void app_main(void) {
     camera_started = false;
     ESP_LOGI(TAG, "=== СИСТЕМА ГОТОВА ===");
     while (1) vTaskDelay(pdMS_TO_TICKS(10000));
-}
+}   
